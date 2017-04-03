@@ -16,10 +16,6 @@ const struct BIP9DeploymentInfo VersionBitsDeploymentInfo[Consensus::MAX_VERSION
         /*.gbt_force =*/ true,
     },
     {
-        /*.name =*/ "segwit",
-        /*.gbt_force =*/ false,
-    },
-    {
         /*.name =*/ "legbit",
         /*.gbt_force =*/ true,
     }
