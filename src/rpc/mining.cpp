@@ -552,18 +552,12 @@ UniValue getblocktemplate(const JSONRPCRequest& request)
         // TODO: Maybe recheck connections/IBD and (if something wrong) send an expires-immediately template to stop miners?
     }
 
-    const struct BIP9DeploymentInfo &vbinfo = VersionBitsDeploymentInfo[pos];
-
     // Update block
     static CBlockIndex* pindexPrev;
     static int64_t nStart;
     static std::unique_ptr<CBlockTemplate> pblocktemplate;
-    // Cache whether the last invocation was with segwit support, to avoid returning
-    // a segwit-block to a non-segwit caller.
-    static bool fLastTemplateSupportsSegwit = true;
     if (pindexPrev != chainActive.Tip() ||
-        (mempool.GetTransactionsUpdated() != nTransactionsUpdatedLast && GetTime() - nStart > 5) ||
-        fLastTemplateSupportsSegwit != fSupportsSegwit)
+        (mempool.GetTransactionsUpdated() != nTransactionsUpdatedLast && GetTime() - nStart > 5))
     {
         // Clear pindexPrev so future calls make a new block, despite any failures from here on
         pindexPrev = nullptr;
@@ -572,11 +566,10 @@ UniValue getblocktemplate(const JSONRPCRequest& request)
         nTransactionsUpdatedLast = mempool.GetTransactionsUpdated();
         CBlockIndex* pindexPrevNew = chainActive.Tip();
         nStart = GetTime();
-        fLastTemplateSupportsSegwit = fSupportsSegwit;
 
         // Create new block
         CScript scriptDummy = CScript() << OP_TRUE;
-        pblocktemplate = BlockAssembler(Params()).CreateNewBlock(scriptDummy, miningAlgo, fSupportsSegwit);
+        pblocktemplate = BlockAssembler(Params()).CreateNewBlock(scriptDummy, miningAlgo);
         if (!pblocktemplate)
             throw JSONRPCError(RPC_OUT_OF_MEMORY, "Out of memory");
 
