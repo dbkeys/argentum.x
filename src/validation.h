@@ -512,12 +512,6 @@ bool TestBlockValidity(CValidationState& state, const CChainParams& chainparams,
 /** When there are blocks in the active chain with missing data, rewind the chainstate and remove them from the block index */
 bool RewindBlockIndex(const CChainParams& params);
 
-/** Update uncommitted block structures (currently: only the witness nonce). This is safe for submitted blocks. */
-void UpdateUncommittedBlockStructures(CBlock& block, const CBlockIndex* pindexPrev, const Consensus::Params& consensusParams);
-
-/** Produce the necessary coinbase commitment for a block (modifies the hash, don't call for mined blocks). */
-std::vector<unsigned char> GenerateCoinbaseCommitment(CBlock& block, const CBlockIndex* pindexPrev, const Consensus::Params& consensusParams);
-
 /**
  * Check proof-of-work of a block header, taking auxpow into account.
  * @param block The block header.
