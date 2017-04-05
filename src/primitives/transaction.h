@@ -346,7 +346,7 @@ public:
     }
 
     // Compute a hash that includes both transaction and witness data
-    uint256 GetWitnessHash() const;
+    uint256 GetHash() const;
 
     // Return sum of txouts.
     CAmount GetValueOut() const;
