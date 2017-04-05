@@ -758,8 +758,16 @@ bool AcceptToMemoryPoolWorker(CTxMemPool& pool, CValidationState& state, const C
         // This is done last to help prevent CPU exhaustion denial-of-service attacks.
         PrecomputedTransactionData txdata(tx);
         if (!CheckInputs(tx, state, view, true, scriptVerifyFlags, true, txdata)) {
-            LogPrint("mempool", "CheckInputs failed for tx: %s\n", tx.GetHash().ToString().c_str());
-            return false;
+            // SCRIPT_VERIFY_CLEANSTACK requires SCRIPT_VERIFY_WITNESS, so we
+            // need to turn both off, and compare against just turning off CLEANSTACK
+            // to see if the failure is specifically due to witness validation.
+            CValidationState stateDummy; // Want reported failures to be from first CheckInputs
+            if (CheckInputs(tx, stateDummy, view, true, scriptVerifyFlags & ~(SCRIPT_VERIFY_WITNESS | SCRIPT_VERIFY_CLEANSTACK), true, txdata) &&
+                !CheckInputs(tx, stateDummy, view, true, scriptVerifyFlags & ~SCRIPT_VERIFY_CLEANSTACK, true, txdata)) {
+                // Only the witness is missing, so the transaction itself may be fine.
+                state.SetCorruptionPossible();
+            }
+            return false; // state filled in by CheckInputs
         }
 
         // Check again against just the consensus-critical mandatory script
