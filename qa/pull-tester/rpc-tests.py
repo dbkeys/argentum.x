@@ -151,7 +151,6 @@ testScripts = [
     'signmessages.py',
     'nulldummy.py',
     'import-rescan.py',
-    'bumpfee.py',
     'rpcnamedargs.py',
     'listsinceblock.py',
     'p2p-leaktests.py',
