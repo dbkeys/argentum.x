@@ -110,6 +110,8 @@ BITCOIN_TESTS =\
   test/scheduler_tests.cpp \
   test/script_P2SH_tests.cpp \
   test/script_tests.cpp \
+  test/scriptflags.cpp \
+  test/scriptflags.h \
   test/scriptnum_tests.cpp \
   test/scrypt_tests.cpp \
   test/serialize_tests.cpp \
