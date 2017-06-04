@@ -75,6 +75,8 @@ const char* ScriptErrorString(const ScriptError serror)
             return "Public key is neither compressed or uncompressed";
         case SCRIPT_ERR_CLEANSTACK:
             return "Script did not clean its stack";
+        case SCRIPT_ERR_NONCOMPRESSED_PUBKEY:
+            return "Using non-compressed public key";
         case SCRIPT_ERR_UNKNOWN_ERROR:
         case SCRIPT_ERR_ERROR_COUNT:
         default: break;
