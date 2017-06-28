@@ -1267,9 +1267,9 @@ void CheckForkWarningConditionsOnNewFork(CBlockIndex* pindexNewForkTip)
     CheckForkWarningConditions();
 }
 
-void static InvalidChainFound(CBlockIndex* pindexNew)
-{
-    if (!pindexBestInvalid || pindexNew->nChainWork > pindexBestInvalid->nChainWork)
+static void InvalidChainFound(CBlockIndex *pindexNew) {
+    if (!pindexBestInvalid ||
+        pindexNew->nChainWork > pindexBestInvalid->nChainWork)
         pindexBestInvalid = pindexNew;
 
     LogPrintf("%s: invalid block=%s  height=%d  log2_work=%.8g  date=%s\n", __func__,
@@ -1284,7 +1284,8 @@ void static InvalidChainFound(CBlockIndex* pindexNew)
     CheckForkWarningConditions();
 }
 
-void static InvalidBlockFound(CBlockIndex *pindex, const CValidationState &state) {
+static void InvalidBlockFound(CBlockIndex *pindex,
+                              const CValidationState &state) {
     if (!state.CorruptionPossible()) {
         pindex->nStatus |= BLOCK_FAILED_VALID;
         setDirtyBlockIndex.insert(pindex);
@@ -1853,9 +1854,10 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     vPos.reserve(block.vtx.size());
     blockundo.vtxundo.reserve(block.vtx.size() - 1);
     std::vector<PrecomputedTransactionData> txdata;
-    txdata.reserve(block.vtx.size()); // Required so that pointers to individual PrecomputedTransactionData don't get invalidated
-    for (unsigned int i = 0; i < block.vtx.size(); i++)
-    {
+    // Required so that pointers to individual PrecomputedTransaction Data don't
+    // get invalidated.
+    txdata.reserve(block.vtx.size());
+    for (unsigned int i = 0; i < block.vtx.size(); i++) {
         const CTransaction &tx = *(block.vtx[i]);
 
         nInputs += tx.vin.size();
@@ -1889,13 +1891,17 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
                              REJECT_INVALID, "bad-blk-sigops");
 
         txdata.emplace_back(tx);
-        if (!tx.IsCoinBase())
-        {
-            nFees += view.GetValueIn(tx)-tx.GetValueOut();
+        if (!tx.IsCoinBase()) {
+            nFees += view.GetValueIn(tx) - tx.GetValueOut();
+
+            // Don't cache results if we're actually connecting blocks (still
+            // consult the cache, though).
+            bool fCacheResults = fJustCheck;
 
             std::vector<CScriptCheck> vChecks;
-            bool fCacheResults = fJustCheck; /* Don't cache results if we're actually connecting blocks (still consult the cache, though) */
-            if (!CheckInputs(tx, state, view, fScriptChecks, flags, fCacheResults, txdata[i], nScriptCheckThreads ? &vChecks : NULL))
+            if (!CheckInputs(tx, state, view, fScriptChecks, flags,
+                             fCacheResults, txdata[i],
+                             nScriptCheckThreads ? &vChecks : nullptr)) {
                 return error("ConnectBlock(): CheckInputs on %s failed with %s",
                     tx.GetHash().ToString(), FormatStateMessage(state));
             control.Add(vChecks);
@@ -2262,9 +2268,11 @@ bool static ConnectTip(CValidationState& state, const CChainParams& chainparams,
         bool rv = ConnectBlock(blockConnecting, state, pindexNew, view, chainparams);
         GetMainSignals().BlockChecked(blockConnecting, state);
         if (!rv) {
-            if (state.IsInvalid())
+            if (state.IsInvalid()) {
                 InvalidBlockFound(pindexNew, state);
-            return error("ConnectTip(): ConnectBlock %s failed", pindexNew->GetBlockHash().ToString());
+            }
+            return error("ConnectTip(): ConnectBlock %s failed",
+                         pindexNew->GetBlockHash().ToString());
         }
         nTime3 = GetTimeMicros(); nTimeConnectTotal += nTime3 - nTime2;
         LogPrint("bench", "  - Connect total: %.2fms [%.2fs]\n", (nTime3 - nTime2) * 0.001, nTimeConnectTotal * 0.000001);
