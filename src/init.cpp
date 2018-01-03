@@ -1647,12 +1647,13 @@ bool AppInitMain(boost::thread_group& threadGroup, CScheduler& scheduler)
     // ********************************************************* Step 12: finished
 
     SetRPCWarmupFinished();
-    uiInterface.InitMessage(_("Done loading"));
 
 #ifdef ENABLE_WALLET
+    uiInterface.InitMessage(_("Reaccepting Wallet Transactions"));
     if (pwalletMain)
         pwalletMain->postInitProcess(threadGroup);
 #endif
 
+    uiInterface.InitMessage(_("Done loading"));
     return !fRequestShutdown;
 }
