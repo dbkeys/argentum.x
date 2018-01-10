@@ -17,8 +17,12 @@ class uint256;
 unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHeader *pblock, int algo, const Consensus::Params&);
 unsigned int CalculateNextWorkRequiredV1(const CBlockIndex* pindexPrev, const CBlockIndex* pindexFirst, const Consensus::Params& params, int algo, int64_t nActualTimespan, int nHeight);
 unsigned int CalculateNextWorkRequiredV2(const CBlockIndex* pindexPrev, const CBlockIndex* pindexFirst, const Consensus::Params& params, int algo, int64_t nActualTimespan);
+unsigned int StabilX(const CBlockIndex* pindexLast, const CBlockHeader *pblock, const Consensus::Params&, int algo);
+unsigned int DarkGravityWave3(const CBlockIndex* pindexLast, const CBlockHeader *pblock, const Consensus::Params& params, int algo);
+unsigned int GetNextWorkRequired_Legacy(const CBlockIndex* pindexLast, const CBlockHeader *pblock, const Consensus::Params& params, int algo);
 
 /** Check whether a block hash satisfies the proof-of-work requirement specified by nBits */
 bool CheckProofOfWork(uint256 hash, int algo, unsigned int nBits, const Consensus::Params&);
+bool CheckProofOfWorkB(const CBlockHeader& block, const Consensus::Params& params);
 
 #endif // BITCOIN_POW_H

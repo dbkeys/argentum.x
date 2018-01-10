@@ -52,8 +52,8 @@ static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesi
  */
 static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
-    const char* pszTimestamp = "2014-02-23 FT - G20 aims to add $2tn to global economy";
-    const CScript genesisOutputScript = CScript() << ParseHex("04e941763c7750969e751bee1ffbe96a651a0feb131db046546c219ea40bff40b95077dc9ba1c05af991588772d8daabbda57386c068fb9bc7477c5e28702d5eb9") << OP_CHECKSIG;
+    const char* pszTimestamp = "Edward Snowden says he's behind NSA leaks - CNN - June 10 2013";
+    const CScript genesisOutputScript = CScript() << ParseHex("040184710fa589ad5023690c80f3a49c8f13f8d45b8c857fbcbc8bc4a8e4d3eb4b10f4d4604fa08dce601aaf0f470216fe1b51850b4acf21b179c45070ac7b03a9") << OP_CHECKSIG;
     return CreateGenesisBlock(pszTimestamp, genesisOutputScript, nTime, nNonce, nBits, nVersion, genesisReward);
 }
 
@@ -75,36 +75,39 @@ public:
 
         /*** Myriadcoin Additional Chainparams ***/
 
-        consensus.nPowTargetSpacingV1 = 30; // target time for block spacing across all algorithms
-        consensus.nPowTargetSpacingV2 = 60; // new target time for block spacing across all algorithms
+        consensus.nPowTargetSpacingV1 = 32; // target time for block spacing across all algorithms
+        consensus.nPowTargetSpacingV2 = 45; // new target time for block spacing across all algorithms
         consensus.nAveragingInterval = 10; // number of blocks to take the timespan of
 
-        consensus.nStartAuxPow = 1402000; // Allow AuxPow blocks from this height
-        consensus.nAuxpowChainId = 0x005A; 
+        consensus.nStartAuxPow = 1825000; // Allow AuxPow blocks from this height
+        consensus.nAuxpowChainId = 0x004A3; 
         consensus.fStrictChainId = false;
 
-        consensus.nBlockTimeWarpPreventStart1 = 740500; // block where time warp 1 prevention starts
-        consensus.nBlockTimeWarpPreventStart2 = 766000; // block where time warp 2 prevention starts
-        consensus.nBlockTimeWarpPreventStart3 = 1048320; // block where time warp 3 prevention starts
-        consensus.Phase2Timespan_Start = 1401000; // block where 60 second target time kicks in
-        consensus.nBlockDiffAdjustV2 = 766000; // block where difficulty adjust V2 starts
+        //consensus.nBlockTimeWarpPreventStart1 = 740500; // block where time warp 1 prevention starts
+        //consensus.nBlockTimeWarpPreventStart2 = 766000; // block where time warp 2 prevention starts
+        //consensus.nBlockTimeWarpPreventStart3 = 1048320; // block where time warp 3 prevention starts
+        //consensus.Phase2Timespan_Start = 1401000; // block where 60 second target time kicks in
+        consensus.nBlockDiffAdjustV2 = 1635000; // block where difficulty adjust V2 starts (DGW)
 
-        consensus.nMaxAdjustDown = 4; // 4% adjustment down
-        consensus.nMaxAdjustUpV1 = 2; // 2% adjustment up
-        consensus.nMaxAdjustUpV2 = 4; // 4% adjustment up     
+        consensus.nMaxAdjustDown = 22; // 4% adjustment down
+        consensus.nMaxAdjustUpV = 14; // 2% adjustment up
+        //consensus.nMaxAdjustUpV2 = 4; // 4% adjustment up
+        consensus.nLocalDifficultyAdjustment = 12; // 12%     
 
-        consensus.nBlockSequentialAlgoRuleStart1 = 740000; // block where sequential algo rule starts
-        consensus.nBlockSequentialAlgoRuleStart2 = 766000; // block where sequential algo rule starts
-        consensus.nBlockSequentialAlgoMaxCount1 = 6; // maximum sequential blocks of same algo
-        consensus.nBlockSequentialAlgoMaxCount2 = 3; // maximum sequential blocks of same algo
-        consensus.nBlockSequentialAlgoMaxCount3 = 6; // maximum sequential blocks of same algo
+        consensus.nBlockSequentialAlgoRuleStart1 = 1930000; // block where sequential algo rule starts
+        consensus.nBlockSequentialAlgoRuleStart2 = 2032000; // block where sequential algo rule starts
+        consensus.nBlockSequentialAlgoMaxCount1 = 3; // maximum sequential blocks of same algo
+        consensus.nBlockSequentialAlgoMaxCount2 = 6; // maximum sequential blocks of same algo
+        //consensus.nBlockSequentialAlgoMaxCount3 = 6; // maximum sequential blocks of same algo
+        consensus.nMultiAlgoFork = 1930000; // Block where multi-algo difficulty adjustment and 45 second blocktime starts
 
-        consensus.nBlockAlgoWorkWeightStart = 142000; // block where algo work weighting starts
-        consensus.nBlockAlgoNormalisedWorkStart = 740000; // block where algo combined weight starts
-        consensus.nBlockAlgoNormalisedWorkDecayStart1 = 866000; // block where weight decay starts
-        consensus.nBlockAlgoNormalisedWorkDecayStart2 = 932000; // block where weight decay starts
-        consensus.nGeoAvgWork_Start = 1400000;
-        consensus.nFork1MinBlock = 1764000; // minimum block height where fork 1 takes effect (algo switch, seq algo count change)
+        // consensus.nBlockAlgoWorkWeightStart = 142000; // block where algo work weighting starts
+        // consensus.nBlockAlgoNormalisedWorkStart = 740000; // block where algo combined weight starts
+        // consensus.nBlockAlgoNormalisedWorkDecayStart1 = 866000; // block where weight decay starts
+        // consensus.nBlockAlgoNormalisedWorkDecayStart2 = 932000; // block where weight decay starts
+        consensus.nGeoAvgWork_Start = 2387838;
+        //consensus.nFork1MinBlock = 1764000; // minimum block height where fork 1 takes effect (algo switch, seq algo count change)
+        consensus.nCoinbaseMaturityV2Start = 2387838;
 
         // Deployment of Legacy Blocks. Once activated, keeps v0.11 nodes on the same chain. Should be the first softfork.
         consensus.vDeployments[Consensus::DEPLOYMENT_LEGBIT].bit = 2;
@@ -113,18 +116,18 @@ public:
 
         /*** Upstream Chainparams ***/
 
-        consensus.nSubsidyHalvingInterval = 80640 * 12;
-        consensus.BIP34Height = 1;
-        consensus.BIP34Hash = uint256S("0xcb41589c918fba1beccca8bc6b34b2b928b4f9888595d7664afd6ec60a576291");
-        consensus.BIP65Height = 1764000; // 2ca9968704301897b956f7e326375413be505509489c06aee2b16fe73805481e
-        consensus.BIP66Height = 1764000; // 2ca9968704301897b956f7e326375413be505509489c06aee2b16fe73805481e
+        //consensus.nSubsidyHalvingInterval = 80640 * 12;
+        consensus.BIP34Height = 1796159;
+        consensus.BIP34Hash = uint256S("0x85a6966de131c03e41884bb5062abc20a14227cb6e164dc5a6f55db9164222ce");
+        consensus.BIP65Height = 2387838; // 00000000000000254214c9f9fbdd39c07072b43df52f35a910509f4c5406c272  
+        consensus.BIP66Height = 1796159; // 85a6966de131c03e41884bb5062abc20a14227cb6e164dc5a6f55db9164222ce   
         consensus.powLimit = ArithToUint256(~arith_uint256(0) >> 20);
         consensus.nPowTargetTimespan = 14 * 24 * 60 * 60; // two weeks
         consensus.nPowTargetSpacing = consensus.nPowTargetSpacingV2; // Current value
         consensus.fPowAllowMinDifficultyBlocks = false;
         consensus.fPowNoRetargeting = false;
-        consensus.nRuleChangeActivationThreshold = 1512; // 75% of 2016
-        consensus.nMinerConfirmationWindow = 2016; // nPowTargetTimespan / nPowTargetSpacing
+        consensus.nRuleChangeActivationThreshold = 20160; // 75% of 26880
+        consensus.nMinerConfirmationWindow = 26880; // 2 weeks based on 1920 blocks per day.
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 28;
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nStartTime = 1199145601; // January 1, 2008
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nTimeout = 1230767999; // December 31, 2008
@@ -133,11 +136,6 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_CSV].bit = 0;
         consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nStartTime = 1512086400; // December 1st, 2017
         consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nTimeout = 1543622400; // December 1st, 2018
-
-        // Deployment of SegWit (BIP141, BIP143, and BIP147)
-        consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].bit = 1;
-        consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nStartTime = 1513296000; // December 15th, 2017
-        consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nTimeout = 1544832000; // December 15th, 2018
 
         // The best chain should have at least this much work.
         consensus.nMinimumChainWork = uint256S("0x00");
@@ -157,11 +155,11 @@ public:
         nDefaultPort = 10888;
         nPruneAfterHeight = 100000;
 
-        genesis = CreateGenesisBlock(1393164995, 2092903596, 0x1e0fffff, 2, 1000 * COIN);
+        genesis = CreateGenesisBlock(1369199888, 12786092, 0x1e0ffff0, 1, 5 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
         
-        assert(consensus.hashGenesisBlock == uint256S("0x00000ffde4c020b5938441a0ea3d314bf619eff0b38f32f78f7583cffa1ea485"));
-        assert(genesis.hashMerkleRoot == uint256S("0x3f75db3c18e92f46c21530dc1222e1fddf4ccebbf88e289a6c9dc787fd6469da"));
+        assert(consensus.hashGenesisBlock == uint256S("0x88c667bc63167685e4e4da058fffdfe8e007e5abffd6855de52ad59df7bb0bb2"));
+        assert(genesis.hashMerkleRoot == uint256S("0xc7e4af4190d3eb28d4e61261fb1b47e13d7efd6d7279c75ae6a91c2987d43d53"));
 
         vSeeds.push_back(CDNSSeedData("seed1.myriadcoin.org", "seed1.myriadcoin.org"));
         vSeeds.push_back(CDNSSeedData("seed2.myriadcoin.org", "seed2.myriadcoin.org"));
@@ -173,11 +171,12 @@ public:
         vSeeds.push_back(CDNSSeedData("seed8.myriadcoin.org", "seed8.myriadcoin.org"));
         vSeeds.push_back(CDNSSeedData("myriadseed1.cryptap.us", "myriadseed1.cryptap.us")); // cryptapus
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,50);
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,9);
-        base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,178);
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,23);
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,5);
+        base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,151);
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x04)(0x88)(0xB2)(0x1E).convert_to_container<std::vector<unsigned char> >();
         base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x04)(0x88)(0xAD)(0xE4).convert_to_container<std::vector<unsigned char> >();
+        base58Prefixes[EXT_COIN_TYPE] =  boost::assign::list_of(0x8000002D).convert_to_container<std::vector<unsigned char> >(); // Argentum BIP 44 index is 45
 
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
 
@@ -188,38 +187,34 @@ public:
 
         checkpointData = (CCheckpointData) {
             boost::assign::map_list_of
-            (      0, uint256S("0x00000ffde4c020b5938441a0ea3d314bf619eff0b38f32f78f7583cffa1ea485"))
-            (   9646, uint256S("0x0000000000000b0f1372211861f226a3ec06a27d0a5bf36e4244a982da077e8f"))
-            (  27255, uint256S("0x00000000000005112a0debf53703eb3dc4ec2d8d68599c90db71423ea14489b7"))
-            (  70623, uint256S("0x00000000000004767ff6e509d00772af5c4bedaa82c38c1e95c33adbf5ff84f5"))
-            ( 112567, uint256S("0x000000000000018c0621bf32ab33d3ca871509f406f08be6dd20facea747b099"))
-            ( 141845, uint256S("0x00000000000000f62d14d55c2bc3ec0ba94e4f2b3868bbe7be9cb5b681fcc0fb"))
-            ( 149540, uint256S("0x000000000000061b8f5b8653fe13b5e453347d9386d43d09445ee5e26a8222bb"))
-            ( 348178, uint256S("0x0000000000000a410c6aff939087769e757132098fa0b0ce89f11d68f935077d"))
-            ( 431747, uint256S("0x000000000000065616abeccd681f7b4d6d7bed06deef0e1a6e70c905edae3692"))
-            ( 490168, uint256S("0x000000000000155ce9845e501617f152127e32c2c468edc643809f9988d30327"))
-            ( 557719, uint256S("0x0000000000000851f690d42129b34408697c88316879debd413049959517d7c6"))
-            ( 740001, uint256S("0x00000000000002c7aaa3ad688eb5af7d2779f4aa1d9a1b9a5c3cfb4ccad56caa"))
-            ( 740576, uint256S("0x00000000000043dc047538e724f17a388146f22dd2ecf66f3c88253799912f4d"))
-            ( 766081, uint256S("0x00000000000001e604a7acc2dd539ff8bd51224a7aac8647736d1af10160427d"))
-            (1007712, uint256S("0x00000000000013e0fb1ec8ba2ce0b04b1547d9ae7d9c9e5a2691aeca87559a12"))
-            (1077647, uint256S("0x00000000000038b85361a79dd4a04b1f01ec2cc60f4176185363aa4522aab12d"))
-            (1177283, uint256S("0x000000000000359b1fb371d92db45de64b449ea72863a51fa78fea6b7ff3989f"))
-            (1336174, uint256S("0x00000000000001eafb1051fda69eb842577a0e48e4f0682bd7f33677373d0807"))
-            (1402167, uint256S("0x8215cd9feb2db9bf74514361a9d4b4440f054101079df8bb6bf629065db3ab29"))
-            (1449500, uint256S("0xef19939e314f239999b9959ac908b20a43b165719d1c35dcfe38ba2566d20765"))
-            (1681927, uint256S("0x9be88de17bccfa3ceb43d158652189af2c3038460dcf91732320a73557fe6a2e"))
-            (1764003, uint256S("0xf969487c0ba2426bf767a5cb83c6bb7f3f9a19cccdcfc50cf5db0b39032aae55"))
-            (1863106, uint256S("0xc2a2012bac1de0e0039efb958e3465390eb7dcd439d83be077dc1c1006d0ebd6"))
-            (2210002, uint256S("0x9e16b567c393c46e40b4b4c4a21283b998aec17b3c7edf8319b3860e4403e4bf"))
+            (      0, uint256S("0x88c667bc63167685e4e4da058fffdfe8e007e5abffd6855de52ad59df7bb0bb2"))
+            (      1, uint256S("0xdf0a20b6609b206448778428648f42a592dea10884a3fca1ce3a4c2ce12caf2f"))
+            (      2, uint256S("0xa10fd82c25b5ddcbcb9077cf9a70b47502a449663655a5d9cec09c19556c6d43"))
+            (  50000, uint256S("0xa8b62a4dd6c8aa28e2bf68c521e01da0638214f2def124a551f1a90df8402b6d"))
+            ( 124415, uint256S("0x6d5a842bea984df8088f910d27f81af72ccfeef2bde21e100db036a51e17d6f8"))
+            ( 224414, uint256S("0x2df7b26aea2376760533552baa54a61044d13f2c6f44ff017e855e9593aa0216"))
+            ( 624415, uint256S("0x4651a604984d4494d09d1bb8c9f1c951e9bb214b5c930af4d0ad0bff7c513057"))
+            ( 824404, uint256S("0x91456228171e75954e44e44b740ba075d179c11c31fc0d403843a582316a9e21"))
+            (1024406, uint256S("0xf70a1dbf9c54f114690dfc7d6ac03366034e2c7a4dcd4fb71cf25f079c46c859"))
+            (1224406, uint256S("0xa55d78df58fca4aec78e658614f004c2ad5930779e512447a0d96c5bb427cbe7"))
+            (1424405, uint256S("0x820d255f359325f8c1792d776bef999bc8c54ab2cfb0d9f0b5d2281b759bccb3"))
+            (1624406, uint256S("0xe58f3416b69542699b3e9662ea0a36318166753080b49e06e8b0a884efcb581b"))
+            (1826401, uint256S("0x37c0d97ef3e0a24753b3e0eebe93588ad21b302f66c78b1046cbadeedd52c196"))
+            (1924401, uint256S("0x2267dd4753f9e8fa088cdc4d257355b0a118ccd43a2f366c68de1aa260c4ba22"))
+            (1934707, uint256S("0xe4527742cb236f24b355156213775e44da0e728ea453fae712fa672b18ce5f84"))
+            (2050260, uint256S("0xbc55838e026131fab334f1c87de9fea3218d076f4de03dc19f94d4f12da7d6c1"))
+            (2365716, uint256S("0x947827b4599512a675fc3789ac8778b3187277705ffda7b6e3cf6adaa31dac10"))
+            (2387838, uint256S("0x00000000000000254214c9f9fbdd39c07072b43df52f35a910509f4c5406c272"))
+            (2400814, uint256S("0x6b5b226b0f896a286c0768f51c128fa4d9be6bb985c264b19ecb180e8b81e4b4"))
+            (2855151, uint256S("0x43964064d8605d2bb89972f07919dc5b1a00457b3919eb6010003c8d0b242c93"))
         };
 
         chainTxData = ChainTxData{
             // Data as of block 00000000000000000166d612d5595e2b1cd88d71d695fc580af64d8da8658c23 (height 2210002).
-            1507861206, // * UNIX timestamp of last known number of transactions
-            5243041,    // * total number of transactions between genesis and that timestamp
+            1515539327, // * UNIX timestamp of last known number of transactions
+            3140727,    // * total number of transactions between genesis and that timestamp
                         //   (the tx=... number in the SetBestChain debug.log lines)
-            0.02        // * estimated number of transactions per second after that timestamp
+            0.0347        // * estimated number of transactions per second after that timestamp
         };
     }
 };
@@ -236,7 +231,7 @@ public:
         /*** Myriadcoin Additional Chainparams ***/
 
         consensus.nPowTargetSpacingV1 = 30; // target time for block spacing across all algorithms
-        consensus.nPowTargetSpacingV2 = 60; // new target time for block spacing across all algorithms
+        consensus.nPowTargetSpacingV2 = 45; // new target time for block spacing across all algorithms
         consensus.nAveragingInterval = 10; // number of blocks to take the timespan of
 
         consensus.nStartAuxPow = 150;
@@ -273,7 +268,7 @@ public:
 
         /*** Upstream Chainparams ***/
 
-        consensus.nSubsidyHalvingInterval = 80640 * 12;
+        //consensus.nSubsidyHalvingInterval = 80640 * 12;
         consensus.BIP34Height = 1;
         consensus.BIP34Hash = uint256S("0x0000d23adc28e33bc05f4bee57c873ae0aab584a6a436e75ac0ed40396f6d86b");
         consensus.BIP65Height = 641; // ff983c72147a81ac5b8ebfc68b62b39358cac4b8eb5518242e87f499b71c6a51

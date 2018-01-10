@@ -68,7 +68,7 @@ static const unsigned int DEFAULT_DESCENDANT_LIMIT = 25;
 /** Default for -limitdescendantsize, maximum kilobytes of in-mempool descendants */
 static const unsigned int DEFAULT_DESCENDANT_SIZE_LIMIT = 101;
 /** Default for -mempoolexpiry, expiration time for mempool transactions in hours */
-static const unsigned int DEFAULT_MEMPOOL_EXPIRY = 336;
+static const unsigned int DEFAULT_MEMPOOL_EXPIRY = 48;
 /** The maximum size of a blk?????.dat file (since 0.8) */
 static const unsigned int MAX_BLOCKFILE_SIZE = 0x8000000; // 128 MiB
 /** The pre-allocation chunk size for blk?????.dat files (since 0.8) */
@@ -81,9 +81,9 @@ static const int MAX_SCRIPTCHECK_THREADS = 16;
 /** -par default (number of script-checking threads, 0 = auto) */
 static const int DEFAULT_SCRIPTCHECK_THREADS = 0;
 /** Number of blocks that can be requested at any given time from a single peer. */
-static const int MAX_BLOCKS_IN_TRANSIT_PER_PEER = 16;
+static const int MAX_BLOCKS_IN_TRANSIT_PER_PEER = 1024;
 /** Timeout in seconds during which a peer must stall block download progress before being disconnected. */
-static const unsigned int BLOCK_STALLING_TIMEOUT = 2;
+static const unsigned int BLOCK_STALLING_TIMEOUT = 4;
 /** Number of headers sent in one getheaders result. We rely on the assumption that if a peer sends
  *  less than this number, we reached its tip. Changing this value is a protocol upgrade. */
 static const unsigned int MAX_HEADERS_RESULTS = 2000;
@@ -99,14 +99,14 @@ static const unsigned int MAX_HEADERS_SIZE = (6 << 20); // 6 MiB
 static const unsigned int THRESHOLD_HEADERS_SIZE = (4 << 20); // 4 MiB
 /** Maximum depth of blocks we're willing to serve as compact blocks to peers
  *  when requested. For older blocks, a regular BLOCK response will be sent. */
-static const int MAX_CMPCTBLOCK_DEPTH = 5;
+static const int MAX_CMPCTBLOCK_DEPTH = 10;
 /** Maximum depth of blocks we're willing to respond to GETBLOCKTXN requests for. */
-static const int MAX_BLOCKTXN_DEPTH = 10;
+static const int MAX_BLOCKTXN_DEPTH = 20;
 /** Size of the "block download window": how far ahead of our current height do we fetch?
  *  Larger windows tolerate larger download speed differences between peer, but increase the potential
  *  degree of disordering of blocks on disk (which make reindexing and in the future perhaps pruning
  *  harder). We'll probably want to make this a per-peer adaptive value at some point. */
-static const unsigned int BLOCK_DOWNLOAD_WINDOW = 1024;
+static const unsigned int BLOCK_DOWNLOAD_WINDOW = 1536;
 /** Time to wait (in seconds) between writing blocks/block index to disk. */
 static const unsigned int DATABASE_WRITE_INTERVAL = 60 * 60;
 /** Time to wait (in seconds) between flushing chainstate to disk. */
@@ -150,7 +150,7 @@ static const bool DEFAULT_ENABLE_REPLACEMENT = true;
 static const bool DEFAULT_FEEFILTER = true;
 
 /** Maximum number of headers to announce when relaying blocks with headers message.*/
-static const unsigned int MAX_BLOCKS_TO_ANNOUNCE = 8;
+static const unsigned int MAX_BLOCKS_TO_ANNOUNCE = 512;
 
 /** Maximum number of unconnecting headers announcements before DoS score */
 static const int MAX_UNCONNECTING_HEADERS = 10;
@@ -207,7 +207,7 @@ extern bool fPruneMode;
 /** Number of MiB of block files that we're trying to stay below. */
 extern uint64_t nPruneTarget;
 /** Block files containing a block-height within MIN_BLOCKS_TO_KEEP of chainActive.Tip() will not be pruned. */
-static const unsigned int MIN_BLOCKS_TO_KEEP = 288;
+static const unsigned int MIN_BLOCKS_TO_KEEP = 3840; // 2 days of blocks
 
 static const signed int DEFAULT_CHECKBLOCKS = 6;
 static const unsigned int DEFAULT_CHECKLEVEL = 3;
@@ -511,8 +511,6 @@ bool DisconnectBlock(const CBlock& block, CValidationState& state, const CBlockI
 /** Check a block is completely valid from start to finish (only works on top of our current best block, with cs_main held) */
 bool TestBlockValidity(CValidationState& state, const CChainParams& chainparams, const CBlock& block, CBlockIndex* pindexPrev, bool fCheckPOW = true, bool fCheckMerkleRoot = true);
 
-/** Check whether witness commitments are required for block. */
-bool IsWitnessEnabled(const CBlockIndex* pindexPrev, const Consensus::Params& params);
 
 /** When there are blocks in the active chain with missing data, rewind the chainstate and remove them from the block index */
 bool RewindBlockIndex(const CChainParams& params);
@@ -530,6 +528,7 @@ std::vector<unsigned char> GenerateCoinbaseCommitment(CBlock& block, const CBloc
  * @return True if the PoW is correct.
  */
 bool CheckProofOfWork(const CBlockHeader& block, const Consensus::Params& params);
+bool CheckProofOfWorkB(const CBlockHeader& block, const Consensus::Params& params);
 
 /** RAII wrapper for VerifyDB: Verify consistency of the block and coin databases */
 class CVerifyDB {

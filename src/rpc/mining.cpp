@@ -552,11 +552,7 @@ UniValue getblocktemplate(const JSONRPCRequest& request)
         // TODO: Maybe recheck connections/IBD and (if something wrong) send an expires-immediately template to stop miners?
     }
 
-    const struct BIP9DeploymentInfo& segwit_info = VersionBitsDeploymentInfo[Consensus::DEPLOYMENT_SEGWIT];
-    // If the caller is indicating segwit support, then allow CreateNewBlock()
-    // to select witness transactions, after segwit activates (otherwise
-    // don't).
-    bool fSupportsSegwit = setClientRules.find(segwit_info.name) != setClientRules.end();
+    const struct BIP9DeploymentInfo &vbinfo = VersionBitsDeploymentInfo[pos];
 
     // Update block
     static CBlockIndex* pindexPrev;
@@ -801,15 +797,9 @@ UniValue submitblock(const JSONRPCRequest& request)
         }
     }
 
-    {
-        LOCK(cs_main);
-        BlockMap::iterator mi = mapBlockIndex.find(block.hashPrevBlock);
-        if (mi != mapBlockIndex.end()) {
-            UpdateUncommittedBlockStructures(block, mi->second, Params().GetConsensus());
-        }
-    }
-
     submitblock_StateCatcher sc(block.GetHash());
+    LogPrint("rpc", "Received block %s via RPC.\n", block.GetHash().ToString());
+
     RegisterValidationInterface(&sc);
     bool fAccepted = ProcessNewBlock(Params(), blockptr, true, NULL);
     UnregisterValidationInterface(&sc);

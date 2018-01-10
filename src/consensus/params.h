@@ -16,7 +16,6 @@ enum DeploymentPos
 {
     DEPLOYMENT_TESTDUMMY,
     DEPLOYMENT_CSV, // Deployment of BIP68, BIP112, and BIP113.
-    DEPLOYMENT_SEGWIT, // Deployment of BIP141, BIP143, and BIP147.
     DEPLOYMENT_LEGBIT, // Deployment of Legacy Bits.
     // NOTE: Also add new deployments to VersionBitsDeploymentInfo in versionbits.cpp
     MAX_VERSION_BITS_DEPLOYMENTS
@@ -39,7 +38,6 @@ struct BIP9Deployment {
  */
 struct Params {
     uint256 hashGenesisBlock;
-    int nSubsidyHalvingInterval;
     /** Block height and hash at which BIP34 becomes active */
     int BIP34Height;
     uint256 BIP34Hash;
@@ -52,6 +50,11 @@ struct Params {
      * (nPowTargetTimespan / nPowTargetSpacing) which is also used for BIP9 deployments.
      * Examples: 1916 for 95%, 1512 for testchains.
      */
+
+    /*TODO int nMajorityEnforceBlockUpgrade;
+    int nMajorityRejectBlockOutdated;
+    int nMajorityWindow;
+    */
     uint32_t nRuleChangeActivationThreshold;
     uint32_t nMinerConfirmationWindow;
     BIP9Deployment vDeployments[MAX_VERSION_BITS_DEPLOYMENTS];
@@ -63,29 +66,21 @@ struct Params {
     bool fPowNoRetargeting;
     int64_t nPowTargetSpacing;
     int64_t nPowTargetTimespan;
-    int64_t DifficultyAdjustmentInterval() const { return nPowTargetTimespan / nPowTargetSpacingV1; }
+    int64_t DifficultyAdjustmentInterval() const { return nPowTargetTimespan / nPowTargetSpacingV2; }
     uint256 nMinimumChainWork;
     uint256 defaultAssumeValid;
     int64_t nAveragingInterval;
-    int64_t nBlockTimeWarpPreventStart1;
-    int64_t nBlockTimeWarpPreventStart2;
-    int64_t nBlockTimeWarpPreventStart3;
-    int64_t Phase2Timespan_Start;
-    int64_t nBlockDiffAdjustV2;
+    int64_t nLocalDifficultyAdjustment;
     int64_t nMaxAdjustDown;
-    int64_t nMaxAdjustUpV1;
-    int64_t nMaxAdjustUpV2;
+    int64_t nMaxAdjustUp;
     int64_t nBlockSequentialAlgoRuleStart1;
     int64_t nBlockSequentialAlgoRuleStart2;
     int nBlockSequentialAlgoMaxCount1;
     int nBlockSequentialAlgoMaxCount2;
-    int nBlockSequentialAlgoMaxCount3;
-    int64_t nBlockAlgoWorkWeightStart;
-    int64_t nBlockAlgoNormalisedWorkStart;
-    int64_t nBlockAlgoNormalisedWorkDecayStart1;
-    int64_t nBlockAlgoNormalisedWorkDecayStart2;
     int64_t nGeoAvgWork_Start;
-    int64_t nFork1MinBlock;
+    int64_t nMultiAlgoFork;
+    int64_t nDGW3StartBlock;
+    int64_t nCoinbaseMaturityV2Start;
     
     /** Auxpow parameters */
     int16_t nAuxpowChainId;
