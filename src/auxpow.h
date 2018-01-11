@@ -36,6 +36,7 @@ private:
 public:
     CTransactionRef tx;
     uint256 hashBlock;
+    std::vector<uint256> vMerkleBranch;
 
     /* An nIndex == -1 means that hashBlock (in nonzero) refers to the earliest
      * block in the chain we know this or any in-wallet dependency conflicts
@@ -75,7 +76,6 @@ public:
 
     template <typename Stream, typename Operation>
     inline void SerializationOp(Stream& s, Operation ser_action) {
-        std::vector<uint256> vMerkleBranch; // For compatibility with older versions.
         READWRITE(tx);
         READWRITE(hashBlock);
         READWRITE(vMerkleBranch);
