@@ -12,6 +12,7 @@
 #include "uint256.h"
 #include "util.h"
 #include "bignum.h"
+#include "validation.h"
 
 static const int64_t nTargetTimespan = 32 * 250; // Argentum: every 250 blocks
 static const int64_t nTargetSpacing = 32; // Argentum: 32 sec
@@ -396,7 +397,6 @@ bool CheckProofOfWork(uint256 hash, int algo, unsigned int nBits, const Consensu
 
     bnTarget.SetCompact(nBits, &fNegative, &fOverflow);
 
-    LOCK(cs_main);
     int nHeight = chainActive.Height();
 
     // Check range

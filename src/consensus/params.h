@@ -75,6 +75,7 @@ struct Params {
     int64_t nMaxAdjustUp;
     int64_t nBlockSequentialAlgoRuleStart1;
     int64_t nBlockSequentialAlgoRuleStart2;
+    int64_t nBlockDiffAdjustV2;
     int nBlockSequentialAlgoMaxCount1;
     int nBlockSequentialAlgoMaxCount2;
     int64_t nGeoAvgWork_Start;
