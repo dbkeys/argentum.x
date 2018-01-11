@@ -288,36 +288,6 @@ arith_uint256 GetGeometricMeanPrevWork(const CBlockIndex& block)
     }
     // Compute the geometric mean
     CBigNum bnRes = bnBlockWork.nthRoot(NUM_ALGOS);
-arith_uint256 GetBlockProof(const CBlockIndex& block)
-{
-    const CChainParams& chainparams = Params();
-    
-    arith_uint256 bnTarget;
-    int nHeight = block.nHeight;
-    int nAlgo = block.GetAlgo();
-    
-    if (nHeight >= chainparams.GetConsensus().nGeoAvgWork_Start)
-    {
-        bnTarget = GetGeometricMeanPrevWork(block);
-    }
-    else if (nHeight >= chainparams.GetConsensus().nMultiAlgoFork)
-    {
-        arith_uint256 nBlockWork = GetBlockProofBase(block);
-        for (int algo = 0; algo < NUM_ALGOS; algo++)
-        {
-            if (algo != nAlgo)
-            {     
-                nBlockWork += GetPrevWorkForAlgo(block, algo);
-            }
-        }
-        bnTarget = nBlockWork / NUM_ALGOS;
-    }
-    else
-    {
-        bnTarget = GetBlockProofBase(block);
-    }
-    return bnTarget;
-}
     
     //return bnRes;
     return UintToArith256(bnRes.getuint256());
@@ -353,6 +323,7 @@ arith_uint256 GetBlockProof(const CBlockIndex& block)
     }
     return bnTarget;
 }
+
 
 int64_t GetBlockProofEquivalentTime(const CBlockIndex& to, const CBlockIndex& from, const CBlockIndex& tip, const Consensus::Params& params)
 {
