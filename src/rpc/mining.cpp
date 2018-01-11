@@ -98,7 +98,7 @@ UniValue getnetworkhashps(const JSONRPCRequest& request)
 
 UniValue generateBlocks(boost::shared_ptr<CReserveScript> coinbaseScript, int nGenerate, uint64_t nMaxTries, bool keepScript)
 {
-    static const int nInnerLoopCount = 0x10000;
+    static const int nInnerLoopCount = 0x100000;
     int nHeightStart = 0;
     int nHeightEnd = 0;
     int nHeight = 0;
