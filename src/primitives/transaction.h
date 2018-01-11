@@ -158,6 +158,8 @@ public:
         return (nValue == -1);
     }
 
+    uint256 GetHash() const;
+
     CAmount GetDustThreshold(const CFeeRate &minRelayTxFee) const
     {
         // "Dust" is defined in terms of CTransaction::minRelayTxFee,
@@ -289,9 +291,6 @@ public:
     const uint256& GetHash() const {
         return hash;
     }
-
-    // Compute a hash that includes both transaction and witness data
-    uint256 GetHash() const;
 
     // Return sum of txouts.
     CAmount GetValueOut() const;

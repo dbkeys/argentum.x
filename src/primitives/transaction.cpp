@@ -67,9 +67,9 @@ uint256 CTransaction::ComputeHash() const
     return SerializeHash(*this, SER_GETHASH, 0);
 }
 
-uint256 CTransaction::GetHash() const
+uint256 CTxOut::GetHash() const
 {
-    return GetHash();
+    return SerializeHash(*this);
 }
 
 /* For backward compatibility, the hash is initialized to 0. TODO: remove the need for this default constructor entirely. */
