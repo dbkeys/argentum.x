@@ -15,14 +15,14 @@
 enum {
     ALGO_SHA256D  = 0,
     ALGO_SCRYPT   = 1,
-    ALGO_GROESTL  = 2,
-    ALGO_SKEIN    = 3,
-    ALGO_QUBIT    = 4,
-    ALGO_YESCRYPT = 5,
+    // ALGO_GROESTL  = 2,
+    // ALGO_SKEIN    = 3,
+    // ALGO_QUBIT    = 4,
+    // ALGO_YESCRYPT = 5,
     NUM_ALGOS_IMPL
 };
 
-const int NUM_ALGOS = 5;
+const int NUM_ALGOS = 2;
 
 enum
 {
@@ -31,11 +31,11 @@ enum
 
     // algo
     BLOCK_VERSION_ALGO           = (7 << 9),
-    BLOCK_VERSION_SCRYPT         = (1 << 9),
-    BLOCK_VERSION_GROESTL        = (2 << 9),
-    BLOCK_VERSION_SKEIN          = (3 << 9),
-    BLOCK_VERSION_QUBIT          = (4 << 9),
-    BLOCK_VERSION_YESCRYPT       = (5 << 9),
+    BLOCK_VERSION_SHA256D        = (1 << 9),
+    // BLOCK_VERSION_GROESTL        = (2 << 9),
+    // BLOCK_VERSION_SKEIN          = (3 << 9),
+    // BLOCK_VERSION_QUBIT          = (4 << 9),
+    // BLOCK_VERSION_YESCRYPT       = (5 << 9),
 };
 
 /** extract algo from nVersion */
@@ -197,23 +197,23 @@ public:
     {
         switch(algo)
         {
-            case ALGO_SHA256D:
-                break;
             case ALGO_SCRYPT:
-                nVersion |= BLOCK_VERSION_SCRYPT;
                 break;
-            case ALGO_GROESTL:
-                nVersion |= BLOCK_VERSION_GROESTL;
+            case ALGO_SHA256D:
+                nVersion |= BLOCK_VERSION_SHA256D;
                 break;
-            case ALGO_SKEIN:
-                nVersion |= BLOCK_VERSION_SKEIN;
-                break;
-            case ALGO_QUBIT:
-                nVersion |= BLOCK_VERSION_QUBIT;
-                break;
-            case ALGO_YESCRYPT:
-                nVersion |= BLOCK_VERSION_YESCRYPT;
-                break;
+            // case ALGO_GROESTL:
+            //     nVersion |= BLOCK_VERSION_GROESTL;
+            //     break;
+            // case ALGO_SKEIN:
+            //     nVersion |= BLOCK_VERSION_SKEIN;
+            //     break;
+            // case ALGO_QUBIT:
+            //     nVersion |= BLOCK_VERSION_QUBIT;
+            //     break;
+            // case ALGO_YESCRYPT:
+            //     nVersion |= BLOCK_VERSION_YESCRYPT;
+            //     break;
             default:
                 break;
         }

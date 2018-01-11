@@ -170,14 +170,14 @@ int GetAlgoWorkFactor(int algo)
         // work factor = absolute work ratio * optimisation factor
         case ALGO_SCRYPT:
             return 1024 * 4;
-        case ALGO_GROESTL:
-            return 64 * 8;
-        case ALGO_SKEIN:
-            return 4 * 6;
-        case ALGO_QUBIT:
-            return 128 * 8;
-        default:
-            return 1;
+        // case ALGO_GROESTL:
+        //     return 64 * 8;
+        // case ALGO_SKEIN:
+        //     return 4 * 6;
+        // case ALGO_QUBIT:
+        //     return 128 * 8;
+        // default:
+        //     return 1;
     }
 }
 
