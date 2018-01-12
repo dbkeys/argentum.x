@@ -3036,13 +3036,11 @@ static bool AcceptBlockHeader(const CBlockHeader& block, CValidationState& state
 
             // Maximum sequence count allowed
             int nMaxSeqCount;
-            if (nHeight > chainparams.GetConsensus().nFork1MinBlock)
-                nMaxSeqCount = chainparams.GetConsensus().nBlockSequentialAlgoMaxCount3;
+            if (nHeight > chainparams.GetConsensus().nBlockSequentialAlgoRuleStart2)
+                nMaxSeqCount = chainparams.GetConsensus().nBlockSequentialAlgoMaxCount2;
             else
-                if (nHeight > chainparams.GetConsensus().nBlockSequentialAlgoRuleStart2)
-                    nMaxSeqCount = chainparams.GetConsensus().nBlockSequentialAlgoMaxCount2;
-                    else
-                        nMaxSeqCount = chainparams.GetConsensus().nBlockSequentialAlgoMaxCount1;
+                if (nHeight > chainparams.GetConsensus().nBlockSequentialAlgoRuleStart1)
+                    nMaxSeqCount = chainparams.GetConsensus().nBlockSequentialAlgoMaxCount1;
 
             while (piPrev!=NULL && (nAlgoCount <= nMaxSeqCount))
             {
