@@ -90,7 +90,7 @@ public:
         consensus.nBlockDiffAdjustV2 = 1635000; // block where difficulty adjust V2 starts (DGW)
 
         consensus.nMaxAdjustDown = 22; // 4% adjustment down
-        consensus.nMaxAdjustUpV = 14; // 2% adjustment up
+        consensus.nMaxAdjustUp = 14; // 2% adjustment up
         //consensus.nMaxAdjustUpV2 = 4; // 4% adjustment up
         consensus.nLocalDifficultyAdjustment = 12; // 12%     
 
@@ -238,28 +238,28 @@ public:
         consensus.nAuxpowChainId = 0x005A; 
         consensus.fStrictChainId = false;
 
-        consensus.nBlockTimeWarpPreventStart1 = 1000; // block where time warp 1 prevention starts
-        consensus.nBlockTimeWarpPreventStart2 = 1005; // block where time warp 2 prevention starts
-        consensus.nBlockTimeWarpPreventStart3 = 1010; // block where time warp 3 prevention starts
-        consensus.Phase2Timespan_Start = 150; // block where 60 second target time kicks in
+        // consensus.nBlockTimeWarpPreventStart1 = 1000; // block where time warp 1 prevention starts
+        // consensus.nBlockTimeWarpPreventStart2 = 1005; // block where time warp 2 prevention starts
+        // consensus.nBlockTimeWarpPreventStart3 = 1010; // block where time warp 3 prevention starts
+        // consensus.Phase2Timespan_Start = 150; // block where 60 second target time kicks in
         consensus.nBlockDiffAdjustV2 = 150; // block where difficulty adjust V2 starts
 
         consensus.nMaxAdjustDown = 4; // 4% adjustment down
-        consensus.nMaxAdjustUpV1 = 2; // 2% adjustment up
-        consensus.nMaxAdjustUpV2 = 4; // 4% adjustment up     
+        consensus.nMaxAdjustUp = 2; // 2% adjustment up
+        // consensus.nMaxAdjustUpV2 = 4; // 4% adjustment up     
 
         consensus.nBlockSequentialAlgoRuleStart1 = 200; // block where sequential algo rule starts
         consensus.nBlockSequentialAlgoRuleStart2 = 250; // block where sequential algo rule starts
-        consensus.nBlockSequentialAlgoMaxCount1 = 6; // maximum sequential blocks of same algo
-        consensus.nBlockSequentialAlgoMaxCount2 = 3; // maximum sequential blocks of same algo
-        consensus.nBlockSequentialAlgoMaxCount3 = 6; // maximum sequential blocks of same algo
+        consensus.nBlockSequentialAlgoMaxCount1 = 3; // maximum sequential blocks of same algo
+        consensus.nBlockSequentialAlgoMaxCount2 = 6; // maximum sequential blocks of same algo
+        // consensus.nBlockSequentialAlgoMaxCount3 = 6; // maximum sequential blocks of same algo
 
-        consensus.nBlockAlgoWorkWeightStart = 0; // block where algo work weighting starts
-        consensus.nBlockAlgoNormalisedWorkStart = 0; // block where algo combined weight starts
-        consensus.nBlockAlgoNormalisedWorkDecayStart1 = 0; // block where weight decay starts
-        consensus.nBlockAlgoNormalisedWorkDecayStart2 = 0; // block where weight decay starts
+        // consensus.nBlockAlgoWorkWeightStart = 0; // block where algo work weighting starts
+        // consensus.nBlockAlgoNormalisedWorkStart = 0; // block where algo combined weight starts
+        // consensus.nBlockAlgoNormalisedWorkDecayStart1 = 0; // block where weight decay starts
+        // consensus.nBlockAlgoNormalisedWorkDecayStart2 = 0; // block where weight decay starts
         consensus.nGeoAvgWork_Start = 150;
-        consensus.nFork1MinBlock = 601; // minimum block height where fork 1 takes effect (algo switch, seq algo count change)
+        //consensus.nFork1MinBlock = 601; // minimum block height where fork 1 takes effect (algo switch, seq algo count change)
 
         // Deployment of Legacy Blocks. Once activated, keeps v0.11 nodes on the same chain. Should be the first softfork.
         consensus.vDeployments[Consensus::DEPLOYMENT_LEGBIT].bit = 2;
@@ -362,28 +362,28 @@ public:
         consensus.nAuxpowChainId = 0x005A;
         consensus.fStrictChainId = false;
 
-        consensus.nBlockTimeWarpPreventStart1 = 1000; // block where time warp 1 prevention starts
-        consensus.nBlockTimeWarpPreventStart2 = 1005; // block where time warp 2 prevention starts
-        consensus.nBlockTimeWarpPreventStart3 = 1010; // block where time warp 3 prevention starts
-        consensus.Phase2Timespan_Start = 150; // block where 60 second target time kicks in
+        // consensus.nBlockTimeWarpPreventStart1 = 1000; // block where time warp 1 prevention starts
+        // consensus.nBlockTimeWarpPreventStart2 = 1005; // block where time warp 2 prevention starts
+        // consensus.nBlockTimeWarpPreventStart3 = 1010; // block where time warp 3 prevention starts
+        // consensus.Phase2Timespan_Start = 150; // block where 60 second target time kicks in
         consensus.nBlockDiffAdjustV2 = 150; // block where difficulty adjust V2 starts
 
         consensus.nMaxAdjustDown = 4; // 4% adjustment down
-        consensus.nMaxAdjustUpV1 = 2; // 2% adjustment up
-        consensus.nMaxAdjustUpV2 = 4; // 4% adjustment up
+        consensus.nMaxAdjustUp = 2; // 2% adjustment up
+        // consensus.nMaxAdjustUpV2 = 4; // 4% adjustment up
 
         consensus.nBlockSequentialAlgoRuleStart1 = 200; // block where sequential algo rule starts
         consensus.nBlockSequentialAlgoRuleStart2 = 250; // block where sequential algo rule starts
-        consensus.nBlockSequentialAlgoMaxCount1 = 6; // maximum sequential blocks of same algo
-        consensus.nBlockSequentialAlgoMaxCount2 = 3; // maximum sequential blocks of same algo
-        consensus.nBlockSequentialAlgoMaxCount3 = 6; // maximum sequential blocks of same algo
+        consensus.nBlockSequentialAlgoMaxCount1 = 3; // maximum sequential blocks of same algo
+        consensus.nBlockSequentialAlgoMaxCount2 = 6; // maximum sequential blocks of same algo
+        // consensus.nBlockSequentialAlgoMaxCount3 = 6; // maximum sequential blocks of same algo
 
-        consensus.nBlockAlgoWorkWeightStart = 0; // block where algo work weighting starts
-        consensus.nBlockAlgoNormalisedWorkStart = 0; // block where algo combined weight starts
-        consensus.nBlockAlgoNormalisedWorkDecayStart1 = 0; // block where weight decay starts
-        consensus.nBlockAlgoNormalisedWorkDecayStart2 = 0; // block where weight decay starts
+        // consensus.nBlockAlgoWorkWeightStart = 0; // block where algo work weighting starts
+        // consensus.nBlockAlgoNormalisedWorkStart = 0; // block where algo combined weight starts
+        // consensus.nBlockAlgoNormalisedWorkDecayStart1 = 0; // block where weight decay starts
+        // consensus.nBlockAlgoNormalisedWorkDecayStart2 = 0; // block where weight decay starts
         consensus.nGeoAvgWork_Start = 0;
-        consensus.nFork1MinBlock = 601; // minimum block height where fork 1 takes effect (algo switch, seq algo count change)
+        //consensus.nFork1MinBlock = 601; // minimum block height where fork 1 takes effect (algo switch, seq algo count change)
 
         consensus.vDeployments[Consensus::DEPLOYMENT_LEGBIT].bit = 2;
         consensus.vDeployments[Consensus::DEPLOYMENT_LEGBIT].nStartTime = 0;
@@ -391,7 +391,7 @@ public:
 
         /*** Upstream Chainparams ***/
 
-        consensus.nSubsidyHalvingInterval = 150;
+        //consensus.nSubsidyHalvingInterval = 150;
         consensus.BIP34Height = 100000000; // BIP34 has not activated on regtest (far in the future so block v1 are not rejected in tests)
         consensus.BIP34Hash = uint256();
         consensus.BIP65Height = 1351; // BIP65 activated on regtest (Used in rpc activation tests)
