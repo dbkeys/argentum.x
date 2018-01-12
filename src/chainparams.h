@@ -52,6 +52,7 @@ public:
         SECRET_KEY,
         EXT_PUBLIC_KEY,
         EXT_SECRET_KEY,
+        EXT_COIN_TYPE,
 
         MAX_BASE58_TYPES
     };
