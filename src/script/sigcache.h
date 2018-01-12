@@ -15,6 +15,7 @@
 // more (~32.25 MB)
 static const unsigned int DEFAULT_MAX_SIG_CACHE_SIZE = 40;
 // Maximum sig cache size allowed
+static const int64_t MAX_MAX_SIG_CACHE_SIZE = 16384;
 
 class CPubKey;
 
