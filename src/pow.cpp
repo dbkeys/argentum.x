@@ -414,7 +414,7 @@ bool CheckProofOfWork(uint256 hash, int algo, unsigned int nBits, const Consensu
     return true;
 }
 
-bool CheckProofOfWorkB(uint256 hash, unsigned int nBits, const Consensus::Params& params)
+bool CheckProofOfWorkB(uint256 hash, int algo, unsigned int nBits, const Consensus::Params& params)
 {
     bool fNegative;
     bool fOverflow;
@@ -422,9 +422,19 @@ bool CheckProofOfWorkB(uint256 hash, unsigned int nBits, const Consensus::Params
 
     bnTarget.SetCompact(nBits, &fNegative, &fOverflow);
 
+    //int nHeight = chainActive.Height();
+
     // Check range
     if (fNegative || bnTarget == 0 || fOverflow || bnTarget > UintToArith256(params.powLimit))
         return error("CheckProofOfWork(): nBits below minimum work");
+
+    // // Check proof of work matches claimed amount
+    // if (nHeight > params.nCoinbaseMaturityV2Start){
+    //     if (UintToArith256(hash) > bnTarget)
+    //         return error("CheckProofOfWork(): hash doesn't match nBits");}
+
+    //     if (UintToArith256(hash) > bnTarget)
+    //         return error("CheckProofOfWork(): hash doesn't match nBits");
 
     return true;
 }

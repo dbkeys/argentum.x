@@ -16,6 +16,8 @@ static const int64_t MAX_BLOCK_SIGOPS = MAX_BLOCK_BASE_SIZE/10;
 static const int COINBASE_MATURITY = 10;
 static const int COINBASE_MATURITY_V2 = 100;
 
+const int64_t nCoinbaseMaturityV2Start = 2387838;
+
 /** Flags for nSequence and nLockTime locks */
 enum {
     /* Interpret sequence numbers as relative lock-time constraints. */

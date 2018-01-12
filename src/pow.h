@@ -23,6 +23,6 @@ unsigned int GetNextWorkRequired_Legacy(const CBlockIndex* pindexLast, const CBl
 
 /** Check whether a block hash satisfies the proof-of-work requirement specified by nBits */
 bool CheckProofOfWork(uint256 hash, int algo, unsigned int nBits, const Consensus::Params&);
-bool CheckProofOfWorkB(const CBlockHeader& block, const Consensus::Params& params);
+bool CheckProofOfWorkB(uint256 hash, int algo, unsigned int nBits, const Consensus::Params&);
 
 #endif // BITCOIN_POW_H

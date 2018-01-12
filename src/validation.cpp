@@ -967,7 +967,7 @@ bool CheckProofOfWorkB(const CBlockHeader& block, const Consensus::Params& param
             return error("%s : no auxpow on block with auxpow version",
                          __func__);
         int algo = block.GetAlgo();
-        if (!CheckProofOfWorkB(block.GetPoWHash(algo, params), algo, block.nBits, params))
+        if (!CheckProofOfWork(block.GetPoWHash(algo, params), algo, block.nBits, params))
             return error("%s : non-AUX proof of work failed, hash=%s, algo=%d, nVersion=%d, PoWHash=%s",
             __func__,
             block.GetHash().ToString(),
@@ -997,29 +997,6 @@ bool CheckProofOfWorkB(const CBlockHeader& block, const Consensus::Params& param
         return error("%s : AUX POW is not allowed on this algo", __func__);
     if (!CheckProofOfWorkB(block.auxpow->getParentBlockPoWHash(algo, params), algo, block.nBits, params))
         return error("%s : AUX proof of work failed", __func__);
-
-    return true;
-}
-
-bool CheckProofOfWorkB(uint256 hash, unsigned int nBits, const Consensus::Params& params)
-{
-    bool fNegative;
-    bool fOverflow;
-    arith_uint256 bnTarget;
-
-    bnTarget.SetCompact(nBits, &fNegative, &fOverflow);
-
-    // Check range
-    if (fNegative || bnTarget == 0 || fOverflow || bnTarget > UintToArith256(params.powLimit))
-        return error("CheckProofOfWork(): nBits below minimum work");
-
-    // Check proof of work matches claimed amount
-    /*if (nHeight > params.nCoinbaseMaturityV2Start){
-        if (UintToArith256(hash) > bnTarget)
-            return error("CheckProofOfWork(): hash doesn't match nBits");}*/
-
-        /*if (UintToArith256(hash) > bnTarget)
-            return error("CheckProofOfWork(): hash doesn't match nBits");*/
 
     return true;
 }
