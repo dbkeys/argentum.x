@@ -18,7 +18,7 @@ static const int64_t nTargetTimespan = 32 * 250; // Argentum: every 250 blocks
 static const int64_t nTargetSpacing = 32; // Argentum: 32 sec
 static const int64_t nInterval = nTargetTimespan / nTargetSpacing;
 
-unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHeader *pblock, const Consensus::Params& params, int algo)
+unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHeader *pblock, int algo, const Consensus::Params& params)
 {
         if (pindexLast->nHeight >= params.nMultiAlgoFork)
         {
