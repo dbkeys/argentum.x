@@ -1,5 +1,5 @@
 ---
-name: "argentum-linux-0.14"
+name: "argentum-linux-4.14"
 enable_cache: true
 suites:
 - "trusty"
