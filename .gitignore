@@ -1,13 +1,13 @@
 *.tar.gz
 
 *.exe
-src/myriadcoin
-src/myriadcoind
-src/myriadcoin-cli
-src/myriadcoin-tx
-src/test/test_myriadcoin
-src/test/test_myriadcoin_fuzzy
-src/qt/test/test_myriad-qt
+src/argentum
+src/argentumd
+src/argentum-cli
+src/argentum-tx
+src/test/test_argentum
+src/test/test_argentum_fuzzy
+src/qt/test/test_argentum-qt
 
 # autoreconf
 Makefile.in
@@ -74,12 +74,12 @@ src/qt/test/moc*.cpp
 # Compilation and Qt preprocessor part
 *.qm
 Makefile
-myriad-qt
-Myriad-Qt.app
+argentum-qt
+Argentum-Qt.app
 
 # Unit-tests
 Makefile.test
-myriadcoin-qt_test
+argentum-qt_test
 src/test/buildenv.py
 
 # Resources cpp

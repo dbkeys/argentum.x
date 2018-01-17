@@ -393,11 +393,11 @@ and inputs.
 
 For example:
 ```bash
-URL=https://github.com/laanwj/myriadcoin.git
+URL=https://github.com/laanwj/argentum.git
 COMMIT=2014_03_windows_unicode_path
-./bin/gbuild --commit myriadcoin=${COMMIT} --url myriadcoin=${URL} ../myriadcoin/contrib/gitian-descriptors/gitian-linux.yml
-./bin/gbuild --commit myriadcoin=${COMMIT} --url myriadcoin=${URL} ../myriadcoin/contrib/gitian-descriptors/gitian-win.yml
-./bin/gbuild --commit myriadcoin=${COMMIT} --url myriadcoin=${URL} ../myriadcoin/contrib/gitian-descriptors/gitian-osx.yml
+./bin/gbuild --commit argentum=${COMMIT} --url argentum=${URL} ../argentum/contrib/gitian-descriptors/gitian-linux.yml
+./bin/gbuild --commit argentum=${COMMIT} --url argentum=${URL} ../argentum/contrib/gitian-descriptors/gitian-win.yml
+./bin/gbuild --commit argentum=${COMMIT} --url argentum=${URL} ../argentum/contrib/gitian-descriptors/gitian-osx.yml
 ```
 
 Building fully offline

@@ -8,17 +8,17 @@ define(_CLIENT_VERSION_IS_RELEASE, false)
 
 define(_COPYRIGHT_YEAR, 2018)
 define(_COPYRIGHT_HOLDERS,[The %s developers])
-define(_COPYRIGHT_HOLDERS_SUBSTITUTION,[[Myriad Core]])
-AC_INIT([Myriad Core],[_CLIENT_VERSION_MAJOR._CLIENT_VERSION_MINOR._CLIENT_VERSION_REVISION],[https://github.com/argentumproject/argentum/issues],[myriadcoin],[http://www.argentum.io/])
+define(_COPYRIGHT_HOLDERS_SUBSTITUTION,[[Argentum]])
+AC_INIT([Argentum],[_CLIENT_VERSION_MAJOR._CLIENT_VERSION_MINOR._CLIENT_VERSION_REVISION],[https://github.com/argentumproject/argentum/issues],[argentum],[http://www.argentum.io/])
 AC_CONFIG_SRCDIR([src/validation.cpp])
 AC_CONFIG_HEADERS([src/config/bitcoin-config.h])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([build-aux/m4])
 
-BITCOIN_DAEMON_NAME=myriadcoind
-BITCOIN_GUI_NAME=myriad-qt
-BITCOIN_CLI_NAME=myriadcoin-cli
-BITCOIN_TX_NAME=myriadcoin-tx
+BITCOIN_DAEMON_NAME=argentumd
+BITCOIN_GUI_NAME=argentum-qt
+BITCOIN_CLI_NAME=argentum-cli
+BITCOIN_TX_NAME=argentum-tx
 
 AC_CANONICAL_HOST
 

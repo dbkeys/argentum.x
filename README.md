@@ -1,30 +1,30 @@
-Myriadcoin Core integration/staging tree
+Argentum integration/staging tree
 =====================================
 
-[![Build Status](https://travis-ci.org/myriadteam/myriadcoin.svg?branch=master)](https://travis-ci.org/myriadteam/myriadcoin)
+[![Build Status](https://travis-ci.org/argentumproject/argentum.svg?branch=master)](https://travis-ci.org/argentumproject/argentum)
 
 http://www.argentum.io
 
-What is Myriadcoin?
+What is Argentum?
 ----------------
 
-Myriadcoin is an experimental digital currency that enables instant payments to
-anyone, anywhere in the world. Myriadcoin uses peer-to-peer technology to operate
+Argentum is an experimental digital currency that enables instant payments to
+anyone, anywhere in the world. Argentum uses peer-to-peer technology to operate
 with no central authority: managing transactions and issuing money are carried
-out collectively by the network. Myriadcoin Core is the name of open source
+out collectively by the network. Argentum is the name of open source
 software which enables the use of this currency.
 
 For more information, as well as an immediately usable, binary version of
-the Myriadcoin Core software, see http://www.argentum.io, or read the
+the Argentum software, see http://www.argentum.io, or read the
 [original Bitcoin whitepaper](https://bitcoincore.org/bitcoin.pdf).
 
-Myriadcoin is distinct from Bitcoin in that it pioneered the use of multiple independent 
+Argentum is distinct from Bitcoin in that it pioneered the use of multiple independent 
 POW algorithms on the on the same chain.
 
 License
 -------
 
-Myriadcoin is a fork of Bitcoin Core and inherits the terms of the MIT license. See 
+Argentum is a fork of Bitcoin Core and inherits the terms of the MIT license. See 
 [COPYING](COPYING) for more information or see https://opensource.org/licenses/MIT.
 
 Development Process
@@ -32,15 +32,15 @@ Development Process
 
 The `master` branch is occasionally built and tested, but is not guaranteed to be
 completely stable. [Tags](https://github.com/argentumproject/argentum/tags) are created
-regularly to indicate new official, stable release versions of Myriadcoin Core.
+regularly to indicate new official, stable release versions of Argentum.
 
 The contribution workflow is described in [CONTRIBUTING.md](CONTRIBUTING.md).
 
-The developer [subreddit](https://www.reddit.com/r/myriadcoin)
+The developer [subreddit](https://www.reddit.com/r/argentum)
 should be used to discuss complicated or controversial changes before working
 on a patch set.
 
-Developer IRC can be found on Freenode at ##myriadcoin.
+Developer IRC can be found on Freenode at ##argentum.
 
 Testing
 -------
@@ -74,7 +74,7 @@ Translations
 ------------
 
 Changes to translations as well as new translations can be submitted to
-[Myriadcoin Core's Transifex page](https://www.transifex.com/projects/p/myriadcoin/).
+[Argentum's Transifex page](https://www.transifex.com/projects/p/argentum/).
 
 Translations are periodically pulled from Transifex and merged into the git repository. See the
 [translation process](doc/translation_process.md) for details on how this works.
@@ -82,4 +82,4 @@ Translations are periodically pulled from Transifex and merged into the git repo
 **Important**: We do not accept translation changes as GitHub pull requests because the next
 pull from Transifex would automatically overwrite them again.
 
-Translators should also visit the [myriadcoin subreddit](https://www.reddit.com/r/myriadcoin).
+Translators should also visit the [argentum subreddit](https://www.reddit.com/r/argentum).
