@@ -309,7 +309,7 @@ Clone the git repositories for bitcoin and Gitian.
 
 ```bash
 git clone https://github.com/devrandom/gitian-builder.git
-git clone https://github.com/myriadteam/myriadcoin
+git clone https://github.com/argentumproject/argentum
 git clone https://github.com/bitcoin-core/gitian.sigs.git
 ```
 

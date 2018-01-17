@@ -3,7 +3,7 @@ Myriadcoin Core integration/staging tree
 
 [![Build Status](https://travis-ci.org/myriadteam/myriadcoin.svg?branch=master)](https://travis-ci.org/myriadteam/myriadcoin)
 
-http://www.myriadcoin.org
+http://www.argentum.io
 
 What is Myriadcoin?
 ----------------
@@ -15,7 +15,7 @@ out collectively by the network. Myriadcoin Core is the name of open source
 software which enables the use of this currency.
 
 For more information, as well as an immediately usable, binary version of
-the Myriadcoin Core software, see http://www.myriadcoin.org, or read the
+the Myriadcoin Core software, see http://www.argentum.io, or read the
 [original Bitcoin whitepaper](https://bitcoincore.org/bitcoin.pdf).
 
 Myriadcoin is distinct from Bitcoin in that it pioneered the use of multiple independent 
@@ -31,7 +31,7 @@ Development Process
 -------------------
 
 The `master` branch is occasionally built and tested, but is not guaranteed to be
-completely stable. [Tags](https://github.com/myriadteam/myriadcoin/tags) are created
+completely stable. [Tags](https://github.com/argentumproject/argentum/tags) are created
 regularly to indicate new official, stable release versions of Myriadcoin Core.
 
 The contribution workflow is described in [CONTRIBUTING.md](CONTRIBUTING.md).
