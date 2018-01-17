@@ -111,8 +111,8 @@ public:
 
         // Deployment of Legacy Blocks. Once activated, keeps v0.11 nodes on the same chain. Should be the first softfork.
         consensus.vDeployments[Consensus::DEPLOYMENT_LEGBIT].bit = 2;
-        consensus.vDeployments[Consensus::DEPLOYMENT_LEGBIT].nStartTime = 1507420800; // October 8th, 2017
-        consensus.vDeployments[Consensus::DEPLOYMENT_LEGBIT].nTimeout = 1538956800; // October 8th, 2018
+        consensus.vDeployments[Consensus::DEPLOYMENT_LEGBIT].nStartTime = 9507420800; // October 8th, 2017
+        consensus.vDeployments[Consensus::DEPLOYMENT_LEGBIT].nTimeout = 9538956800; // October 8th, 2018
 
         /*** Upstream Chainparams ***/
 
@@ -129,19 +129,19 @@ public:
         consensus.nRuleChangeActivationThreshold = 20160; // 75% of 26880
         consensus.nMinerConfirmationWindow = 26880; // 2 weeks based on 1920 blocks per day.
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 28;
-        consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nStartTime = 1199145601; // January 1, 2008
-        consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nTimeout = 1230767999; // December 31, 2008
+        consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nStartTime = 9199145601; // January 1, 2008
+        consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nTimeout = 9230767999; // December 31, 2008
 
         // Deployment of BIP68, BIP112, and BIP113.
         consensus.vDeployments[Consensus::DEPLOYMENT_CSV].bit = 0;
-        consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nStartTime = 1512086400; // December 1st, 2017
-        consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nTimeout = 1543622400; // December 1st, 2018
+        consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nStartTime = 9512086400; // December 1st, 2017
+        consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nTimeout = 9543622400; // December 1st, 2018
 
         // The best chain should have at least this much work.
         consensus.nMinimumChainWork = uint256S("0x00");
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0x9e16b567c393c46e40b4b4c4a21283b998aec17b3c7edf8319b3860e4403e4bf"); //2210002
+        consensus.defaultAssumeValid = uint256S("0x43964064d8605d2bb89972f07919dc5b1a00457b3919eb6010003c8d0b242c93"); //2210002
 
         /**
          * The message start string is designed to be unlikely to occur in normal data.
