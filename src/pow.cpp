@@ -278,15 +278,6 @@ unsigned int StabilX(const CBlockIndex* pindexLast, const CBlockHeader *pblock, 
         bnNew = nProofOfWorkLimit;
     }
 
-    /// debug print
-    if(fDebug)
-    {
-        LogPrintf("StabilX(Algo=%d): RETARGET\n", algo);
-        LogPrintf("StabilX(Algo=%d): nTargetTimespan = %d, nActualTimespan = %d\n", algo, nAveragingTargetTimespan, nActualTimespan);
-        LogPrintf("StabilX(Algo=%d): Before: %08x  %s\n", algo, pindexPrev->nBits, pindexPrev->nBits, bnOld.ToString());
-        LogPrintf("StabilX(Algo=%d): After:  %08x  %s\n", algo, bnNew.GetCompact(), bnNew.ToString());
-    }
-
     return bnNew.GetCompact();
 }
 
