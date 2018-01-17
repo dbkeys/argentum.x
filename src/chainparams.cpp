@@ -73,7 +73,7 @@ public:
     CMainParams() {
         strNetworkID = "main";
 
-        /*** Myriadcoin Additional Chainparams ***/
+        /*** Argentum Additional Chainparams ***/
 
         consensus.nPowTargetSpacingV1 = 32; // target time for block spacing across all algorithms
         consensus.nPowTargetSpacingV2 = 45; // new target time for block spacing across all algorithms
@@ -220,7 +220,7 @@ public:
     CTestNetParams() {
         strNetworkID = "test";
 
-        /*** Myriadcoin Additional Chainparams ***/
+        /*** Argentum Additional Chainparams ***/
 
         consensus.nPowTargetSpacingV1 = 30; // target time for block spacing across all algorithms
         consensus.nPowTargetSpacingV2 = 45; // new target time for block spacing across all algorithms
@@ -343,7 +343,7 @@ public:
     CRegTestParams() {
         strNetworkID = "regtest";
 
-        /*** Myriadcoin Additional Chainparams ***/
+        /*** Argentum Additional Chainparams ***/
 
         consensus.nPowTargetSpacingV1 = 30; // target time for block spacing across all algorithms
         consensus.nPowTargetSpacingV2 = 60; // new target time for block spacing across all algorithms

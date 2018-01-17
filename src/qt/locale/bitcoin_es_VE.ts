@@ -114,7 +114,7 @@
         <translation>Reindexando bloques en el disco...</translation>
     </message>
     <message>
-        <source>Send coins to a Myriadcoin address</source>
+        <source>Send coins to a Argentum address</source>
         <translation>Enviar monedas a una dirección Bitcoin</translation>
     </message>
     <message>
@@ -158,12 +158,12 @@
         <translation>Encriptar las llaves privadas que pertenecen a tu billetera</translation>
     </message>
     <message>
-        <source>Sign messages with your Myriadcoin addresses to prove you own them</source>
-        <translation>Firma mensajes con tus direcciones Myriadcoin para probar que eres dueño de ellas</translation>
+        <source>Sign messages with your Argentum addresses to prove you own them</source>
+        <translation>Firma mensajes con tus direcciones Argentum para probar que eres dueño de ellas</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified Myriadcoin addresses</source>
-        <translation>Verificar mensajes para asegurar que estaban firmados con direcciones Myriadcoin especificas</translation>
+        <source>Verify messages to ensure they were signed with specified Argentum addresses</source>
+        <translation>Verificar mensajes para asegurar que estaban firmados con direcciones Argentum especificas</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -608,8 +608,8 @@
         <translation>Correr en segundo plano como daemon y aceptar comandos</translation>
     </message>
     <message>
-        <source>Myriadcoin Core</source>
-        <translation>Myriadcoin Core</translation>
+        <source>Argentum Core</source>
+        <translation>Argentum Core</translation>
     </message>
     <message>
         <source>Bind to given address and always listen on it. Use [host]:port notation for IPv6</source>

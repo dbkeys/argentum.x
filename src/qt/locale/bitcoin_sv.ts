@@ -62,12 +62,12 @@
         <translation>Mottagaradresser</translation>
     </message>
     <message>
-        <source>These are your Myriadcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Detta är dina Myriadcoin adresser för att skicka betalningar. Kolla alltid summan och den mottagande adressen innan du skickar Bitcoins.</translation>
+        <source>These are your Argentum addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Detta är dina Argentum adresser för att skicka betalningar. Kolla alltid summan och den mottagande adressen innan du skickar Bitcoins.</translation>
     </message>
     <message>
-        <source>These are your Myriadcoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Detta är dina Myriadcoin adresser för att ta emot betalningar. Det rekommenderas att använda en ny mottagningsadress för varje transaktion.</translation>
+        <source>These are your Argentum addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>Detta är dina Argentum adresser för att ta emot betalningar. Det rekommenderas att använda en ny mottagningsadress för varje transaktion.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -181,7 +181,7 @@ Var vänlig och försök igen.</translation>
         <translation>Plånbok krypterad</translation>
     </message>
     <message>
-        <source>%1 will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your myriadcoins from being stolen by malware infecting your computer.</source>
+        <source>%1 will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your argentums from being stolen by malware infecting your computer.</source>
         <translation>%1 kommer nu att stänga ner för att färdigställa krypteringen. Tänk på att en krypterad plånbok inte skyddar mot stöld om din dator är infekterad med en keylogger.</translation>
     </message>
     <message>
@@ -339,8 +339,8 @@ Var vänlig och försök igen.</translation>
         <translation>Återindexerar block på disken...</translation>
     </message>
     <message>
-        <source>Send coins to a Myriadcoin address</source>
-        <translation>Skicka myriadcoins till en Bitcoin-adress</translation>
+        <source>Send coins to a Argentum address</source>
+        <translation>Skicka argentums till en Bitcoin-adress</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -391,11 +391,11 @@ Var vänlig och försök igen.</translation>
         <translation>Kryptera de privata nycklar som tillhör din plånbok</translation>
     </message>
     <message>
-        <source>Sign messages with your Myriadcoin addresses to prove you own them</source>
+        <source>Sign messages with your Argentum addresses to prove you own them</source>
         <translation>Signera meddelanden med din Bitcoin-adress för att bevisa att du äger dem</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified Myriadcoin addresses</source>
+        <source>Verify messages to ensure they were signed with specified Argentum addresses</source>
         <translation>Verifiera meddelanden för att vara säker på att de var signerade med specificerade Bitcoin-adresser</translation>
     </message>
     <message>
@@ -415,7 +415,7 @@ Var vänlig och försök igen.</translation>
         <translation>Verktygsfält för tabbar</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and myriadcoin: URIs)</source>
+        <source>Request payments (generates QR codes and argentum: URIs)</source>
         <translation>Begär betalning (genererar QR-koder och bitcoin-URI)</translation>
     </message>
     <message>
@@ -427,15 +427,15 @@ Var vänlig och försök igen.</translation>
         <translation>Visa listan av använda mottagningsadresser och etiketter</translation>
     </message>
     <message>
-        <source>Open a myriadcoin: URI or payment request</source>
-        <translation>Öppna en myriadcoin: URI eller betalningsbegäran</translation>
+        <source>Open a argentum: URI or payment request</source>
+        <translation>Öppna en argentum: URI eller betalningsbegäran</translation>
     </message>
     <message>
         <source>&amp;Command-line options</source>
         <translation>&amp;Kommandoradsalternativ</translation>
     </message>
     <message numerus="yes">
-        <source>%n active connection(s) to Myriadcoin network</source>
+        <source>%n active connection(s) to Argentum network</source>
         <translation><numerusform>%n aktiva anslutningar till Bitcoin-nätverket.</numerusform><numerusform>%n aktiva anslutningar till Bitcoin-nätverket.</numerusform></translation>
     </message>
     <message>
@@ -479,8 +479,8 @@ Var vänlig och försök igen.</translation>
         <translation>Uppdaterad</translation>
     </message>
     <message>
-        <source>Show the %1 help message to get a list with possible Myriadcoin command-line options</source>
-        <translation>Visa %1 hjälpmeddelande för att få en lista med möjliga Myriadcoin kommandoradsalternativ.</translation>
+        <source>Show the %1 help message to get a list with possible Argentum command-line options</source>
+        <translation>Visa %1 hjälpmeddelande för att få en lista med möjliga Argentum kommandoradsalternativ.</translation>
     </message>
     <message>
         <source>%1 client</source>
@@ -541,8 +541,8 @@ Var vänlig och försök igen.</translation>
         <translation>Denna plånbok är &lt;b&gt;krypterad&lt;/b&gt; och för närvarande &lt;b&gt;låst&lt;/b&gt;</translation>
     </message>
     <message>
-        <source>A fatal error occurred. Myriadcoin can no longer continue safely and will quit.</source>
-        <translation>Ett kritiskt fel uppstod. Myriadcoin kan inte fortsätta att köra säkert och kommer att avslutas.</translation>
+        <source>A fatal error occurred. Argentum can no longer continue safely and will quit.</source>
+        <translation>Ett kritiskt fel uppstod. Argentum kan inte fortsätta att köra säkert och kommer att avslutas.</translation>
     </message>
 </context>
 <context>
@@ -764,8 +764,8 @@ Var vänlig och försök igen.</translation>
         <translation>Eftersom detta är första gången programmet startas får du välja var %1 skall lagra sitt data.</translation>
     </message>
     <message>
-        <source>%1 will download and store a copy of the Myriadcoin block chain. At least %2GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>%1 kommer att ladda ner och spara en kopia av Myriadcoin blockkedjan. Åtminstone %2GB av data kommer att sparas i denna katalog, och den kommer att växa över tiden. Plånboken kommer också att sparas i denna katalog.</translation>
+        <source>%1 will download and store a copy of the Argentum block chain. At least %2GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>%1 kommer att ladda ner och spara en kopia av Argentum blockkedjan. Åtminstone %2GB av data kommer att sparas i denna katalog, och den kommer att växa över tiden. Plånboken kommer också att sparas i denna katalog.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -941,7 +941,7 @@ Var vänlig och försök igen.</translation>
         <translation>&amp;Spendera obekräftad växel</translation>
     </message>
     <message>
-        <source>Automatically open the Myriadcoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <source>Automatically open the Argentum client port on the router. This only works when your router supports UPnP and it is enabled.</source>
         <translation>Öppna automatiskt Bitcoin-klientens port på routern. Detta fungerar endast om din router har UPnP aktiverat.</translation>
     </message>
     <message>
@@ -949,7 +949,7 @@ Var vänlig och försök igen.</translation>
         <translation>Tilldela port med hjälp av &amp;UPnP</translation>
     </message>
     <message>
-        <source>Connect to the Myriadcoin network through a SOCKS5 proxy.</source>
+        <source>Connect to the Argentum network through a SOCKS5 proxy.</source>
         <translation>Anslut till Bitcoin-nätverket genom en SOCKS5-proxy.</translation>
     </message>
     <message>
@@ -989,7 +989,7 @@ Var vänlig och försök igen.</translation>
         <translation>Tor</translation>
     </message>
     <message>
-        <source>Connect to the Myriadcoin network through a separate SOCKS5 proxy for Tor hidden services.</source>
+        <source>Connect to the Argentum network through a separate SOCKS5 proxy for Tor hidden services.</source>
         <translation>Anslut till Bitcoin-nätverket genom en separat SOCKS5-proxy för dolda tjänster i Tor.</translation>
     </message>
     <message>
@@ -1088,7 +1088,7 @@ Var vänlig och försök igen.</translation>
         <translation>Formulär</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Myriadcoin network after a connection is established, but this process has not completed yet.</source>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Argentum network after a connection is established, but this process has not completed yet.</source>
         <translation>Den visade informationen kan vara inaktuell. Plånboken synkroniseras automatiskt med Bitcoin-nätverket efter att anslutningen är upprättad, men denna process har inte slutförts ännu.</translation>
     </message>
     <message>
@@ -1193,7 +1193,7 @@ Var vänlig och försök igen.</translation>
         <translation>Mängd</translation>
     </message>
     <message>
-        <source>Enter a Myriadcoin address (e.g. %1)</source>
+        <source>Enter a Argentum address (e.g. %1)</source>
         <translation>Ange en Bitcoin-adress (t.ex. %1)</translation>
     </message>
     <message>
@@ -1565,7 +1565,7 @@ Var vänlig och försök igen.</translation>
         <translation>Åt&amp;eranvänd en existerande mottagningsadress (rekommenderas inte)</translation>
     </message>
     <message>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Myriadcoin network.</source>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Argentum network.</source>
         <translation>Ett frivilligt meddelande att bifoga betalningsbegäran, vilket visas när begäran öppnas. NB: Meddelandet kommer inte att sändas med betalningen över Bitcoinnätverket.</translation>
     </message>
     <message>
@@ -1877,7 +1877,7 @@ Var vänlig och försök igen.</translation>
         <translation>Detta är en normal betalning.</translation>
     </message>
     <message>
-        <source>The Myriadcoin address to send the payment to</source>
+        <source>The Argentum address to send the payment to</source>
         <translation>Bitcoinadress att sända betalning till</translation>
     </message>
     <message>
@@ -1897,8 +1897,8 @@ Var vänlig och försök igen.</translation>
         <translation>Radera denna post</translation>
     </message>
     <message>
-        <source>The fee will be deducted from the amount being sent. The recipient will receive less myriadcoins than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
-        <translation>Avgiften dras från beloppet som skickas. Mottagaren kommer att få mindre myriadcoins än du angivit i belopp-fältet. Om flera mottagare valts kommer avgiften delas jämt.</translation>
+        <source>The fee will be deducted from the amount being sent. The recipient will receive less argentums than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
+        <translation>Avgiften dras från beloppet som skickas. Mottagaren kommer att få mindre argentums än du angivit i belopp-fältet. Om flera mottagare valts kommer avgiften delas jämt.</translation>
     </message>
     <message>
         <source>S&amp;ubtract fee from amount</source>
@@ -1921,7 +1921,7 @@ Var vänlig och försök igen.</translation>
         <translation>Ange en etikett för denna adress att adderas till listan över använda adresser</translation>
     </message>
     <message>
-        <source>A message that was attached to the myriadcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Myriadcoin network.</source>
+        <source>A message that was attached to the argentum: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Argentum network.</source>
         <translation>Ett meddelande som bifogades bitcoin-URI, vilket lagras med transaktionen som referens. NB: Meddelandet kommer inte att sändas över Bitcoinnätverket.</translation>
     </message>
     <message>
@@ -1962,11 +1962,11 @@ Var vänlig och försök igen.</translation>
         <translation>&amp;Signera Meddelande</translation>
     </message>
     <message>
-        <source>You can sign messages/agreements with your addresses to prove you can receive myriadcoins sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
-        <translation>Du kan underteckna meddelanden/avtal med dina adresser för att bevisa att du kan ta emot myriadcoins som skickats till dem. Var försiktig så du inte undertecknar något oklart eller konstigt, eftersom phishing-angrepp kan försöka få dig att underteckna din identitet till dem. Underteckna endast väldetaljerade meddelanden som du godkänner.</translation>
+        <source>You can sign messages/agreements with your addresses to prove you can receive argentums sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
+        <translation>Du kan underteckna meddelanden/avtal med dina adresser för att bevisa att du kan ta emot argentums som skickats till dem. Var försiktig så du inte undertecknar något oklart eller konstigt, eftersom phishing-angrepp kan försöka få dig att underteckna din identitet till dem. Underteckna endast väldetaljerade meddelanden som du godkänner.</translation>
     </message>
     <message>
-        <source>The Myriadcoin address to sign the message with</source>
+        <source>The Argentum address to sign the message with</source>
         <translation>Bitcoinadress att signera meddelandet med</translation>
     </message>
     <message>
@@ -1998,7 +1998,7 @@ Var vänlig och försök igen.</translation>
         <translation>Kopiera signaturen till systemets Urklipp</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this Myriadcoin address</source>
+        <source>Sign the message to prove you own this Argentum address</source>
         <translation>Signera meddelandet för att bevisa att du äger denna adress</translation>
     </message>
     <message>
@@ -2022,11 +2022,11 @@ Var vänlig och försök igen.</translation>
         <translation>Ange mottagarens adress, meddelande (kopiera radbrytningar, mellanrum, flikar, etc. exakt) och signatur nedan för att verifiera meddelandet. Undvik att läsa in mera information i signaturen än vad som stod i själva undertecknade meddelandet, för att undvika ett man-in-the-middle-angrepp. Notera att detta endast bevisar att undertecknad tar emot med adressen, det bevisar inte vem som skickat transaktionen!</translation>
     </message>
     <message>
-        <source>The Myriadcoin address the message was signed with</source>
+        <source>The Argentum address the message was signed with</source>
         <translation>Bitcoinadressen som meddelandet signerades med</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified Myriadcoin address</source>
+        <source>Verify the message to ensure it was signed with the specified Argentum address</source>
         <translation>Verifiera meddelandet för att vara säker på att den var signerad med den angivna Bitcoin-adressen</translation>
     </message>
     <message>
@@ -2227,8 +2227,8 @@ Var vänlig och försök igen.</translation>
         <translation>Kunde inte starta HTTP-server. Se avlusningsloggen för detaljer.</translation>
     </message>
     <message>
-        <source>Myriadcoin Core</source>
-        <translation>Myriadcoin Core</translation>
+        <source>Argentum Core</source>
+        <translation>Argentum Core</translation>
     </message>
     <message>
         <source>The %s developers</source>
@@ -2940,7 +2940,7 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>Insufficient funds</source>
-        <translation>Otillräckligt med myriadcoins</translation>
+        <translation>Otillräckligt med argentums</translation>
     </message>
     <message>
         <source>Loading block index...</source>

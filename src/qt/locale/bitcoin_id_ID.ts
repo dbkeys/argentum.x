@@ -334,7 +334,7 @@
         <translation>Mengindex ulang blok di dalam disk...</translation>
     </message>
     <message>
-        <source>Send coins to a Myriadcoin address</source>
+        <source>Send coins to a Argentum address</source>
         <translation>Kirim koin ke alamat Bitcoin</translation>
     </message>
     <message>
@@ -386,12 +386,12 @@
         <translation>Enkripsi private key yang dimiliki dompet Anda</translation>
     </message>
     <message>
-        <source>Sign messages with your Myriadcoin addresses to prove you own them</source>
-        <translation>Tanda tangani sebuah pesan menggunakan alamat Myriadcoin Anda untuk membuktikan bahwa Anda adalah pemilik alamat tersebut</translation>
+        <source>Sign messages with your Argentum addresses to prove you own them</source>
+        <translation>Tanda tangani sebuah pesan menggunakan alamat Argentum Anda untuk membuktikan bahwa Anda adalah pemilik alamat tersebut</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified Myriadcoin addresses</source>
-        <translation>Verifikasi pesan untuk memastikan bahwa pesan tersebut ditanda tangani oleh suatu alamat Myriadcoin tertentu</translation>
+        <source>Verify messages to ensure they were signed with specified Argentum addresses</source>
+        <translation>Verifikasi pesan untuk memastikan bahwa pesan tersebut ditanda tangani oleh suatu alamat Argentum tertentu</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -410,8 +410,8 @@
         <translation>Baris tab</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and myriadcoin: URIs)</source>
-        <translation>Permintaan pembayaran (membuat kode QR dan myriadcoin: URIs)</translation>
+        <source>Request payments (generates QR codes and argentum: URIs)</source>
+        <translation>Permintaan pembayaran (membuat kode QR dan argentum: URIs)</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -422,15 +422,15 @@
         <translation>Tampilkan daftar alamat dan label yang diterima</translation>
     </message>
     <message>
-        <source>Open a myriadcoin: URI or payment request</source>
-        <translation>Buka URI myriadcoin: atau permintaan pembayaran</translation>
+        <source>Open a argentum: URI or payment request</source>
+        <translation>Buka URI argentum: atau permintaan pembayaran</translation>
     </message>
     <message>
         <source>&amp;Command-line options</source>
         <translation>&amp;pilihan Command-line</translation>
     </message>
     <message numerus="yes">
-        <source>%n active connection(s) to Myriadcoin network</source>
+        <source>%n active connection(s) to Argentum network</source>
         <translation><numerusform>%n koneksi aktif ke jaringan Bitcoin</numerusform></translation>
     </message>
     <message>
@@ -864,16 +864,16 @@
         <translation>&amp;Perubahan saldo untuk transaksi yang belum dikonfirmasi</translation>
     </message>
     <message>
-        <source>Automatically open the Myriadcoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Otomatis membuka port client Myriadcoin di router. Hanya berjalan apabila router anda mendukung UPnP dan di-enable.</translation>
+        <source>Automatically open the Argentum client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Otomatis membuka port client Argentum di router. Hanya berjalan apabila router anda mendukung UPnP dan di-enable.</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
         <translation>Petakan port dengan &amp;UPnP</translation>
     </message>
     <message>
-        <source>Connect to the Myriadcoin network through a SOCKS5 proxy.</source>
-        <translation>Hubungkan ke jaringan Myriadcoin melalui SOCKS5 proxy.</translation>
+        <source>Connect to the Argentum network through a SOCKS5 proxy.</source>
+        <translation>Hubungkan ke jaringan Argentum melalui SOCKS5 proxy.</translation>
     </message>
     <message>
         <source>Proxy &amp;IP:</source>
@@ -979,8 +979,8 @@
         <translation>Formulir</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Myriadcoin network after a connection is established, but this process has not completed yet.</source>
-        <translation>Informasi terlampir mungkin sudah kedaluwarsa. Dompet Anda secara otomatis mensinkronisasi dengan jaringan Myriadcoin ketika sebuah hubungan terbentuk, namun proses ini belum selesai.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Argentum network after a connection is established, but this process has not completed yet.</source>
+        <translation>Informasi terlampir mungkin sudah kedaluwarsa. Dompet Anda secara otomatis mensinkronisasi dengan jaringan Argentum ketika sebuah hubungan terbentuk, namun proses ini belum selesai.</translation>
     </message>
     <message>
         <source>Available:</source>
@@ -1036,8 +1036,8 @@
         <translation>Nilai</translation>
     </message>
     <message>
-        <source>Enter a Myriadcoin address (e.g. %1)</source>
-        <translation>Masukkan alamat Myriadcoin (contoh %1)</translation>
+        <source>Enter a Argentum address (e.g. %1)</source>
+        <translation>Masukkan alamat Argentum (contoh %1)</translation>
     </message>
     <message>
         <source>%1 h</source>
@@ -1543,8 +1543,8 @@
         <translation>Salin tanda tangan terpilih ke sistem klipboard</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this Myriadcoin address</source>
-        <translation>Tandai pesan untuk menyetujui kamu pemiliki alamat Myriadcoin ini</translation>
+        <source>Sign the message to prove you own this Argentum address</source>
+        <translation>Tandai pesan untuk menyetujui kamu pemiliki alamat Argentum ini</translation>
     </message>
     <message>
         <source>Sign &amp;Message</source>
@@ -1676,8 +1676,8 @@
         <translation>Berjalan dibelakang sebagai daemin dan menerima perintah</translation>
     </message>
     <message>
-        <source>Myriadcoin Core</source>
-        <translation>Myriadcoin Core</translation>
+        <source>Argentum Core</source>
+        <translation>Argentum Core</translation>
     </message>
     <message>
         <source>Execute command when a wallet transaction changes (%s in cmd is replaced by TxID)</source>

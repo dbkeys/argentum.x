@@ -142,7 +142,7 @@
         <translation>Reindexando bloques en disco...</translation>
     </message>
     <message>
-        <source>Send coins to a Myriadcoin address</source>
+        <source>Send coins to a Argentum address</source>
         <translation>Enviar monedas a una dirección Bitcoin</translation>
     </message>
     <message>
@@ -194,12 +194,12 @@
         <translation>Cifrar las claves privadas de su monedero</translation>
     </message>
     <message>
-        <source>Sign messages with your Myriadcoin addresses to prove you own them</source>
-        <translation>Firmar mensajes con sus direcciones Myriadcoin para demostrar la propiedad</translation>
+        <source>Sign messages with your Argentum addresses to prove you own them</source>
+        <translation>Firmar mensajes con sus direcciones Argentum para demostrar la propiedad</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified Myriadcoin addresses</source>
-        <translation>Verificar mensajes comprobando que están firmados con direcciones Myriadcoin concretas</translation>
+        <source>Verify messages to ensure they were signed with specified Argentum addresses</source>
+        <translation>Verificar mensajes comprobando que están firmados con direcciones Argentum concretas</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -218,7 +218,7 @@
         <translation>Barra de pestañas</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and myriadcoin: URIs)</source>
+        <source>Request payments (generates QR codes and argentum: URIs)</source>
         <translation>Solicitar pagos (genera codigo QR y URL's de Bitcoin)</translation>
     </message>
     <message>
@@ -230,8 +230,8 @@
         <translation>Muestra la lista de direcciones de recepción y etiquetas</translation>
     </message>
     <message>
-        <source>Open a myriadcoin: URI or payment request</source>
-        <translation>Abrir un myriadcoin: URI o petición de pago</translation>
+        <source>Open a argentum: URI or payment request</source>
+        <translation>Abrir un argentum: URI o petición de pago</translation>
     </message>
     <message>
         <source>&amp;Command-line options</source>
@@ -494,8 +494,8 @@
         <translation>Experto</translation>
     </message>
     <message>
-        <source>Automatically open the Myriadcoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Abrir automáticamente el puerto del cliente Myriadcoin en el router. Esta opción solo funciona si el router admite UPnP y está activado.</translation>
+        <source>Automatically open the Argentum client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Abrir automáticamente el puerto del cliente Argentum en el router. Esta opción solo funciona si el router admite UPnP y está activado.</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
@@ -589,8 +589,8 @@
         <translation>Desde</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Myriadcoin network after a connection is established, but this process has not completed yet.</source>
-        <translation>La información mostrada puede estar desactualizada. Su monedero se sincroniza automáticamente con la red Myriadcoin después de que se haya establecido una conexión, pero este proceso aún no se ha completado.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Argentum network after a connection is established, but this process has not completed yet.</source>
+        <translation>La información mostrada puede estar desactualizada. Su monedero se sincroniza automáticamente con la red Argentum después de que se haya establecido una conexión, pero este proceso aún no se ha completado.</translation>
     </message>
     <message>
         <source>Your current spendable balance</source>
@@ -1019,7 +1019,7 @@
         <translation>Copiar la firma actual al portapapeles del sistema</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this Myriadcoin address</source>
+        <source>Sign the message to prove you own this Argentum address</source>
         <translation>Firmar el mensaje para demostrar que se posee esta dirección Bitcoin</translation>
     </message>
     <message>
@@ -1039,8 +1039,8 @@
         <translation>&amp;Verificar mensaje</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified Myriadcoin address</source>
-        <translation>Verificar el mensaje para comprobar que fue firmado con la dirección Myriadcoin indicada</translation>
+        <source>Verify the message to ensure it was signed with the specified Argentum address</source>
+        <translation>Verificar el mensaje para comprobar que fue firmado con la dirección Argentum indicada</translation>
     </message>
     <message>
         <source>Verify &amp;Message</source>
@@ -1123,7 +1123,7 @@
 </translation>
     </message>
     <message>
-        <source>Myriadcoin Core</source>
+        <source>Argentum Core</source>
         <translation>Núcleo de Bitcoin</translation>
     </message>
     <message>

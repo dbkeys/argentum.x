@@ -211,10 +211,10 @@ BOOST_AUTO_TEST_CASE(CreateNewBlock_validity)
     {
         CBlock *pblock = &pblocktemplate->block; // pointer for convenience
         pblock->nVersion = 2;
-        pblock->nTime = chainActive.Tip()->GetMedianTimePast()+(i+1)*600;  // Myriadcoin: altered to account for difficulty adjustments
+        pblock->nTime = chainActive.Tip()->GetMedianTimePast()+(i+1)*600;  // Argentum: altered to account for difficulty adjustments
         CMutableTransaction txCoinbase(*pblock->vtx[0]);
         txCoinbase.nVersion = 1;
-        // Myriadcoin: BIP34 is already active:
+        // Argentum: BIP34 is already active:
         //txCoinbase.vin[0].scriptSig = CScript();
         //txCoinbase.vin[0].scriptSig.push_back(blockinfo[i].extranonce);
         //txCoinbase.vin[0].scriptSig.push_back(chainActive.Height());

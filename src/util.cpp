@@ -103,8 +103,8 @@ namespace boost {
 
 using namespace std;
 
-const char * const BITCOIN_CONF_FILENAME = "myriadcoin.conf";
-const char * const BITCOIN_PID_FILENAME = "myriadcoind.pid";
+const char * const BITCOIN_CONF_FILENAME = "argentum.conf";
+const char * const BITCOIN_PID_FILENAME = "argentumd.pid";
 
 CCriticalSection cs_args;
 map<string, string> mapArgs;
@@ -463,7 +463,7 @@ static std::string FormatException(const std::exception* pex, const char* pszThr
     char pszModule[MAX_PATH] = "";
     GetModuleFileNameA(NULL, pszModule, sizeof(pszModule));
 #else
-    const char* pszModule = "myriadcoin";
+    const char* pszModule = "argentum";
 #endif
     if (pex)
         return strprintf(
@@ -483,13 +483,13 @@ void PrintExceptionContinue(const std::exception* pex, const char* pszThread)
 boost::filesystem::path GetDefaultDataDir()
 {
     namespace fs = boost::filesystem;
-    // Windows < Vista: C:\Documents and Settings\Username\Application Data\Myriadcoin
-    // Windows >= Vista: C:\Users\Username\AppData\Roaming\Myriadcoin
-    // Mac: ~/Library/Application Support/Myriadcoin
-    // Unix: ~/.myriadcoin
+    // Windows < Vista: C:\Documents and Settings\Username\Application Data\Argentum
+    // Windows >= Vista: C:\Users\Username\AppData\Roaming\Argentum
+    // Mac: ~/Library/Application Support/Argentum
+    // Unix: ~/.argentum
 #ifdef WIN32
     // Windows
-    return GetSpecialFolderPath(CSIDL_APPDATA) / "Myriadcoin";
+    return GetSpecialFolderPath(CSIDL_APPDATA) / "Argentum";
 #else
     fs::path pathRet;
     char* pszHome = getenv("HOME");
@@ -499,10 +499,10 @@ boost::filesystem::path GetDefaultDataDir()
         pathRet = fs::path(pszHome);
 #ifdef MAC_OSX
     // Mac
-    return pathRet / "Library/Application Support/Myriadcoin";
+    return pathRet / "Library/Application Support/Argentum";
 #else
     // Unix
-    return pathRet / ".myriadcoin";
+    return pathRet / ".argentum";
 #endif
 #endif
 }
@@ -605,7 +605,7 @@ void ReadConfigFile(const std::string& confPath)
 {
     boost::filesystem::ifstream streamConfig(GetConfigFile(confPath));
     if (!streamConfig.good())
-        return; // No myriadcoin.conf file is OK
+        return; // No argentum.conf file is OK
 
     {
         LOCK(cs_args);

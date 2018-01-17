@@ -50,7 +50,7 @@
 #include <boost/random/mersenne_twister.hpp>
 
 #if defined(NDEBUG)
-# error "Myriad cannot be compiled without assertions."
+# error "Argentum cannot be compiled without assertions."
 #endif
 
 /**
@@ -90,7 +90,7 @@ static void CheckBlockIndex(const Consensus::Params& consensusParams);
 /** Constant stuff for coinbase transactions we create: */
 CScript COINBASE_FLAGS;
 
-const std::string strMessageMagic = "Myriadcoin Signed Message:\n";
+const std::string strMessageMagic = "Argentum Signed Message:\n";
 
 // Internal stuff
 namespace {
@@ -1657,7 +1657,7 @@ int32_t ComputeBlockVersion(const CBlockIndex* pindexPrev, const Consensus::Para
         }
     }
 
-    /* TODO Myriadcoin: add legbit back for 0.11 post consensus, remove this when 0.11 clients are forked off network */
+    /* TODO Argentum: add legbit back for 0.11 post consensus, remove this when 0.11 clients are forked off network */
     if (VersionBitsState(pindexPrev, params, Consensus::DEPLOYMENT_LEGBIT, versionbitscache) == THRESHOLD_ACTIVE) {
         nVersion += 4;
     }
@@ -2109,7 +2109,7 @@ void static UpdateTip(CBlockIndex *pindexNew, const CChainParams& chainParams) {
         for (int i = 0; i < 100 && pindex != NULL; i++)
         {
             int32_t nExpectedVersion = ComputeBlockVersion(pindex->pprev, chainParams.GetConsensus());
-            /* Myriadcoin: we only use the lowest 8 bits for BIP9, so we mask the chainid and algo (0x00FFFF00)*/
+            /* Argentum: we only use the lowest 8 bits for BIP9, so we mask the chainid and algo (0x00FFFF00)*/
             //if (pindex->GetBaseVersion() > VERSIONBITS_LAST_OLD_BLOCK_VERSION && (pindex->nVersion & ~nExpectedVersion) != 0)
             if (pindex->GetBaseVersion() > VERSIONBITS_LAST_OLD_BLOCK_VERSION && ((pindex->nVersion & ~nExpectedVersion) & 0xFF0000FF) != 0)
                 ++nUpgraded;

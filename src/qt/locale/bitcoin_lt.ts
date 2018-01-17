@@ -154,8 +154,8 @@
         <translation>Blokai iš naujo indeksuojami...</translation>
     </message>
     <message>
-        <source>Send coins to a Myriadcoin address</source>
-        <translation>Siųsti monetas Myriadcoin adresui</translation>
+        <source>Send coins to a Argentum address</source>
+        <translation>Siųsti monetas Argentum adresui</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -418,8 +418,8 @@
         <translation>Piniginė</translation>
     </message>
     <message>
-        <source>Automatically open the Myriadcoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Automatiškai atidaryti Myriadcoin kliento prievadą maršrutizatoriuje. Tai veikia tik tada, kai jūsų maršrutizatorius palaiko UPnP ir ji įjungta.</translation>
+        <source>Automatically open the Argentum client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Automatiškai atidaryti Argentum kliento prievadą maršrutizatoriuje. Tai veikia tik tada, kai jūsų maršrutizatorius palaiko UPnP ir ji įjungta.</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
@@ -847,7 +847,7 @@
         <translation>Įveskite pranešimą, kurį norite pasirašyti čia</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this Myriadcoin address</source>
+        <source>Sign the message to prove you own this Argentum address</source>
         <translation>Registruotis žinute įrodymuii, kad turite šį adresą</translation>
     </message>
     <message>
@@ -863,8 +863,8 @@
         <translation>&amp;Patikrinti žinutę</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified Myriadcoin address</source>
-        <translation>Patikrinkite žinutę, jog įsitikintumėte, kad ją pasirašė nurodytas Myriadcoin adresas</translation>
+        <source>Verify the message to ensure it was signed with the specified Argentum address</source>
+        <translation>Patikrinkite žinutę, jog įsitikintumėte, kad ją pasirašė nurodytas Argentum adresas</translation>
     </message>
     <message>
         <source>Verify &amp;Message</source>
@@ -936,8 +936,8 @@
         <translation>Dirbti fone kaip šešėlyje ir priimti komandas</translation>
     </message>
     <message>
-        <source>Myriadcoin Core</source>
-        <translation>Myriadcoin branduolys</translation>
+        <source>Argentum Core</source>
+        <translation>Argentum branduolys</translation>
     </message>
     <message>
         <source>Error opening block database</source>

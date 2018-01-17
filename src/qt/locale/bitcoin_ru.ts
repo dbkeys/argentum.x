@@ -62,12 +62,12 @@
         <translation>Адреса получения</translation>
     </message>
     <message>
-        <source>These are your Myriadcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Это ваши адреса Myriadcoin для отправки платежей. Всегда проверяйте сумму и адрес получателя перед отправкой перевода.</translation>
+        <source>These are your Argentum addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Это ваши адреса Argentum для отправки платежей. Всегда проверяйте сумму и адрес получателя перед отправкой перевода.</translation>
     </message>
     <message>
-        <source>These are your Myriadcoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Это ваши адреса Myriadcoin для приёма платежей. Рекомендуется использовать новый адрес получения для каждой транзакции.</translation>
+        <source>These are your Argentum addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>Это ваши адреса Argentum для приёма платежей. Рекомендуется использовать новый адрес получения для каждой транзакции.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -180,7 +180,7 @@
         <translation>Бумажник зашифрован</translation>
     </message>
     <message>
-        <source>%1 will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your myriadcoins from being stolen by malware infecting your computer.</source>
+        <source>%1 will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your argentums from being stolen by malware infecting your computer.</source>
         <translation>Сейчас %1 закроется для завершения процесса шифрования. Помните, что шифрование вашего бумажника не может полностью защитить ваши биткоины от кражи с помощью инфицирования вашего компьютера вредоносным ПО.</translation>
     </message>
     <message>
@@ -338,7 +338,7 @@
         <translation>Идёт переиндексация блоков на диске...</translation>
     </message>
     <message>
-        <source>Send coins to a Myriadcoin address</source>
+        <source>Send coins to a Argentum address</source>
         <translation>Отправить монеты на указанный адрес Bitcoin</translation>
     </message>
     <message>
@@ -390,11 +390,11 @@
         <translation>Зашифровать приватные ключи, принадлежащие вашему бумажнику</translation>
     </message>
     <message>
-        <source>Sign messages with your Myriadcoin addresses to prove you own them</source>
+        <source>Sign messages with your Argentum addresses to prove you own them</source>
         <translation>Подписать сообщения вашим адресом Bitcoin, чтобы доказать, что вы им владеете</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified Myriadcoin addresses</source>
+        <source>Verify messages to ensure they were signed with specified Argentum addresses</source>
         <translation>Проверить сообщения, чтобы удостовериться, что они были подписаны определённым адресом Bitcoin</translation>
     </message>
     <message>
@@ -414,8 +414,8 @@
         <translation>Панель вкладок</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and myriadcoin: URIs)</source>
-        <translation>Запросить платежи (создаёт QR-коды и myriadcoin: ссылки)</translation>
+        <source>Request payments (generates QR codes and argentum: URIs)</source>
+        <translation>Запросить платежи (создаёт QR-коды и argentum: ссылки)</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -426,15 +426,15 @@
         <translation>Показать список использованных адресов и меток получения</translation>
     </message>
     <message>
-        <source>Open a myriadcoin: URI or payment request</source>
-        <translation>Открыть myriadcoin: URI или запрос платежа</translation>
+        <source>Open a argentum: URI or payment request</source>
+        <translation>Открыть argentum: URI или запрос платежа</translation>
     </message>
     <message>
         <source>&amp;Command-line options</source>
         <translation>&amp;Параметры командной строки</translation>
     </message>
     <message numerus="yes">
-        <source>%n active connection(s) to Myriadcoin network</source>
+        <source>%n active connection(s) to Argentum network</source>
         <translation><numerusform>%n активных соединений с сетью Bitcoin</numerusform><numerusform>%n активных соединений с сетью Bitcoin</numerusform><numerusform>%n активных соединений с сетью Bitcoin</numerusform><numerusform>%n активных соединений с сетью Bitcoin</numerusform></translation>
     </message>
     <message>
@@ -478,7 +478,7 @@
         <translation>Синхронизировано</translation>
     </message>
     <message>
-        <source>Show the %1 help message to get a list with possible Myriadcoin command-line options</source>
+        <source>Show the %1 help message to get a list with possible Argentum command-line options</source>
         <translation>Показать помощь по %1, чтобы получить список доступных параметров командной строки</translation>
     </message>
     <message>
@@ -548,8 +548,8 @@
         <translation>Бумажник &lt;b&gt;зашифрован&lt;/b&gt; и в настоящее время &lt;b&gt;заблокирован&lt;/b&gt;</translation>
     </message>
     <message>
-        <source>A fatal error occurred. Myriadcoin can no longer continue safely and will quit.</source>
-        <translation>Произошла неисправимая ошибка. Myriadcoin не может безопасно продолжать работу и будет закрыт.</translation>
+        <source>A fatal error occurred. Argentum can no longer continue safely and will quit.</source>
+        <translation>Произошла неисправимая ошибка. Argentum не может безопасно продолжать работу и будет закрыт.</translation>
     </message>
 </context>
 <context>
@@ -742,7 +742,7 @@
         <translation>Изменить адрес отправки</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid Myriadcoin address.</source>
+        <source>The entered address "%1" is not a valid Argentum address.</source>
         <translation>Введённый адрес "%1" не является правильным Bitcoin-адресом.</translation>
     </message>
     <message>
@@ -851,7 +851,7 @@
         <translation>При первом запуске программы вы можете выбрать где %1 будет хранить свои данные.</translation>
     </message>
     <message>
-        <source>%1 will download and store a copy of the Myriadcoin block chain. At least %2GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <source>%1 will download and store a copy of the Argentum block chain. At least %2GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
         <translation>%1 скачает и сохранит копию цепи блоков. Как минимум %2GB будут записаны в этот каталог, и со временем он будет расти. Бумажник также будет сохранен в этом каталоге.</translation>
     </message>
     <message>
@@ -890,7 +890,7 @@
         <translation>Недавние транзакции могут быть пока не видны, поэтому ваш баланс может отображаться некорректно. Эта информация станет корректной, как только ваш бумажник будет синхронизирован с сетью, см. подробности ниже.</translation>
     </message>
     <message>
-        <source>Attempting to spend myriadcoins that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
+        <source>Attempting to spend argentums that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
         <translation>Попытка потратить биткоины из ещё не отображённых транзакций будет отвергнута сетью.</translation>
     </message>
     <message>
@@ -1048,7 +1048,7 @@
         <translation>&amp;Тратить неподтверждённую сдачу</translation>
     </message>
     <message>
-        <source>Automatically open the Myriadcoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <source>Automatically open the Argentum client port on the router. This only works when your router supports UPnP and it is enabled.</source>
         <translation>Автоматически открыть порт для Bitcoin-клиента на роутере. Работает только если Ваш роутер поддерживает UPnP, и данная функция включена.</translation>
     </message>
     <message>
@@ -1056,12 +1056,12 @@
         <translation>Пробросить порт через &amp;UPnP</translation>
     </message>
     <message>
-        <source>Connect to the Myriadcoin network through a SOCKS5 proxy.</source>
-        <translation>Подключаться к сети Myriadcoin через прокси SOCKS5</translation>
+        <source>Connect to the Argentum network through a SOCKS5 proxy.</source>
+        <translation>Подключаться к сети Argentum через прокси SOCKS5</translation>
     </message>
     <message>
         <source>&amp;Connect through SOCKS5 proxy (default proxy):</source>
-        <translation>&amp;Подключаться к сети Myriadcoin через прокси SOCKS5 (прокси по умолчанию):</translation>
+        <translation>&amp;Подключаться к сети Argentum через прокси SOCKS5 (прокси по умолчанию):</translation>
     </message>
     <message>
         <source>Proxy &amp;IP:</source>
@@ -1096,8 +1096,8 @@
         <translation>Tor</translation>
     </message>
     <message>
-        <source>Connect to the Myriadcoin network through a separate SOCKS5 proxy for Tor hidden services.</source>
-        <translation>Подключаться к сети Myriadcoin через прокси SOCKS5 для скрытых сервисов Tor.</translation>
+        <source>Connect to the Argentum network through a separate SOCKS5 proxy for Tor hidden services.</source>
+        <translation>Подключаться к сети Argentum через прокси SOCKS5 для скрытых сервисов Tor.</translation>
     </message>
     <message>
         <source>Use separate SOCKS5 proxy to reach peers via Tor hidden services:</source>
@@ -1195,8 +1195,8 @@
         <translation>Форма</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Myriadcoin network after a connection is established, but this process has not completed yet.</source>
-        <translation>Отображаемая информация может быть устаревшей. Ваш бумажник автоматически синхронизируется с сетью Myriadcoin после подключения, но этот процесс пока не завершён.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Argentum network after a connection is established, but this process has not completed yet.</source>
+        <translation>Отображаемая информация может быть устаревшей. Ваш бумажник автоматически синхронизируется с сетью Argentum после подключения, но этот процесс пока не завершён.</translation>
     </message>
     <message>
         <source>Watch-only:</source>
@@ -1270,8 +1270,8 @@
         <translation>Ошибка запроса платежа</translation>
     </message>
     <message>
-        <source>Cannot start myriadcoin: click-to-pay handler</source>
-        <translation>Не удаётся запустить myriadcoin: обработчик click-to-pay</translation>
+        <source>Cannot start argentum: click-to-pay handler</source>
+        <translation>Не удаётся запустить argentum: обработчик click-to-pay</translation>
     </message>
     <message>
         <source>URI handling</source>
@@ -1286,8 +1286,8 @@
         <translation>Неверный адрес платежа %1</translation>
     </message>
     <message>
-        <source>URI cannot be parsed! This can be caused by an invalid Myriadcoin address or malformed URI parameters.</source>
-        <translation>Не удалось обработать URI! Это может быть связано с неверным адресом Myriadcoin или неправильными параметрами URI.</translation>
+        <source>URI cannot be parsed! This can be caused by an invalid Argentum address or malformed URI parameters.</source>
+        <translation>Не удалось обработать URI! Это может быть связано с неверным адресом Argentum или неправильными параметрами URI.</translation>
     </message>
     <message>
         <source>Payment request file handling</source>
@@ -1380,8 +1380,8 @@
         <translation>Сумма</translation>
     </message>
     <message>
-        <source>Enter a Myriadcoin address (e.g. %1)</source>
-        <translation>Введите адрес Myriadcoin (например, %1)</translation>
+        <source>Enter a Argentum address (e.g. %1)</source>
+        <translation>Введите адрес Argentum (например, %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -1804,7 +1804,7 @@
         <translation>&amp;Повторно использовать существующий адрес получения (не рекомендуется)</translation>
     </message>
     <message>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Myriadcoin network.</source>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Argentum network.</source>
         <translation>Необязательное сообщение для запроса платежа, которое будет показано при открытии запроса. Заметьте: сообщение не будет отправлено вместе с платежом через сеть Bitcoin.</translation>
     </message>
     <message>
@@ -2201,7 +2201,7 @@
         <translation><numerusform>Начало подтверждения ожидается через %n блок.</numerusform><numerusform>Начало подтверждения ожидается через %n блока.</numerusform><numerusform>Начало подтверждения ожидается через %n блоков.</numerusform><numerusform>Начало подтверждения ожидается через %n блоков.</numerusform></translation>
     </message>
     <message>
-        <source>Warning: Invalid Myriadcoin address</source>
+        <source>Warning: Invalid Argentum address</source>
         <translation>Внимание: неверный адрес Bitcoin</translation>
     </message>
     <message>
@@ -2244,7 +2244,7 @@
         <translation>Это нормальный платёж.</translation>
     </message>
     <message>
-        <source>The Myriadcoin address to send the payment to</source>
+        <source>The Argentum address to send the payment to</source>
         <translation>Адрес Bitcoin, на который отправить платёж</translation>
     </message>
     <message>
@@ -2264,7 +2264,7 @@
         <translation>Удалить эту запись</translation>
     </message>
     <message>
-        <source>The fee will be deducted from the amount being sent. The recipient will receive less myriadcoins than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
+        <source>The fee will be deducted from the amount being sent. The recipient will receive less argentums than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
         <translation>С отправляемой суммы будет удержана комиссия. Получателю придёт меньше биткоинов, чем вы вводите в поле количества. Если выбрано несколько получателей, комиссия распределяется поровну.</translation>
     </message>
     <message>
@@ -2288,8 +2288,8 @@
         <translation>Введите метку для этого адреса, чтобы добавить его в список использованных</translation>
     </message>
     <message>
-        <source>A message that was attached to the myriadcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Myriadcoin network.</source>
-        <translation>К myriadcoin: URI было прикреплено сообщение, которое будет сохранено вместе с транзакцией для вашего сведения. Заметьте: сообщение не будет отправлено через сеть Bitcoin.</translation>
+        <source>A message that was attached to the argentum: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Argentum network.</source>
+        <translation>К argentum: URI было прикреплено сообщение, которое будет сохранено вместе с транзакцией для вашего сведения. Заметьте: сообщение не будет отправлено через сеть Bitcoin.</translation>
     </message>
     <message>
         <source>Pay To:</source>
@@ -2333,11 +2333,11 @@
         <translation>&amp;Подписать сообщение</translation>
     </message>
     <message>
-        <source>You can sign messages/agreements with your addresses to prove you can receive myriadcoins sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
+        <source>You can sign messages/agreements with your addresses to prove you can receive argentums sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
         <translation>Вы можете подписывать сообщения/соглашения своими адресами, чтобы доказать свою возможность получать биткоины на них. Будьте осторожны, не подписывайте что-то неопределённое или случайное, так как фишинговые атаки могут обманным путём заставить вас подписать нежелательные сообщения. Подписывайте только те сообщения, с которыми вы согласны вплоть до мелочей.</translation>
     </message>
     <message>
-        <source>The Myriadcoin address to sign the message with</source>
+        <source>The Argentum address to sign the message with</source>
         <translation>Адрес Bitcoin, которым подписать сообщение</translation>
     </message>
     <message>
@@ -2369,7 +2369,7 @@
         <translation>Скопировать текущую подпись в системный буфер обмена</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this Myriadcoin address</source>
+        <source>Sign the message to prove you own this Argentum address</source>
         <translation>Подписать сообщение, чтобы доказать владение адресом Bitcoin</translation>
     </message>
     <message>
@@ -2393,11 +2393,11 @@
         <translation>Введите ниже адрес получателя, сообщение (убедитесь, что переводы строк, пробелы, табы и т.п. в точности скопированы) и подпись, чтобы проверить сообщение. Убедитесь, что не скопировали лишнего в подпись, по сравнению с самим подписываемым сообщением, чтобы не стать жертвой атаки "man-in-the-middle". Заметьте, что эта операция удостоверяет лишь авторство подписавшего, но не может удостоверить отправителя транзакции.</translation>
     </message>
     <message>
-        <source>The Myriadcoin address the message was signed with</source>
+        <source>The Argentum address the message was signed with</source>
         <translation>Адрес Bitcoin, которым было подписано сообщение</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified Myriadcoin address</source>
+        <source>Verify the message to ensure it was signed with the specified Argentum address</source>
         <translation>Проверить сообщение, чтобы убедиться, что оно было подписано указанным адресом Bitcoin</translation>
     </message>
     <message>
@@ -3058,8 +3058,8 @@
         <translation>Невозможно запустить HTTP сервер. Смотри debug лог для подробностей.</translation>
     </message>
     <message>
-        <source>Myriadcoin Core</source>
-        <translation>Myriadcoin Core</translation>
+        <source>Argentum Core</source>
+        <translation>Argentum Core</translation>
     </message>
     <message>
         <source>The %s developers</source>

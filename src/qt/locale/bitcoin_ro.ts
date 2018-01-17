@@ -142,7 +142,7 @@
         <translation>Deschide &amp;URI...</translation>
     </message>
     <message>
-        <source>Send coins to a Myriadcoin address</source>
+        <source>Send coins to a Argentum address</source>
         <translation>Trimite monedele către o adresă Bitcoin</translation>
     </message>
     <message>
@@ -194,12 +194,12 @@
         <translation>Criptează cheile private care aparțin portofelului tău.</translation>
     </message>
     <message>
-        <source>Sign messages with your Myriadcoin addresses to prove you own them</source>
-        <translation>Semnează mesajele cu adresa ta de Myriadcoin pentru a face dovada că îți aparțin.</translation>
+        <source>Sign messages with your Argentum addresses to prove you own them</source>
+        <translation>Semnează mesajele cu adresa ta de Argentum pentru a face dovada că îți aparțin.</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified Myriadcoin addresses</source>
-        <translation>Verifică mesajele cu scopul de a asigura faptul că au fost semnate cu adresa de Myriadcoin specificată.</translation>
+        <source>Verify messages to ensure they were signed with specified Argentum addresses</source>
+        <translation>Verifică mesajele cu scopul de a asigura faptul că au fost semnate cu adresa de Argentum specificată.</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -214,12 +214,12 @@
         <translation>&amp;Ajutor</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and myriadcoin: URIs)</source>
-        <translation>Cerere plată (generează coduri QR și myriadcoin: URIs)</translation>
+        <source>Request payments (generates QR codes and argentum: URIs)</source>
+        <translation>Cerere plată (generează coduri QR și argentum: URIs)</translation>
     </message>
     <message>
-        <source>Open a myriadcoin: URI or payment request</source>
-        <translation>Deschide un myriadcoin: URI sau cerere de plată</translation>
+        <source>Open a argentum: URI or payment request</source>
+        <translation>Deschide un argentum: URI sau cerere de plată</translation>
     </message>
     <message>
         <source>%1 behind</source>
@@ -748,8 +748,8 @@
 <context>
     <name>bitcoin-core</name>
     <message>
-        <source>Myriadcoin Core</source>
-        <translation>Myriadcoin Core</translation>
+        <source>Argentum Core</source>
+        <translation>Argentum Core</translation>
     </message>
     <message>
         <source>Information</source>

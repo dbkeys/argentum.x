@@ -708,8 +708,8 @@
 <context>
     <name>bitcoin-core</name>
     <message>
-        <source>Myriadcoin Core</source>
-        <translation>Myriadcoin மையம்</translation>
+        <source>Argentum Core</source>
+        <translation>Argentum மையம்</translation>
     </message>
     <message>
         <source>(default: %u)</source>

@@ -62,12 +62,12 @@
         <translation>Vastuvõtvad aadressid</translation>
     </message>
     <message>
-        <source>These are your Myriadcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Need on sinu Myriadcoin aadressid maksete saatmiseks. Ennem müntide saatmist kontrolli alati summat ja makse saaja aadressi.</translation>
+        <source>These are your Argentum addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Need on sinu Argentum aadressid maksete saatmiseks. Ennem müntide saatmist kontrolli alati summat ja makse saaja aadressi.</translation>
     </message>
     <message>
-        <source>These are your Myriadcoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Need on sinu Myriadcoin aadressid sisenevate maksete vastu võtmiseks. Soovitav on iga tehingu tarbeks kasutada uut aadressi.</translation>
+        <source>These are your Argentum addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>Need on sinu Argentum aadressid sisenevate maksete vastu võtmiseks. Soovitav on iga tehingu tarbeks kasutada uut aadressi.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -290,7 +290,7 @@
         <translation>Kettal olevate blokkide re-indekseerimine...</translation>
     </message>
     <message>
-        <source>Send coins to a Myriadcoin address</source>
+        <source>Send coins to a Argentum address</source>
         <translation>Saada münte Bitcoini aadressile</translation>
     </message>
     <message>
@@ -342,11 +342,11 @@
         <translation>Krüpteeri oma rahakoti privaatvõtmed</translation>
     </message>
     <message>
-        <source>Sign messages with your Myriadcoin addresses to prove you own them</source>
+        <source>Sign messages with your Argentum addresses to prove you own them</source>
         <translation>Omandi tõestamiseks allkirjasta sõnumid oma Bitcoini aadressiga</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified Myriadcoin addresses</source>
+        <source>Verify messages to ensure they were signed with specified Argentum addresses</source>
         <translation>Kinnita sõnumid kindlustamaks et need allkirjastati määratud Bitcoini aadressiga</translation>
     </message>
     <message>
@@ -366,11 +366,11 @@
         <translation>Vahelehe tööriistariba</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and myriadcoin: URIs)</source>
+        <source>Request payments (generates QR codes and argentum: URIs)</source>
         <translation>Loo maksepäring (genereerib QR koodid ja bitcoini: URId)</translation>
     </message>
     <message>
-        <source>Open a myriadcoin: URI or payment request</source>
+        <source>Open a argentum: URI or payment request</source>
         <translation>Ava bitcoini: URI või maksepäring</translation>
     </message>
     <message>
@@ -378,7 +378,7 @@
         <translation>Käsurea valikud</translation>
     </message>
     <message numerus="yes">
-        <source>%n active connection(s) to Myriadcoin network</source>
+        <source>%n active connection(s) to Argentum network</source>
         <translation><numerusform>%n aktiivne ühendus Bitcoini võrku</numerusform><numerusform>%n aktiivset ühendust Bitcoini võrku</numerusform></translation>
     </message>
     <message>
@@ -626,8 +626,8 @@
         <translation>Muuda saatvat aadressi</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid Myriadcoin address.</source>
-        <translation>Sisestatud aadress "%1" ei ole korrektne Myriadcoin aadress.</translation>
+        <source>The entered address "%1" is not a valid Argentum address.</source>
+        <translation>Sisestatud aadress "%1" ei ole korrektne Argentum aadress.</translation>
     </message>
     <message>
         <source>The entered address "%1" is already in the address book.</source>
@@ -756,7 +756,7 @@
         <translation>Ekspert</translation>
     </message>
     <message>
-        <source>Automatically open the Myriadcoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <source>Automatically open the Argentum client port on the router. This only works when your router supports UPnP and it is enabled.</source>
         <translation>Bitcoini kliendi pordi automaatne avamine ruuteris. Toimib, kui sinu ruuter aktsepteerib UPnP ühendust.</translation>
     </message>
     <message>
@@ -855,7 +855,7 @@
         <translation>Vorm</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Myriadcoin network after a connection is established, but this process has not completed yet.</source>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Argentum network after a connection is established, but this process has not completed yet.</source>
         <translation>Kuvatav info ei pruugi olla ajakohane. Ühenduse loomisel süngitakse sinu rahakott automaatselt Bitconi võrgustikuga, kuid see toiming on hetkel lõpetamata.</translation>
     </message>
     <message>
@@ -1337,8 +1337,8 @@
         <translation>Maksepäring aegunud.</translation>
     </message>
     <message>
-        <source>Warning: Invalid Myriadcoin address</source>
-        <translation>Hoiatus: Ebakorrektne Myriadcoin aadress</translation>
+        <source>Warning: Invalid Argentum address</source>
+        <translation>Hoiatus: Ebakorrektne Argentum aadress</translation>
     </message>
     <message>
         <source>(no label)</source>
@@ -1417,8 +1417,8 @@
         <translation>&amp;Allkirjastamise teade</translation>
     </message>
     <message>
-        <source>The Myriadcoin address to sign the message with</source>
-        <translation>Myriadcoin aadress millega sõnum allkirjastada</translation>
+        <source>The Argentum address to sign the message with</source>
+        <translation>Argentum aadress millega sõnum allkirjastada</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -1449,7 +1449,7 @@
         <translation>Kopeeri praegune signatuur vahemällu</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this Myriadcoin address</source>
+        <source>Sign the message to prove you own this Argentum address</source>
         <translation>Allkirjasta sõnum Bitcoini aadressi sulle kuulumise tõestamiseks</translation>
     </message>
     <message>
@@ -1469,11 +1469,11 @@
         <translation>&amp;Kinnita Sõnum</translation>
     </message>
     <message>
-        <source>The Myriadcoin address the message was signed with</source>
-        <translation>Myriadcoin aadress millega sõnum on allkirjastatud</translation>
+        <source>The Argentum address the message was signed with</source>
+        <translation>Argentum aadress millega sõnum on allkirjastatud</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified Myriadcoin address</source>
+        <source>Verify the message to ensure it was signed with the specified Argentum address</source>
         <translation>Kinnita sõnum tõestamaks selle allkirjastatust määratud Bitcoini aadressiga.</translation>
     </message>
     <message>
@@ -1758,7 +1758,7 @@
         <translation>Tööta taustal ning aktsepteeri käsklusi</translation>
     </message>
     <message>
-        <source>Myriadcoin Core</source>
+        <source>Argentum Core</source>
         <translation>Bitcoini tuumik</translation>
     </message>
     <message>

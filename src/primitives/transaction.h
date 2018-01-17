@@ -240,7 +240,7 @@ class CTransaction
 {
 public:
     // Default transaction version.
-    // TODO: FIXME Myriadcoin
+    // TODO: FIXME Argentum
     //static const int32_t CURRENT_VERSION=2;
     static const int32_t CURRENT_VERSION=1;
 

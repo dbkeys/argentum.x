@@ -16,14 +16,14 @@ BEGIN
     BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
-            VALUE "CompanyName",        "Myriad"
-            VALUE "FileDescription",    "myriadcoind (Myriad node with a JSON-RPC server)"
+            VALUE "CompanyName",        "Argentum"
+            VALUE "FileDescription",    "argentumd (Argentum node with a JSON-RPC server)"
             VALUE "FileVersion",        VER_FILEVERSION_STR
-            VALUE "InternalName",       "myriadcoind"
+            VALUE "InternalName",       "argentumd"
             VALUE "LegalCopyright",     COPYRIGHT_STR
             VALUE "LegalTrademarks1",   "Distributed under the MIT software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php."
-            VALUE "OriginalFilename",   "myriadcoind.exe"
-            VALUE "ProductName",        "myriadcoind"
+            VALUE "OriginalFilename",   "argentumd.exe"
+            VALUE "ProductName",        "argentumd"
             VALUE "ProductVersion",     VER_PRODUCTVERSION_STR
         END
     END

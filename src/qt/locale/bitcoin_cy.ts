@@ -484,7 +484,7 @@
         <translation>Opsiynau:</translation>
     </message>
     <message>
-        <source>Myriadcoin Core</source>
+        <source>Argentum Core</source>
         <translation>Craidd Bitcoin</translation>
     </message>
     <message>

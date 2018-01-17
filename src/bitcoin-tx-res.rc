@@ -16,14 +16,14 @@ BEGIN
     BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
-            VALUE "CompanyName",        "Myriad"
-            VALUE "FileDescription",    "myriadcoin-tx (CLI Myriad transaction editor utility)"
+            VALUE "CompanyName",        "Argentum"
+            VALUE "FileDescription",    "argentum-tx (CLI Argentum transaction editor utility)"
             VALUE "FileVersion",        VER_FILEVERSION_STR
-            VALUE "InternalName",       "myriadcoin-tx"
+            VALUE "InternalName",       "argentum-tx"
             VALUE "LegalCopyright",     COPYRIGHT_STR
             VALUE "LegalTrademarks1",   "Distributed under the MIT software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php."
-            VALUE "OriginalFilename",   "myriadcoin-tx.exe"
-            VALUE "ProductName",        "myriadcoin-tx"
+            VALUE "OriginalFilename",   "argentum-tx.exe"
+            VALUE "ProductName",        "argentum-tx"
             VALUE "ProductVersion",     VER_PRODUCTVERSION_STR
         END
     END

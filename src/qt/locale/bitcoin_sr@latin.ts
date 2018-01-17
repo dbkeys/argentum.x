@@ -158,8 +158,8 @@
         <translation>Otvori &amp;URI...</translation>
     </message>
     <message>
-        <source>Send coins to a Myriadcoin address</source>
-        <translation>Pošalji novčiće na Myriadcoin adresu</translation>
+        <source>Send coins to a Argentum address</source>
+        <translation>Pošalji novčiće na Argentum adresu</translation>
     </message>
     <message>
         <source>&amp;Verify message...</source>
@@ -406,8 +406,8 @@
 <context>
     <name>bitcoin-core</name>
     <message>
-        <source>Myriadcoin Core</source>
-        <translation>Myriadcoin Core</translation>
+        <source>Argentum Core</source>
+        <translation>Argentum Core</translation>
     </message>
     <message>
         <source>Information</source>

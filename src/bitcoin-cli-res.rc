@@ -16,14 +16,14 @@ BEGIN
     BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
-            VALUE "CompanyName",        "Myriadcoin"
-            VALUE "FileDescription",    "myriadcoin-cli (JSON-RPC client for " PACKAGE_NAME ")"
+            VALUE "CompanyName",        "Argentum"
+            VALUE "FileDescription",    "argentum-cli (JSON-RPC client for " PACKAGE_NAME ")"
             VALUE "FileVersion",        VER_FILEVERSION_STR
-            VALUE "InternalName",       "myriadcoin-cli"
+            VALUE "InternalName",       "argentum-cli"
             VALUE "LegalCopyright",     COPYRIGHT_STR
             VALUE "LegalTrademarks1",   "Distributed under the MIT software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php."
-            VALUE "OriginalFilename",   "myriadcoin-cli.exe"
-            VALUE "ProductName",        "myriadcoin-cli"
+            VALUE "OriginalFilename",   "argentum-cli.exe"
+            VALUE "ProductName",        "argentum-cli"
             VALUE "ProductVersion",     VER_PRODUCTVERSION_STR
         END
     END

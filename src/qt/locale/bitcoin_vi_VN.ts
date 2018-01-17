@@ -186,7 +186,7 @@
         <translation>Đánh chỉ số (indexing) lại các khối (blocks) trên ổ đĩa ...</translation>
     </message>
     <message>
-        <source>Send coins to a Myriadcoin address</source>
+        <source>Send coins to a Argentum address</source>
         <translation>Gửi coins đến tài khoản Bitcoin</translation>
     </message>
     <message>
@@ -234,12 +234,12 @@
         <translation>Mã hoá các khoá bí mật trong Ví của bạn.</translation>
     </message>
     <message>
-        <source>Sign messages with your Myriadcoin addresses to prove you own them</source>
-        <translation>Dùng địa chỉ Myriadcoin của bạn ký các tin nhắn để xác minh những nội dung tin nhắn đó là của bạn.</translation>
+        <source>Sign messages with your Argentum addresses to prove you own them</source>
+        <translation>Dùng địa chỉ Argentum của bạn ký các tin nhắn để xác minh những nội dung tin nhắn đó là của bạn.</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified Myriadcoin addresses</source>
-        <translation>Kiểm tra các tin nhắn để chắc chắn rằng chúng được ký bằng các địa chỉ Myriadcoin xác định.</translation>
+        <source>Verify messages to ensure they were signed with specified Argentum addresses</source>
+        <translation>Kiểm tra các tin nhắn để chắc chắn rằng chúng được ký bằng các địa chỉ Argentum xác định.</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -258,7 +258,7 @@
         <translation>Thanh công cụ (toolbar)</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and myriadcoin: URIs)</source>
+        <source>Request payments (generates QR codes and argentum: URIs)</source>
         <translation>Yêu cầu thanh toán(tạo mã QR và địa chỉ Bitcoin: URLs)</translation>
     </message>
     <message>
@@ -270,8 +270,8 @@
         <translation>Hiện thỉ danh sách các địa chỉ và nhãn đã dùng để nhận.</translation>
     </message>
     <message>
-        <source>Open a myriadcoin: URI or payment request</source>
-        <translation>Mở myriadcoin:URL hoặc yêu cầu thanh toán</translation>
+        <source>Open a argentum: URI or payment request</source>
+        <translation>Mở argentum:URL hoặc yêu cầu thanh toán</translation>
     </message>
     <message>
         <source>&amp;Command-line options</source>
@@ -536,8 +536,8 @@
         <translation>Ví</translation>
     </message>
     <message>
-        <source>Connect to the Myriadcoin network through a SOCKS5 proxy.</source>
-        <translation>Kết nối đến máy chủ Myriadcoin thông qua SOCKS5 proxy.</translation>
+        <source>Connect to the Argentum network through a SOCKS5 proxy.</source>
+        <translation>Kết nối đến máy chủ Argentum thông qua SOCKS5 proxy.</translation>
     </message>
     <message>
         <source>Proxy &amp;IP:</source>
@@ -1018,8 +1018,8 @@
         <translation>Lựa chọn:</translation>
     </message>
     <message>
-        <source>Myriadcoin Core</source>
-        <translation>Myriadcoin Core</translation>
+        <source>Argentum Core</source>
+        <translation>Argentum Core</translation>
     </message>
     <message>
         <source>(default: %u)</source>

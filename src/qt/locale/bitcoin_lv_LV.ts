@@ -142,8 +142,8 @@
         <translation>Bloku reindeksēšana no diska...</translation>
     </message>
     <message>
-        <source>Send coins to a Myriadcoin address</source>
-        <translation>Nosūtīt bitkoinus uz Myriadcoin adresi</translation>
+        <source>Send coins to a Argentum address</source>
+        <translation>Nosūtīt bitkoinus uz Argentum adresi</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -194,12 +194,12 @@
         <translation>Šifrēt privātās atslēgas kuras pieder tavam maciņam</translation>
     </message>
     <message>
-        <source>Sign messages with your Myriadcoin addresses to prove you own them</source>
-        <translation>Parakstīt ziņojumus ar savām Myriadcoin adresēm lai pierādītu ka tās pieder tev</translation>
+        <source>Sign messages with your Argentum addresses to prove you own them</source>
+        <translation>Parakstīt ziņojumus ar savām Argentum adresēm lai pierādītu ka tās pieder tev</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified Myriadcoin addresses</source>
-        <translation>Pārbaudīt ziņojumus lai pārliecinātos, ka tie tika parakstīti ar norādītajām Myriadcoin adresēm</translation>
+        <source>Verify messages to ensure they were signed with specified Argentum addresses</source>
+        <translation>Pārbaudīt ziņojumus lai pārliecinātos, ka tie tika parakstīti ar norādītajām Argentum adresēm</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -218,11 +218,11 @@
         <translation>Ciļņu rīkjosla</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and myriadcoin: URIs)</source>
-        <translation>Pieprasīt maksājumus (izveido QR kodu un myriadcoin: URIs)</translation>
+        <source>Request payments (generates QR codes and argentum: URIs)</source>
+        <translation>Pieprasīt maksājumus (izveido QR kodu un argentum: URIs)</translation>
     </message>
     <message>
-        <source>Open a myriadcoin: URI or payment request</source>
+        <source>Open a argentum: URI or payment request</source>
         <translation>Atvērt bitcoin URI vai maksājuma pieprasījumu</translation>
     </message>
     <message>
@@ -506,8 +506,8 @@
         <translation>&amp;Tērēt neapstiprinātu atlikumu</translation>
     </message>
     <message>
-        <source>Automatically open the Myriadcoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Uz rūtera automātiski atvērt Myriadcoin klienta portu. Tas strādā tikai tad, ja rūteris atbalsta UPnP un tas ir ieslēgts.</translation>
+        <source>Automatically open the Argentum client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Uz rūtera automātiski atvērt Argentum klienta portu. Tas strādā tikai tad, ja rūteris atbalsta UPnP un tas ir ieslēgts.</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
@@ -559,7 +559,7 @@
     </message>
     <message>
         <source>Whether to show coin control features or not.</source>
-        <translation>Vai rādīt Myriadcoin kontroles funkcijas vai nē.</translation>
+        <translation>Vai rādīt Argentum kontroles funkcijas vai nē.</translation>
     </message>
     <message>
         <source>&amp;OK</source>
@@ -593,8 +593,8 @@
         <translation>Forma</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Myriadcoin network after a connection is established, but this process has not completed yet.</source>
-        <translation>Attēlotā informācija var būt novecojusi. Jūsu maciņš pēc savienojuma izveides automātiski sinhronizējas ar Myriadcoin tīklu, taču šis process vēl nav beidzies.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Argentum network after a connection is established, but this process has not completed yet.</source>
+        <translation>Attēlotā informācija var būt novecojusi. Jūsu maciņš pēc savienojuma izveides automātiski sinhronizējas ar Argentum tīklu, taču šis process vēl nav beidzies.</translation>
     </message>
     <message>
         <source>Available:</source>
@@ -852,7 +852,7 @@
     </message>
     <message>
         <source>Coin Control Features</source>
-        <translation>Myriadcoin Kontroles Funkcijas</translation>
+        <translation>Argentum Kontroles Funkcijas</translation>
     </message>
     <message>
         <source>Inputs...</source>
@@ -1027,8 +1027,8 @@
         <translation>Kopēt parakstu uz sistēmas starpliktuvi</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this Myriadcoin address</source>
-        <translation>Parakstīt ziņojumu lai pierādītu, ka esi šīs Myriadcoin adreses īpašnieks.</translation>
+        <source>Sign the message to prove you own this Argentum address</source>
+        <translation>Parakstīt ziņojumu lai pierādītu, ka esi šīs Argentum adreses īpašnieks.</translation>
     </message>
     <message>
         <source>Sign &amp;Message</source>
@@ -1124,8 +1124,8 @@
         <translation>Darbināt fonā kā servisu un pieņemt komandas</translation>
     </message>
     <message>
-        <source>Myriadcoin Core</source>
-        <translation>Myriadcoin Core</translation>
+        <source>Argentum Core</source>
+        <translation>Argentum Core</translation>
     </message>
     <message>
         <source>&lt;category&gt; can be:</source>

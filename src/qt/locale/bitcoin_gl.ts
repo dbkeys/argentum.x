@@ -130,7 +130,7 @@
         <translation>Reindexando bloques no disco...</translation>
     </message>
     <message>
-        <source>Send coins to a Myriadcoin address</source>
+        <source>Send coins to a Argentum address</source>
         <translation>Enviar moedas a unha dirección Bitcoin</translation>
     </message>
     <message>
@@ -182,12 +182,12 @@
         <translation>Encriptar as claves privadas que pertencen ao teu moedeiro</translation>
     </message>
     <message>
-        <source>Sign messages with your Myriadcoin addresses to prove you own them</source>
-        <translation>Asina mensaxes coas túas direccións Myriadcoin para probar que te pertencen</translation>
+        <source>Sign messages with your Argentum addresses to prove you own them</source>
+        <translation>Asina mensaxes coas túas direccións Argentum para probar que te pertencen</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified Myriadcoin addresses</source>
-        <translation>Verificar mensaxes para asegurar que foron asinados con direccións Myriadcoin dadas.</translation>
+        <source>Verify messages to ensure they were signed with specified Argentum addresses</source>
+        <translation>Verificar mensaxes para asegurar que foron asinados con direccións Argentum dadas.</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -206,8 +206,8 @@
         <translation>Barra de ferramentas</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and myriadcoin: URIs)</source>
-        <translation>Solicitar pagos (xenera códigos QR e myriadcoin: URIs)</translation>
+        <source>Request payments (generates QR codes and argentum: URIs)</source>
+        <translation>Solicitar pagos (xenera códigos QR e argentum: URIs)</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -218,8 +218,8 @@
         <translation>Amosar a listaxe de etiquetas e direccións para recibir empregadas</translation>
     </message>
     <message>
-        <source>Open a myriadcoin: URI or payment request</source>
-        <translation>Abrir un myriadcoin: URI ou solicitude de pago</translation>
+        <source>Open a argentum: URI or payment request</source>
+        <translation>Abrir un argentum: URI ou solicitude de pago</translation>
     </message>
     <message>
         <source>&amp;Command-line options</source>
@@ -466,8 +466,8 @@
         <translation>Moedeiro</translation>
     </message>
     <message>
-        <source>Automatically open the Myriadcoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Abrir automáticamente o porto do cliente Myriadcoin no router. Esto so funciona se o teu router soporta UPnP e está habilitado.</translation>
+        <source>Automatically open the Argentum client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Abrir automáticamente o porto do cliente Argentum no router. Esto so funciona se o teu router soporta UPnP e está habilitado.</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
@@ -545,8 +545,8 @@
         <translation>Formulario</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Myriadcoin network after a connection is established, but this process has not completed yet.</source>
-        <translation>A información amosada por estar desactualizada. O teu moedeiro sincronízase automáticamente coa rede Myriadcoin despois de que se estableza unha conexión, pero este proceso non está todavía rematado.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Argentum network after a connection is established, but this process has not completed yet.</source>
+        <translation>A información amosada por estar desactualizada. O teu moedeiro sincronízase automáticamente coa rede Argentum despois de que se estableza unha conexión, pero este proceso non está todavía rematado.</translation>
     </message>
     <message>
         <source>Your current spendable balance</source>
@@ -927,7 +927,7 @@
         <translation>Copiar a sinatura actual ao portapapeis do sistema</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this Myriadcoin address</source>
+        <source>Sign the message to prove you own this Argentum address</source>
         <translation>Asina a mensaxe para probar que posees esta dirección Bitcoin</translation>
     </message>
     <message>
@@ -947,8 +947,8 @@
         <translation>&amp;Verificar Mensaxe</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified Myriadcoin address</source>
-        <translation>Verificar a mensaxe para asegurar que foi asinada coa dirección Myriadcoin especificada</translation>
+        <source>Verify the message to ensure it was signed with the specified Argentum address</source>
+        <translation>Verificar a mensaxe para asegurar que foi asinada coa dirección Argentum especificada</translation>
     </message>
     <message>
         <source>Verify &amp;Message</source>
@@ -1028,7 +1028,7 @@
         <translation>Executar no fondo como un demo e aceptar comandos</translation>
     </message>
     <message>
-        <source>Myriadcoin Core</source>
+        <source>Argentum Core</source>
         <translation>Core de Bitcoin</translation>
     </message>
     <message>

@@ -218,7 +218,7 @@
         <translation>Réindexer les blocs sur le disque...</translation>
     </message>
     <message>
-        <source>Send coins to a Myriadcoin address</source>
+        <source>Send coins to a Argentum address</source>
         <translation>Envoyer des pièces à une adresse Bitcoin</translation>
     </message>
     <message>
@@ -270,8 +270,8 @@
         <translation>Crypter les clé privées qui appartiennent votre portefeuille</translation>
     </message>
     <message>
-        <source>Sign messages with your Myriadcoin addresses to prove you own them</source>
-        <translation>Signer vos messages avec vos adresses Myriadcoin pour prouver que vous les détenez</translation>
+        <source>Sign messages with your Argentum addresses to prove you own them</source>
+        <translation>Signer vos messages avec vos adresses Argentum pour prouver que vous les détenez</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -290,23 +290,23 @@
         <translation>Barre d'outils des onglets</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and myriadcoin: URIs)</source>
-        <translation>Demander des paiements (générer QR codes et myriadcoin: URIs)</translation>
+        <source>Request payments (generates QR codes and argentum: URIs)</source>
+        <translation>Demander des paiements (générer QR codes et argentum: URIs)</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
         <translation>Montrer la liste des adresses d'envois utilisées et les étiquettes</translation>
     </message>
     <message>
-        <source>Open a myriadcoin: URI or payment request</source>
-        <translation>Ouvrir un myriadcoin: URI ou demande de paiement</translation>
+        <source>Open a argentum: URI or payment request</source>
+        <translation>Ouvrir un argentum: URI ou demande de paiement</translation>
     </message>
     <message>
         <source>&amp;Command-line options</source>
         <translation>&amp;Options de ligne de commande</translation>
     </message>
     <message numerus="yes">
-        <source>%n active connection(s) to Myriadcoin network</source>
+        <source>%n active connection(s) to Argentum network</source>
         <translation><numerusform>%n connexion active au réseau Bitcoin</numerusform><numerusform>%n connexions actives au réseau Bitcoin</numerusform></translation>
     </message>
     <message>
@@ -684,8 +684,8 @@
         <translation>Expert</translation>
     </message>
     <message>
-        <source>Automatically open the Myriadcoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Ouvrir le port du client Myriadcoin automatiquement sur le routeur. Cela ne fonctionne que si votre routeur supporte l'UPnP et si la fonctionnalité est activée.</translation>
+        <source>Automatically open the Argentum client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Ouvrir le port du client Argentum automatiquement sur le routeur. Cela ne fonctionne que si votre routeur supporte l'UPnP et si la fonctionnalité est activée.</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
@@ -844,8 +844,8 @@
         <translation>Montant</translation>
     </message>
     <message>
-        <source>Enter a Myriadcoin address (e.g. %1)</source>
-        <translation>Entrer une adresse Myriadcoin (e.g. %1)</translation>
+        <source>Enter a Argentum address (e.g. %1)</source>
+        <translation>Entrer une adresse Argentum (e.g. %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -1662,8 +1662,8 @@
         <translation>Impossible de démarrer le serveur HTTP. Voir le journal de débogage pour plus de détails.</translation>
     </message>
     <message>
-        <source>Myriadcoin Core</source>
-        <translation>Myriadcoin Core</translation>
+        <source>Argentum Core</source>
+        <translation>Argentum Core</translation>
     </message>
     <message>
         <source>&lt;category&gt; can be:</source>

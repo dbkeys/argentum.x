@@ -62,12 +62,12 @@
         <translation>Indirizzi di ricezione</translation>
     </message>
     <message>
-        <source>These are your Myriadcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Questo è un elenco di indirizzi Myriadcoin a cui puoi inviare pagamenti. Controlla sempre l'importo e l'indirizzo del beneficiario prima di inviare bitcoin.</translation>
+        <source>These are your Argentum addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Questo è un elenco di indirizzi Argentum a cui puoi inviare pagamenti. Controlla sempre l'importo e l'indirizzo del beneficiario prima di inviare bitcoin.</translation>
     </message>
     <message>
-        <source>These are your Myriadcoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Questi sono i tuoi indirizzi Myriadcoin che puoi usare per ricevere pagamenti. Si raccomanda di generare un nuovo indirizzo per ogni transazione.</translation>
+        <source>These are your Argentum addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>Questi sono i tuoi indirizzi Argentum che puoi usare per ricevere pagamenti. Si raccomanda di generare un nuovo indirizzo per ogni transazione.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -318,7 +318,7 @@
         <translation>Re-indicizzazione blocchi su disco...</translation>
     </message>
     <message>
-        <source>Send coins to a Myriadcoin address</source>
+        <source>Send coins to a Argentum address</source>
         <translation>Invia fondi ad un indirizzo Bitcoin</translation>
     </message>
     <message>
@@ -370,12 +370,12 @@
         <translation>Cifra le chiavi private che appartengono al tuo portamonete</translation>
     </message>
     <message>
-        <source>Sign messages with your Myriadcoin addresses to prove you own them</source>
-        <translation>Firma messaggi con i tuoi indirizzi Myriadcoin per dimostrarne il possesso</translation>
+        <source>Sign messages with your Argentum addresses to prove you own them</source>
+        <translation>Firma messaggi con i tuoi indirizzi Argentum per dimostrarne il possesso</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified Myriadcoin addresses</source>
-        <translation>Verifica che i messaggi siano stati firmati con gli indirizzi Myriadcoin specificati</translation>
+        <source>Verify messages to ensure they were signed with specified Argentum addresses</source>
+        <translation>Verifica che i messaggi siano stati firmati con gli indirizzi Argentum specificati</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -394,8 +394,8 @@
         <translation>Barra degli strumenti</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and myriadcoin: URIs)</source>
-        <translation>Richiedi pagamenti (genera codici QR e myriadcoin: URI)</translation>
+        <source>Request payments (generates QR codes and argentum: URIs)</source>
+        <translation>Richiedi pagamenti (genera codici QR e argentum: URI)</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -406,16 +406,16 @@
         <translation>Mostra la lista degli indirizzi di ricezione utilizzati</translation>
     </message>
     <message>
-        <source>Open a myriadcoin: URI or payment request</source>
-        <translation>Apri un myriadcoin: URI o una richiesta di pagamento</translation>
+        <source>Open a argentum: URI or payment request</source>
+        <translation>Apri un argentum: URI o una richiesta di pagamento</translation>
     </message>
     <message>
         <source>&amp;Command-line options</source>
         <translation>Opzioni della riga di &amp;comando</translation>
     </message>
     <message numerus="yes">
-        <source>%n active connection(s) to Myriadcoin network</source>
-        <translation><numerusform>%n connessione attiva alla rete Bitcoin</numerusform><numerusform>%n connessioni alla rete Myriadcoin attive</numerusform></translation>
+        <source>%n active connection(s) to Argentum network</source>
+        <translation><numerusform>%n connessione attiva alla rete Bitcoin</numerusform><numerusform>%n connessioni alla rete Argentum attive</numerusform></translation>
     </message>
     <message>
         <source>Indexing blocks on disk...</source>
@@ -458,8 +458,8 @@
         <translation>Aggiornato</translation>
     </message>
     <message>
-        <source>Show the %1 help message to get a list with possible Myriadcoin command-line options</source>
-        <translation>Mostra il messaggio di aiuto di %1 per ottenere una lista di opzioni di comando per Myriadcoin </translation>
+        <source>Show the %1 help message to get a list with possible Argentum command-line options</source>
+        <translation>Mostra il messaggio di aiuto di %1 per ottenere una lista di opzioni di comando per Argentum </translation>
     </message>
     <message>
         <source>%1 client</source>
@@ -815,7 +815,7 @@
         <translation>Dato che questa è la prima volta che il programma viene lanciato, puoi scegliere dove %1 salverà i suoi dati.</translation>
     </message>
     <message>
-        <source>%1 will download and store a copy of the Myriadcoin block chain. At least %2GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <source>%1 will download and store a copy of the Argentum block chain. At least %2GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
         <translation>%1 scaricherà e salverà una copia della Blockchain di Bitcoin. Saranno salvati almeno %2GB di dati in questo percorso e continueranno ad aumentare col tempo. Anche il portafoglio verrà salvato in questo percorso.</translation>
     </message>
     <message>
@@ -989,16 +989,16 @@ Per specificare più URL separarli con una barra verticale "|".</translation>
         <translation>&amp;Spendi resti non confermati</translation>
     </message>
     <message>
-        <source>Automatically open the Myriadcoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Apri automaticamente la porta del client Myriadcoin sul router. Il protocollo UPnP deve essere supportato da parte del router ed attivo.</translation>
+        <source>Automatically open the Argentum client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Apri automaticamente la porta del client Argentum sul router. Il protocollo UPnP deve essere supportato da parte del router ed attivo.</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
         <translation>Mappa le porte tramite &amp;UPnP</translation>
     </message>
     <message>
-        <source>Connect to the Myriadcoin network through a SOCKS5 proxy.</source>
-        <translation>Connessione alla rete Myriadcoin attraverso un proxy SOCKS5.</translation>
+        <source>Connect to the Argentum network through a SOCKS5 proxy.</source>
+        <translation>Connessione alla rete Argentum attraverso un proxy SOCKS5.</translation>
     </message>
     <message>
         <source>&amp;Connect through SOCKS5 proxy (default proxy):</source>
@@ -1037,8 +1037,8 @@ Per specificare più URL separarli con una barra verticale "|".</translation>
         <translation>Tor</translation>
     </message>
     <message>
-        <source>Connect to the Myriadcoin network through a separate SOCKS5 proxy for Tor hidden services.</source>
-        <translation>Connette alla rete Myriadcoin attraverso un proxy SOCKS5 separato per Tor.</translation>
+        <source>Connect to the Argentum network through a separate SOCKS5 proxy for Tor hidden services.</source>
+        <translation>Connette alla rete Argentum attraverso un proxy SOCKS5 separato per Tor.</translation>
     </message>
     <message>
         <source>Use separate SOCKS5 proxy to reach peers via Tor hidden services:</source>
@@ -1136,8 +1136,8 @@ Per specificare più URL separarli con una barra verticale "|".</translation>
         <translation>Modulo</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Myriadcoin network after a connection is established, but this process has not completed yet.</source>
-        <translation>Le informazioni visualizzate potrebbero non essere aggiornate. Il portamonete si sincronizza automaticamente con la rete Myriadcoin una volta stabilita una connessione, ma questo processo non è ancora stato completato.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Argentum network after a connection is established, but this process has not completed yet.</source>
+        <translation>Le informazioni visualizzate potrebbero non essere aggiornate. Il portamonete si sincronizza automaticamente con la rete Argentum una volta stabilita una connessione, ma questo processo non è ancora stato completato.</translation>
     </message>
     <message>
         <source>Watch-only:</source>
@@ -1309,8 +1309,8 @@ Per specificare più URL separarli con una barra verticale "|".</translation>
         <translation>Importo</translation>
     </message>
     <message>
-        <source>Enter a Myriadcoin address (e.g. %1)</source>
-        <translation>Inserisci un indirizzo Myriadcoin (ad es. %1)</translation>
+        <source>Enter a Argentum address (e.g. %1)</source>
+        <translation>Inserisci un indirizzo Argentum (ad es. %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -1701,7 +1701,7 @@ Per specificare più URL separarli con una barra verticale "|".</translation>
         <translation>R&amp;iusa un indirizzo di ricezione (non raccomandato)</translation>
     </message>
     <message>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Myriadcoin network.</source>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Argentum network.</source>
         <translation>Un messaggio opzionale da allegare e mostrare all'apertura della richiesta di pagamento. Nota: Il messaggio non sarà inviato con il pagamento sulla rete Bitcoin.</translation>
     </message>
     <message>
@@ -2046,8 +2046,8 @@ Per specificare più URL separarli con una barra verticale "|".</translation>
         <translation><numerusform>%n blocco</numerusform><numerusform>%n blocchi</numerusform></translation>
     </message>
     <message>
-        <source>Warning: Invalid Myriadcoin address</source>
-        <translation>Attenzione: Indirizzo Myriadcoin non valido</translation>
+        <source>Warning: Invalid Argentum address</source>
+        <translation>Attenzione: Indirizzo Argentum non valido</translation>
     </message>
     <message>
         <source>Warning: Unknown change address</source>
@@ -2081,8 +2081,8 @@ Per specificare più URL separarli con una barra verticale "|".</translation>
         <translation>Questo è un normale pagamento.</translation>
     </message>
     <message>
-        <source>The Myriadcoin address to send the payment to</source>
-        <translation>L'indirizzo Myriadcoin a cui vuoi inviare il pagamento</translation>
+        <source>The Argentum address to send the payment to</source>
+        <translation>L'indirizzo Argentum a cui vuoi inviare il pagamento</translation>
     </message>
     <message>
         <source>Alt+A</source>
@@ -2101,7 +2101,7 @@ Per specificare più URL separarli con una barra verticale "|".</translation>
         <translation>Rimuovi questa voce</translation>
     </message>
     <message>
-        <source>The fee will be deducted from the amount being sent. The recipient will receive less myriadcoins than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
+        <source>The fee will be deducted from the amount being sent. The recipient will receive less argentums than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
         <translation>La commissione sarà sottratta dall'importo che si sta inviando. Il beneficiario riceverà un totale di bitcoin inferiore al valore digitato. Nel caso in cui siano stati selezionati più beneficiari la commissione sarà suddivisa in parti uguali.</translation>
     </message>
     <message>
@@ -2125,7 +2125,7 @@ Per specificare più URL separarli con una barra verticale "|".</translation>
         <translation>Inserisci un'etichetta per questo indirizzo per aggiungerlo alla lista degli indirizzi utilizzati</translation>
     </message>
     <message>
-        <source>A message that was attached to the myriadcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Myriadcoin network.</source>
+        <source>A message that was attached to the argentum: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Argentum network.</source>
         <translation>Messaggio incluso nel bitcoin URI e che sarà memorizzato con la transazione per vostro riferimento. Nota: Questo messaggio non sarà inviato attraverso la rete Bitcoin.</translation>
     </message>
     <message>
@@ -2166,12 +2166,12 @@ Per specificare più URL separarli con una barra verticale "|".</translation>
         <translation>&amp;Firma Messaggio</translation>
     </message>
     <message>
-        <source>You can sign messages/agreements with your addresses to prove you can receive myriadcoins sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
+        <source>You can sign messages/agreements with your addresses to prove you can receive argentums sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
         <translation>È possibile firmare messaggi/accordi con i propri indirizzi in modo da dimostrare di poter ricevere bitcoin attraverso di essi. Si consiglia di prestare attenzione a non firmare dichiarazioni vaghe o casuali, attacchi di phishing potrebbero cercare di indurre ad apporre la firma su di esse. Si raccomanda di firmare esclusivamente dichiarazioni completamente dettagliate e delle quali si condivide in pieno il contenuto.</translation>
     </message>
     <message>
-        <source>The Myriadcoin address to sign the message with</source>
-        <translation>L'indirizzo Myriadcoin da utilizzare per firmare il messaggio</translation>
+        <source>The Argentum address to sign the message with</source>
+        <translation>L'indirizzo Argentum da utilizzare per firmare il messaggio</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -2202,7 +2202,7 @@ Per specificare più URL separarli con una barra verticale "|".</translation>
         <translation>Copia la firma corrente nella clipboard</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this Myriadcoin address</source>
+        <source>Sign the message to prove you own this Argentum address</source>
         <translation>Firma un messaggio per dimostrare di possedere questo indirizzo Bitcoin</translation>
     </message>
     <message>
@@ -2226,11 +2226,11 @@ Per specificare più URL separarli con una barra verticale "|".</translation>
         <translation>Per verificare il messaggio inserire l'indirizzo del firmatario, il messaggio e la firma nei campi sottostanti, assicurandosi di copiare esattamente anche ritorni a capo, spazi, tabulazioni, etc.. Si raccomanda di non lasciarsi fuorviare dalla firma a leggere più di quanto non sia riportato nel testo del messaggio stesso, in modo da evitare di cadere vittima di attacchi di tipo man-in-the-middle. Si ricorda che la verifica della firma dimostra soltanto che il firmatario può ricevere pagamenti con l'indirizzo corrispondente, non prova l'invio di alcuna transazione.</translation>
     </message>
     <message>
-        <source>The Myriadcoin address the message was signed with</source>
-        <translation>L'indirizzo Myriadcoin con cui è stato contrassegnato il messaggio</translation>
+        <source>The Argentum address the message was signed with</source>
+        <translation>L'indirizzo Argentum con cui è stato contrassegnato il messaggio</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified Myriadcoin address</source>
+        <source>Verify the message to ensure it was signed with the specified Argentum address</source>
         <translation>Verifica il messaggio per accertare che sia stato firmato con l'indirizzo specificato</translation>
     </message>
     <message>
@@ -2795,8 +2795,8 @@ Per specificare più URL separarli con una barra verticale "|".</translation>
         <translation>Impossibile avviare il server HTTP. Dettagli nel log di debug.</translation>
     </message>
     <message>
-        <source>Myriadcoin Core</source>
-        <translation>Myriadcoin Core</translation>
+        <source>Argentum Core</source>
+        <translation>Argentum Core</translation>
     </message>
     <message>
         <source>The %s developers</source>

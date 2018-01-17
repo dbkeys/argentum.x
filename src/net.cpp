@@ -1468,7 +1468,7 @@ void ThreadMapPort()
             }
         }
 
-        std::string strDesc = "Myriad " + FormatFullVersion();
+        std::string strDesc = "Argentum " + FormatFullVersion();
 
         try {
             while (true) {

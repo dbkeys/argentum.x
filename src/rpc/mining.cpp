@@ -133,7 +133,7 @@ UniValue generateBlocks(boost::shared_ptr<CReserveScript> coinbaseScript, int nG
             continue;
         }
 
-        /* Myriadcoin: this version below might be useful for AUX-POW tests:
+        /* Argentum: this version below might be useful for AUX-POW tests:
         CAuxPow::initAuxPow(*pblock);
         CPureBlockHeader& miningHeader = pblock->auxpow->parentBlock;
         while (nMaxTries > 0 && miningHeader.nNonce < nInnerLoopCount && !CheckProofOfWork(miningHeader.GetHash(), miningAlgo, pblock->nBits, Params().GetConsensus())) {
@@ -207,7 +207,7 @@ UniValue generatetoaddress(const JSONRPCRequest& request)
             "\nMine blocks immediately to a specified address (before the RPC call returns)\n"
             "\nArguments:\n"
             "1. nblocks      (numeric, required) How many blocks are generated immediately.\n"
-            "2. address      (string, required) The address to send the newly generated myriadcoin to.\n"
+            "2. address      (string, required) The address to send the newly generated argentum to.\n"
             "3. maxtries     (numeric, optional) How many iterations to try (default = 1000000).\n"
             "\nResult:\n"
             "[ blockhashes ]     (array) hashes of blocks generated\n"
@@ -495,10 +495,10 @@ UniValue getblocktemplate(const JSONRPCRequest& request)
         throw JSONRPCError(RPC_CLIENT_P2P_DISABLED, "Error: Peer-to-peer functionality missing or disabled");
 
     if (g_connman->GetNodeCount(CConnman::CONNECTIONS_ALL) == 0)
-        throw JSONRPCError(RPC_CLIENT_NOT_CONNECTED, "Myriadcoin is not connected!");
+        throw JSONRPCError(RPC_CLIENT_NOT_CONNECTED, "Argentum is not connected!");
 
     if (IsInitialBlockDownload())
-        throw JSONRPCError(RPC_CLIENT_IN_INITIAL_DOWNLOAD, "Myriadcoin is downloading blocks...");
+        throw JSONRPCError(RPC_CLIENT_IN_INITIAL_DOWNLOAD, "Argentum is downloading blocks...");
 
     static unsigned int nTransactionsUpdatedLast;
 
@@ -962,11 +962,11 @@ UniValue getauxblock(const JSONRPCRequest& request)
         throw JSONRPCError(RPC_CLIENT_P2P_DISABLED, "Error: Peer-to-peer functionality missing or disabled");
 
     if (g_connman->GetNodeCount(CConnman::CONNECTIONS_ALL) == 0 && !Params().MineBlocksOnDemand())
-        throw JSONRPCError(RPC_CLIENT_NOT_CONNECTED, "Myriadcoin is not connected!");
+        throw JSONRPCError(RPC_CLIENT_NOT_CONNECTED, "Argentum is not connected!");
 
     if (IsInitialBlockDownload() && !Params().MineBlocksOnDemand())
         throw JSONRPCError(RPC_CLIENT_IN_INITIAL_DOWNLOAD,
-                           "Myriadcoin is downloading blocks...");
+                           "Argentum is downloading blocks...");
     
     /* This should never fail, since the chain is already
        past the point of merge-mining start.  Check nevertheless.  */

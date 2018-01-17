@@ -3131,7 +3131,7 @@ bool SendMessages(CNode* pto, CConnman& connman, const std::atomic<bool>& interr
         // We compensate for other peers to prevent killing off peers due to our own downstream link
         // being saturated. We only count validated in-flight blocks so peers can't advertise non-existing block hashes
         // to unreasonably increase our timeout.
-        /* TODO: FIXME Myriadcoin
+        /* TODO: FIXME Argentum
         if (state.vBlocksInFlight.size() > 0) {
             QueuedBlock &queuedBlock = state.vBlocksInFlight.front();
             int nOtherPeersWithValidatedDownloads = nPeersWithValidatedDownloads - (state.nBlocksInFlightValidHeaders > 0);
