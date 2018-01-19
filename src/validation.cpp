@@ -967,7 +967,7 @@ bool CheckProofOfWorkB(const CBlockHeader& block, const Consensus::Params& param
             return error("%s : no auxpow on block with auxpow version",
                          __func__);
         int algo = block.GetAlgo();
-        if (!CheckProofOfWork(block.GetPoWHash(algo, params), algo, block.nBits, params))
+        if (!CheckProofOfWorkB(block.GetPoWHash(algo, params), algo, block.nBits, params))
             return error("%s : non-AUX proof of work failed, hash=%s, algo=%d, nVersion=%d, PoWHash=%s",
             __func__,
             block.GetHash().ToString(),
