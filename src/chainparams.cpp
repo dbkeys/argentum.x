@@ -255,8 +255,8 @@ public:
 
         // Deployment of Legacy Blocks. Once activated, keeps v0.11 nodes on the same chain. Should be the first softfork.
         consensus.vDeployments[Consensus::DEPLOYMENT_LEGBIT].bit = 2;
-        consensus.vDeployments[Consensus::DEPLOYMENT_LEGBIT].nStartTime = 1504224000; // September 1st, 2017
-        consensus.vDeployments[Consensus::DEPLOYMENT_LEGBIT].nTimeout = 1535760000; // September 1st, 2018
+        consensus.vDeployments[Consensus::DEPLOYMENT_LEGBIT].nStartTime = 1516290600; // January 18th, 2018
+        consensus.vDeployments[Consensus::DEPLOYMENT_LEGBIT].nTimeout = 1547826600; // January 18th, 2019
 
         /*** Upstream Chainparams ***/
 
@@ -276,10 +276,10 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nStartTime = 1199145601; // January 1, 2008
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nTimeout = 1230767999; // December 31, 2008
 
-        // Deployment of BIP68, BIP112, and BIP113.
+        // Deployment of BIP68, BIP112, and BIP113. *Argentum: To be activated at a later date
         consensus.vDeployments[Consensus::DEPLOYMENT_CSV].bit = 0;
-        consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nStartTime = 1504224000; // September 1st, 2017
-        consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nTimeout = 1535760000; // September 1st, 2018
+        consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nStartTime = 1737215400; // January 18th, 2025
+        consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nTimeout = 1768751400; // January 18th, 2026
 
         // The best chain should have at least this much work.
         consensus.nMinimumChainWork = uint256S("0x00");
