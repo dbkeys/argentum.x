@@ -519,8 +519,8 @@ void CTxMemPool::removeRecursive(const CTransaction &origTx, MemPoolRemovalReaso
                     continue;
                 txiter nextit = mapTx.find(it->second->GetHash());
                 assert(nextit != mapTx.end());
-                txToRemove.insert(nextit);
-            }
+                txToRemove.insert(nextit)
+;            }
         }
         setEntries setAllRemoves;
         BOOST_FOREACH(txiter it, txToRemove) {
@@ -551,9 +551,16 @@ void CTxMemPool::removeForReorg(const CCoinsViewCache *pcoins, unsigned int nMem
                     continue;
                 const CCoins *coins = pcoins->AccessCoins(txin.prevout.hash);
                 if (nCheckFrequency != 0) assert(coins);
-                if (!coins || (coins->IsCoinBase() && ((signed long)nMemPoolHeight) - coins->nHeight < COINBASE_MATURITY)) {
-                    txToRemove.insert(it);
-                    break;
+                if (coins->nHeight < nCoinbaseMaturityV2Start) {                    
+                    if (!coins || (coins->IsCoinBase() && ((signed long)nMemPoolHeight) - coins->nHeight < COINBASE_MATURITY)) {
+                        txToRemove.insert(it);
+                        break;
+                    }
+                } else {
+                    if (!coins || (coins->IsCoinBase() && ((signed long)nMemPoolHeight) - coins->nHeight < COINBASE_MATURITY_V2)) {
+                        txToRemove.insert(it);
+                        break;
+                    }
                 }
             }
         }
