@@ -551,6 +551,21 @@ std::string FormatStateMessage(const CValidationState &state)
         state.GetRejectCode());
 }
 
+static bool IsBIP146Enabled(const CChainParams &chainparams, int nHeight)
+{
+    return nHeight >= chainparams.GetConsensus().BIP146Height;
+}
+
+bool IsBIP146Enabled(const CChainParams &chainparams, const CBlockIndex *pindexPrev)
+{
+    if (pindexPrev == nullptr)
+    {
+        return false;
+    }
+
+    return IsBIP146Enabled(chainparams, pindexPrev->nHeight);
+}
+
 static bool IsCurrentForFeeEstimation()
 {
     AssertLockHeld(cs_main);
@@ -569,6 +584,7 @@ bool AcceptToMemoryPoolWorker(CTxMemPool& pool, CValidationState& state, const C
 {
     const CTransaction& tx = *ptx;
     const uint256 hash = tx.GetHash();
+
     AssertLockHeld(cs_main);
     if (pfMissingInputs)
         *pfMissingInputs = false;
@@ -1794,7 +1810,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     // bool fStrictPayToScriptHash = (pindex->GetBlockTime() >= nBIP16SwitchTime);
 
     // unsigned int flags = fStrictPayToScriptHash ? SCRIPT_VERIFY_P2SH : SCRIPT_VERIFY_NONE;
-    unsigned int flags = SCRIPT_VERIFY_P2SH;
+    uint32_t flags = SCRIPT_VERIFY_P2SH;
     
 
     // Start enforcing the DERSIG (BIP66) rule
@@ -1805,6 +1821,11 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     // Start enforcing CHECKLOCKTIMEVERIFY (BIP65) rule
     if (pindex->nHeight >= chainparams.GetConsensus().BIP65Height) {
         flags |= SCRIPT_VERIFY_CHECKLOCKTIMEVERIFY;
+    }
+
+    if (IsBIP146Enabled(chainparams, pindex->pprev)) {
+        flags |= SCRIPT_VERIFY_LOW_S;
+        flags |= SCRIPT_VERIFY_NULLFAIL;
     }
 
     // Start enforcing BIP68 (sequence locks) and BIP112 (CHECKSEQUENCEVERIFY) using versionbits logic.

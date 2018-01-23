@@ -87,6 +87,9 @@ struct Params {
     int16_t nAuxpowChainId;
     bool fStrictChainId;
     int nStartAuxPow;
+
+    // ** BIP146 fork activation time
+    int64_t BIP146Height;
 };
 } // namespace Consensus
 
