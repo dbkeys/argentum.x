@@ -225,26 +225,26 @@ public:
 
         /*** Argentum Additional Chainparams ***/
 
-        consensus.nPowTargetSpacingV1 = 30; // target time for block spacing across all algorithms
-        consensus.nPowTargetSpacingV2 = 45; // new target time for block spacing across all algorithms
+        consensus.nPowTargetSpacingV1 = 20; // target time for block spacing across all algorithms
+        consensus.nPowTargetSpacingV2 = 35; // new target time for block spacing across all algorithms
         consensus.nAveragingInterval = 10; // number of blocks to take the timespan of
 
-        consensus.nStartAuxPow = 150;
-        consensus.nAuxpowChainId = 0x005A; 
+        consensus.nStartAuxPow = 40;
+        consensus.nAuxpowChainId = 0x004A3; 
         consensus.fStrictChainId = false;
 
         // consensus.nBlockTimeWarpPreventStart1 = 1000; // block where time warp 1 prevention starts
         // consensus.nBlockTimeWarpPreventStart2 = 1005; // block where time warp 2 prevention starts
         // consensus.nBlockTimeWarpPreventStart3 = 1010; // block where time warp 3 prevention starts
         // consensus.Phase2Timespan_Start = 150; // block where 60 second target time kicks in
-        consensus.nBlockDiffAdjustV2 = 150; // block where difficulty adjust V2 starts
+        consensus.nBlockDiffAdjustV2 = 30; // block where difficulty adjust V2 starts
 
-        consensus.nMaxAdjustDown = 4; // 4% adjustment down
-        consensus.nMaxAdjustUp = 2; // 2% adjustment up
+        consensus.nMaxAdjustDown = 22; // 4% adjustment down
+        consensus.nMaxAdjustUp = 14; // 2% adjustment up
         // consensus.nMaxAdjustUpV2 = 4; // 4% adjustment up     
 
-        consensus.nBlockSequentialAlgoRuleStart1 = 200; // block where sequential algo rule starts
-        consensus.nBlockSequentialAlgoRuleStart2 = 250; // block where sequential algo rule starts
+        consensus.nBlockSequentialAlgoRuleStart1 = 55; // block where sequential algo rule starts
+        consensus.nBlockSequentialAlgoRuleStart2 = 65; // block where sequential algo rule starts
         consensus.nBlockSequentialAlgoMaxCount1 = 3; // maximum sequential blocks of same algo
         consensus.nBlockSequentialAlgoMaxCount2 = 6; // maximum sequential blocks of same algo
         // consensus.nBlockSequentialAlgoMaxCount3 = 6; // maximum sequential blocks of same algo
@@ -253,7 +253,7 @@ public:
         // consensus.nBlockAlgoNormalisedWorkStart = 0; // block where algo combined weight starts
         // consensus.nBlockAlgoNormalisedWorkDecayStart1 = 0; // block where weight decay starts
         // consensus.nBlockAlgoNormalisedWorkDecayStart2 = 0; // block where weight decay starts
-        consensus.nGeoAvgWork_Start = 150;
+        consensus.nGeoAvgWork_Start = 95;
         //consensus.nFork1MinBlock = 601; // minimum block height where fork 1 takes effect (algo switch, seq algo count change)
 
         // Deployment of Legacy Blocks. Once activated, keeps v0.11 nodes on the same chain. Should be the first softfork.
@@ -266,15 +266,15 @@ public:
         //consensus.nSubsidyHalvingInterval = 80640 * 12;
         consensus.BIP34Height = 1;
         consensus.BIP34Hash = uint256S("0x0000d23adc28e33bc05f4bee57c873ae0aab584a6a436e75ac0ed40396f6d86b");
-        consensus.BIP65Height = 641; // ff983c72147a81ac5b8ebfc68b62b39358cac4b8eb5518242e87f499b71c6a51
-        consensus.BIP66Height = 641; // ff983c72147a81ac5b8ebfc68b62b39358cac4b8eb5518242e87f499b71c6a51
+        consensus.BIP65Height = 95; // ff983c72147a81ac5b8ebfc68b62b39358cac4b8eb5518242e87f499b71c6a51
+        consensus.BIP66Height = 1; // ff983c72147a81ac5b8ebfc68b62b39358cac4b8eb5518242e87f499b71c6a51
         consensus.powLimit = ArithToUint256(~arith_uint256(0) >> 16);
         consensus.nPowTargetTimespan = 14 * 24 * 60 * 60; // two weeks
         consensus.nPowTargetSpacing = consensus.nPowTargetSpacingV2; // Current value
         consensus.fPowAllowMinDifficultyBlocks = true;
         consensus.fPowNoRetargeting = false;
-        consensus.nRuleChangeActivationThreshold = 1512; // 75% for testchains
-        consensus.nMinerConfirmationWindow = 2016; // nPowTargetTimespan / nPowTargetSpacing
+        consensus.nRuleChangeActivationThreshold = 756; // 75% for testchains
+        consensus.nMinerConfirmationWindow = 1008; // nPowTargetTimespan / nPowTargetSpacing
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 28;
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nStartTime = 1199145601; // January 1, 2008
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nTimeout = 1230767999; // December 31, 2008
@@ -288,22 +288,22 @@ public:
         consensus.nMinimumChainWork = uint256S("0x00");
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0xff983c72147a81ac5b8ebfc68b62b39358cac4b8eb5518242e87f499b71c6a51"); // 1
+        consensus.defaultAssumeValid = uint256S("0x6bee778b0f99ee7a02635bc7de7d2c28f8a844f8c3aa01cb19b02adb9a169461"); // 1
 
         // BIP146 fork
-        consensus.BIP146Height = 2977000; 
+        consensus.BIP146Height = 100; 
 
-        pchMessageStart[0] = 0x01;
-        pchMessageStart[1] = 0xf5;
-        pchMessageStart[2] = 0x55;
-        pchMessageStart[3] = 0xa4;
-        nDefaultPort = 20888;
+        pchMessageStart[0] = 0xfc;
+        pchMessageStart[1] = 0xc1;
+        pchMessageStart[2] = 0xb7;
+        pchMessageStart[3] = 0xdc;
+        nDefaultPort = 13555;
         nPruneAfterHeight = 1000;
 
         //! Modify the testnet genesis block so the timestamp is valid for a later start.
-        // genesis = CreateGenesisBlock(1392876393, 416875379, 0x1e0fffff, 2, 1000 * COIN);
-        // consensus.hashGenesisBlock = genesis.GetHash();
-        // assert(consensus.hashGenesisBlock == uint256S("0x0000017ce2a79c8bddafbbe47c004aa92b20678c354b34085f62b762084b9788"));
+        genesis = CreateGenesisBlock(1516763009, 295222, 0x1e0ffff0, 1, 5 * COIN);
+        consensus.hashGenesisBlock = genesis.GetHash();
+        assert(consensus.hashGenesisBlock == uint256S("0x6bee778b0f99ee7a02635bc7de7d2c28f8a844f8c3aa01cb19b02adb9a169461"));
 
         vFixedSeeds.clear();
         vSeeds.clear();
@@ -327,12 +327,12 @@ public:
 
         checkpointData = (CCheckpointData) {
             boost::assign::map_list_of
-            (   0, uint256S("0x0000017ce2a79c8bddafbbe47c004aa92b20678c354b34085f62b762084b9788"))
+            (   0, uint256S("0x6bee778b0f99ee7a02635bc7de7d2c28f8a844f8c3aa01cb19b02adb9a169461"))
         };
 
         chainTxData = ChainTxData{
-            // Data as of block 00000071942cef6d87635a92f106d5b1935b1314538af80922c766487afd8b22 (height 800)
-            1504107501,
+            // 
+            1516763009,
             817,
             0.02
         };
@@ -419,8 +419,8 @@ public:
         pchMessageStart[0] = 0xfa;
         pchMessageStart[1] = 0xbf;
         pchMessageStart[2] = 0xb5;
-        pchMessageStart[3] = 0xda;
-        nDefaultPort = 18444;
+        pchMessageStart[3] = 0xdb;
+        nDefaultPort = 18445;
         nPruneAfterHeight = 1000;
 
         // genesis = CreateGenesisBlock(1296688602, 4, 0x207fffff, 2, 1000 * COIN);

@@ -100,7 +100,6 @@ BITCOIN_TESTS =\
   test/netbase_tests.cpp \
   test/pmt_tests.cpp \
   test/policyestimator_tests.cpp \
-  test/pow_tests.cpp \
   test/prevector_tests.cpp \
   test/raii_event_tests.cpp \
   test/reverselock_tests.cpp \
@@ -149,8 +148,6 @@ BITCOIN_TESTS =\
   crypto/sha512.cpp \
   crypto/sha512.h \
   crypto/aes_helper.c \
-  crypto/blake.c \
-  crypto/bmw.c \
   crypto/cubehash.c \
   crypto/echo.c \
   crypto/groestl.c \
@@ -163,7 +160,6 @@ BITCOIN_TESTS =\
   crypto/hashgroestl.h \
   crypto/hashqubit.h \
   crypto/hashskein.h \
-  crypto/sph_blake.h \
   crypto/sph_bmw.h \
   crypto/sph_cubehash.h \
   crypto/sph_echo.h \
