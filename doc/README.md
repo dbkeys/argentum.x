@@ -1,4 +1,4 @@
-Bitcoin Core 0.14.2
+Argentum 4.14.2
 =====================
 
 Setup
