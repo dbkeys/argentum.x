@@ -268,7 +268,7 @@ public:
 
         //consensus.nSubsidyHalvingInterval = 80640 * 12;
         consensus.BIP34Height = 1;
-        consensus.BIP34Hash = uint256S("0x18a319f406f496e1ccd8861ebb9655d10f8b997b49bbd3fc9e2729ea7b47abda");
+        consensus.BIP34Hash = uint256S("0x6bee778b0f99ee7a02635bc7de7d2c28f8a844f8c3aa01cb19b02adb9a169461");
         consensus.BIP65Height = 40; // df5c7c64c02981a2b0407a5f0672e5cad03b06c36f0c07046cfe0336eee20dec
         consensus.BIP66Height = 1; // efd0b4a4cb4ef4e7554e0f4602afd079fdff0a4c52fad184781f90d9eb6c41a7
         consensus.powLimit = ArithToUint256(~arith_uint256(0) >> 16);
@@ -291,7 +291,7 @@ public:
         consensus.nMinimumChainWork = uint256S("0x00");
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0x18a319f406f496e1ccd8861ebb9655d10f8b997b49bbd3fc9e2729ea7b47abda"); // 40
+        consensus.defaultAssumeValid = uint256S("0x00"); // 40
 
         // BIP146 fork
         consensus.BIP146Height = 100; 
