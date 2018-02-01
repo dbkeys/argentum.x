@@ -134,8 +134,8 @@ public:
 
         // Deployment of BIP68, BIP112, and BIP113. *Argentum: To be activated at a later date
         consensus.vDeployments[Consensus::DEPLOYMENT_CSV].bit = 0;
-        consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nStartTime = 1737215400; // January 18th, 2025
-        consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nTimeout = 1768751400; // January 18th, 2026
+        consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nStartTime = 1521547200; // March 20th, 2018 12:00 GMT
+        consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nTimeout = 1552996800; // March 19th , 2019 12:00 GMT
 
         // The best chain should have at least this much work.
         consensus.nMinimumChainWork = uint256S("0x00");
