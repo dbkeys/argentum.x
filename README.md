@@ -18,8 +18,7 @@ For more information, as well as an immediately usable, binary version of
 the Argentum software, see http://www.argentum.io, or read the
 [original Bitcoin whitepaper](https://bitcoincore.org/bitcoin.pdf).
 
-Argentum is distinct from Bitcoin in that it pioneered the use of multiple independent 
-POW algorithms on the on the same chain.
+[Website](http://www.argentum.io)
 
 License
 -------
@@ -36,50 +35,63 @@ regularly to indicate new official, stable release versions of Argentum.
 
 The contribution workflow is described in [CONTRIBUTING.md](CONTRIBUTING.md).
 
-The developer [subreddit](https://www.reddit.com/r/argentum)
-should be used to discuss complicated or controversial changes before working
-on a patch set.
-
 Developer IRC can be found on Freenode at ##argentum.
 
-Testing
--------
 
-Testing and code review is the bottleneck for development; we get more pull
-requests than we can review and test on short notice. Please be patient and help out by testing
-other people's pull requests, and remember this is a security-critical project where any mistake might cost people
-lots of money.
+Building
+--------
+See files in the [doc](doc) directory for generic build instructions for Windows,
+OSX and Unix.
 
-### Automated Testing
+## Argentum Version 4.14.2
 
-Developers are strongly encouraged to write [unit tests](src/test/README.md) for new code, and to
-submit new unit tests for old code. Unit tests can be compiled and run
-(assuming they weren't disabled in configure) with: `make check`. Further details on running
-and extending unit tests can be found in [/src/test/README.md](/src/test/README.md).
+- These are just a few of the hundreds of enhancements with this new release
 
-There are also [regression and integration tests](/qa) of the RPC interface, written
-in Python, that are run automatically on the build server.
-These tests can be run (if the [test dependencies](/qa) are installed) with: `qa/pull-tester/rpc-tests.py`
+- BIP112 (CheckSequenceVerify) soft fork
+- BIP146 Argentum will hard fork at block 2977000 (around March 13th 2018) to implement BIP146
+- Signature validation using libsecp256k1
+- Direct headers announcement (BIP 130)
+- Automatically use Tor hidden services
+- Notifications through ZMQ
+- BIP9 softfork deployment
+- Linux ARM builds
+- Compact Block support (BIP 152)
+- Hierarchical Deterministic Key Generation (HD wallets)
+- Substantial improvments to the client load time. 
 
-The Travis CI system makes sure that every pull request is built for Windows, Linux, and OS X, and that unit/sanity tests are run automatically.
 
-### Manual Quality Assurance (QA) Testing
+## Argentum Version 3.11.2
+- Update the code base to Bitcoin version 11.2
+- Hard fork for coinbase maturity at Block 2,422,000. New coinbase maturity will be 100 confirmations
+- Up to date Gitian build scripts and setup guide
+- BIP65 Soft Fork when ~>78% of nodes have upgraded
+- Minimum protocol version is 1050000
 
-Changes should be tested by somebody other than the developer who wrote the
-code. This is especially important for large or high-risk changes. It is useful
-to add a test plan to the pull request description if testing the changes is
-not straightforward.
+## General
+- Scrypt & SHA256D
+- AUXPoW (Merged Mining)
 
-Translations
-------------
+## Blocks
+- Max Block size 10mb
+- 45 Second block time
+- 3 Argentums per block
 
-Changes to translations as well as new translations can be submitted to
-[Argentum's Transifex page](https://www.transifex.com/projects/p/argentum/).
+## Currency Creation
+- 64 million Argentums will be created
 
-Translations are periodically pulled from Transifex and merged into the git repository. See the
-[translation process](doc/translation_process.md) for details on how this works.
+## Security
+- Mined blocks mature after 100 confirmations
 
-**Important**: We do not accept translation changes as GitHub pull requests because the next
-pull from Transifex would automatically overwrite them again.
+## Mining Settings
+Use this to set the algorithm to SHA256D for mining (add to argentum.conf)  
 
-Translators should also visit the [argentum subreddit](https://www.reddit.com/r/argentum).
+algo=sha256d
+
+## Bootstrap
+https://electrum-arg.org/bootstrap.dat  
+sha256 checksum 37020ed0abe02d7bf97a9dde7de0419d278f88866ff9d67419492d2be0dd32db
+
+https://electrum-arg.org/bootstrap.zip  
+
+November 1, 2017
+Block 2,723,638
