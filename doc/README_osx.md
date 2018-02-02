@@ -48,7 +48,7 @@ Alternatively, you can use 7zip and SleuthKit to extract the files one by one.
 The script contrib/macdeploy/extract-osx-sdk.sh automates this. First ensure
 the dmg file is in the current directory, and then run the script. You may wish
 to delete the intermediate 5.hfs file. Create a new directory within the /depends 
-folder named SDKs, move the newly created SDK there.
+folder named SDKs, move the newly created SDK folder (contrib/macdeploy/MacOSX10.11.sdk) there.
 
 ```bash
 apt-get install p7zip-full sleuthkit
