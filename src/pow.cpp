@@ -388,6 +388,7 @@ bool CheckProofOfWork(uint256 hash, int algo, unsigned int nBits, const Consensu
 
     bnTarget.SetCompact(nBits, &fNegative, &fOverflow);
 
+    LOCK(cs_main);
     int nHeight = chainActive.Height();
 
     // Check range
