@@ -160,6 +160,8 @@ BITCOIN_CORE_H = \
   wallet/wallet.h \
   wallet/walletdb.h \
   warnings.h \
+  crypto/argon2/ref.c \
+  crypto/argon2/opt.c \
   zmq/zmqabstractnotifier.h \
   zmq/zmqconfig.h\
   zmq/zmqnotificationinterface.h \
@@ -296,14 +298,16 @@ crypto_libbitcoin_crypto_a_SOURCES = \
   crypto/argon2/blake2.h \
   crypto/argon2/blake2b.c \
   crypto/argon2/blake2-impl.h \
-  crypto/argon2/blamka-round-opt.h \
-  crypto/argon2/blamka-round-ref.h \
   crypto/argon2/core.c \
   crypto/argon2/core.h \
   crypto/argon2/encoding.c \
   crypto/argon2/encoding.h \
   crypto/argon2/thread.c \
   crypto/argon2/thread.h \
+  crypto/argon2/blamka-round-ref.h \
+  crypto/argon2/blamka-round-opt.h \
+  crypto/argon2/opt.h \
+  crypto/argon2/ref.h \
   crypto/lyra2/lyra2.c \
   crypto/lyra2/lyra2.h \
   crypto/lyra2/lyra2RE.c \
