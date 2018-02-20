@@ -116,6 +116,10 @@ algo=yescrypt
 ### P2Pool (All Algorithms)
 - https://github.com/argentumproject/p2pool-argentum/
 
+## Known pools (*with Argentum Payout*)
+- https://prohashing.com (Scrypt)
+- http://blockmunch.club/ (SHA256)
+
 ## Bootstrap
 - https://electrum-arg.org/bootstrap.dat  
 - sha256 checksum 37020ed0abe02d7bf97a9dde7de0419d278f88866ff9d67419492d2be0dd32db
