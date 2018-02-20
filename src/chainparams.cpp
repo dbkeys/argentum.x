@@ -230,7 +230,7 @@ public:
         consensus.nPowTargetSpacingV2 = 45; // new target time for block spacing across all algorithms
         consensus.nAveragingInterval = 10; // number of blocks to take the timespan of
 
-        consensus.nStartAuxPow = 40;
+        consensus.nStartAuxPow = 1;
         consensus.nAuxpowChainId = 0x004A3; 
         consensus.fStrictChainId = false;
 
@@ -238,15 +238,15 @@ public:
         // consensus.nBlockTimeWarpPreventStart2 = 1005; // block where time warp 2 prevention starts
         // consensus.nBlockTimeWarpPreventStart3 = 1010; // block where time warp 3 prevention starts
         // consensus.Phase2Timespan_Start = 150; // block where 60 second target time kicks in
-        consensus.nBlockDiffAdjustV2 = 30; // block where difficulty adjust V2 starts
+        // consensus.nBlockDiffAdjustV2 = 30; // block where difficulty adjust V2 starts
 
-        consensus.nMaxAdjustDown = 22; // 4% adjustment down
-        consensus.nMaxAdjustUp = 14; // 2% adjustment up
-        // consensus.nMaxAdjustUpV2 = 4; // 4% adjustment up
+        consensus.nMaxAdjustDown = 22; // 22% adjustment down
+        consensus.nMaxAdjustUp = 14; // 14% adjustment up
+        consensus.nMaxAdjustUpV2 = 12; // 12% adjustment up
         consensus.nLocalDifficultyAdjustment = 12; // 12%     
 
-        consensus.nBlockSequentialAlgoRuleStart1 = 55; // block where sequential algo rule starts
-        consensus.nBlockSequentialAlgoRuleStart2 = 60; // block where sequential algo rule starts
+        consensus.nBlockSequentialAlgoRuleStart1 = 0; // block where sequential algo rule starts
+        consensus.nBlockSequentialAlgoRuleStart2 = 1; // block where sequential algo rule starts
         consensus.nBlockSequentialAlgoMaxCount1 = 3; // maximum sequential blocks of same algo
         consensus.nBlockSequentialAlgoMaxCount2 = 6; // maximum sequential blocks of same algo
         // consensus.nBlockSequentialAlgoMaxCount3 = 6; // maximum sequential blocks of same algo
@@ -255,9 +255,9 @@ public:
         // consensus.nBlockAlgoNormalisedWorkStart = 0; // block where algo combined weight starts
         // consensus.nBlockAlgoNormalisedWorkDecayStart1 = 0; // block where weight decay starts
         // consensus.nBlockAlgoNormalisedWorkDecayStart2 = 0; // block where weight decay starts
-        consensus.nGeoAvgWork_Start = 95;
-        consensus.nCoinbaseMaturityV2Start = 100;
-        consensus.nMultiAlgoFork = 55;
+        consensus.nGeoAvgWork_Start = 0;
+        consensus.nCoinbaseMaturityV2Start = 0;
+        consensus.nMultiAlgoFork = 0;
         //consensus.nFork1MinBlock = 601; // minimum block height where fork 1 takes effect (algo switch, seq algo count change)
 
         // Deployment of Legacy Blocks. Once activated, keeps v0.11 nodes on the same chain. Should be the first softfork.
@@ -268,14 +268,14 @@ public:
         /*** Upstream Chainparams ***/
 
         //consensus.nSubsidyHalvingInterval = 80640 * 12;
-        consensus.BIP34Height = 1;
+        consensus.BIP34Height = 0;
         consensus.BIP34Hash = uint256S("0x6bee778b0f99ee7a02635bc7de7d2c28f8a844f8c3aa01cb19b02adb9a169461");
-        consensus.BIP65Height = 40; // df5c7c64c02981a2b0407a5f0672e5cad03b06c36f0c07046cfe0336eee20dec
-        consensus.BIP66Height = 1; // efd0b4a4cb4ef4e7554e0f4602afd079fdff0a4c52fad184781f90d9eb6c41a7
+        consensus.BIP65Height = 0; // df5c7c64c02981a2b0407a5f0672e5cad03b06c36f0c07046cfe0336eee20dec
+        consensus.BIP66Height = 0; // efd0b4a4cb4ef4e7554e0f4602afd079fdff0a4c52fad184781f90d9eb6c41a7
         consensus.powLimit = ArithToUint256(~arith_uint256(0) >> 16);
         consensus.nPowTargetTimespan = 14 * 24 * 60 * 60; // two weeks
         consensus.nPowTargetSpacing = consensus.nPowTargetSpacingV2; // Current value
-        consensus.fPowAllowMinDifficultyBlocks = true;
+        consensus.fPowAllowMinDifficultyBlocks = false;
         consensus.fPowNoRetargeting = false;
         consensus.nRuleChangeActivationThreshold = 756; // 75% for testchains
         consensus.nMinerConfirmationWindow = 1008; // nPowTargetTimespan / nPowTargetSpacing
