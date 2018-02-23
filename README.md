@@ -43,9 +43,9 @@ OSX and Unix.
 ## Argentum Version 4.14.3
 - Adds 4 new mining algorithms (Activates at block 2,977,000)
 	-Lyra2re2 (GPU)
-	-Myr-Groestl (GPU)
+	-Myr-Groestl (GPU/ASIC)
 	-Argon2d (CPU)
-	-Yescrypt (CPU)
+	-Yescrypt (CPU/GPU)
 
 ## Argentum Version 4.14.2
 - These are just a few of the hundreds of enhancements with this new release
@@ -119,6 +119,10 @@ algo=yescrypt
 ## Known pools (*with Argentum Payout*)
 - https://prohashing.com (Scrypt)
 - http://blockmunch.club/ (SHA256)
+- http://www.zpool.ca/
+
+## Pools without Argentum payout
+- https://litecoinpool.org
 
 ## Bootstrap
 - https://electrum-arg.org/bootstrap.dat  
