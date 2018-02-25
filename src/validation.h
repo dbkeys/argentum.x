@@ -81,22 +81,22 @@ static const int MAX_SCRIPTCHECK_THREADS = 16;
 /** -par default (number of script-checking threads, 0 = auto) */
 static const int DEFAULT_SCRIPTCHECK_THREADS = 0;
 /** Number of blocks that can be requested at any given time from a single peer. */
-static const int MAX_BLOCKS_IN_TRANSIT_PER_PEER = 1024;
+static const int MAX_BLOCKS_IN_TRANSIT_PER_PEER = 64;
 /** Timeout in seconds during which a peer must stall block download progress before being disconnected. */
-static const unsigned int BLOCK_STALLING_TIMEOUT = 4;
+static const unsigned int BLOCK_STALLING_TIMEOUT = 2;
 /** Number of headers sent in one getheaders result. We rely on the assumption that if a peer sends
  *  less than this number, we reached its tip. Changing this value is a protocol upgrade. */
-static const unsigned int MAX_HEADERS_RESULTS = 2000;
+static const unsigned int MAX_HEADERS_RESULTS = 8000;
 /** Maximum size of a "headers" message.  This is enforced starting with
  *  SIZE_HEADERS_LIMIT_VERSION peers and prevents overloading if we have
  *  very large headers (due to auxpow).
  */
-static const unsigned int MAX_HEADERS_SIZE = (6 << 20); // 6 MiB
+static const unsigned int MAX_HEADERS_SIZE = (30 << 20); // 30 MiB this doesn't seem to actaully do anyting
 /** Size of a headers message that is the threshold for assuming that the
  *  peer has more headers (even if we have less than MAX_HEADERS_RESULTS).
  *  This is used starting with SIZE_HEADERS_LIMIT_VERSION peers.
  */
-static const unsigned int THRESHOLD_HEADERS_SIZE = (4 << 20); // 4 MiB
+static const unsigned int THRESHOLD_HEADERS_SIZE = (6 << 20); // 6 MiB this doesn't seem to actaully do anyting
 /** Maximum depth of blocks we're willing to serve as compact blocks to peers
  *  when requested. For older blocks, a regular BLOCK response will be sent. */
 static const int MAX_CMPCTBLOCK_DEPTH = 10;
@@ -106,7 +106,7 @@ static const int MAX_BLOCKTXN_DEPTH = 20;
  *  Larger windows tolerate larger download speed differences between peer, but increase the potential
  *  degree of disordering of blocks on disk (which make reindexing and in the future perhaps pruning
  *  harder). We'll probably want to make this a per-peer adaptive value at some point. */
-static const unsigned int BLOCK_DOWNLOAD_WINDOW = 1536;
+static const unsigned int BLOCK_DOWNLOAD_WINDOW = 2500;
 /** Time to wait (in seconds) between writing blocks/block index to disk. */
 static const unsigned int DATABASE_WRITE_INTERVAL = 60 * 60;
 /** Time to wait (in seconds) between flushing chainstate to disk. */
