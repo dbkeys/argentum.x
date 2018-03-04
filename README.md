@@ -120,6 +120,7 @@ algo=yescrypt
 - https://prohashing.com (Scrypt)
 - http://blockmunch.club/ (SHA256)
 - http://www.zpool.ca/
+- https://www.joinmycrypto.tk
 
 ## Pools without Argentum payout
 - https://litecoinpool.org
