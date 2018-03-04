@@ -3411,16 +3411,22 @@ bool static LoadBlockIndexDB(const CChainParams& chainparams)
 
     boost::this_thread::interruption_point();
 
-    // Calculate nChainWork
+    // Gather data necessary to perform the following checks
     std::vector<std::pair<int, CBlockIndex*> > vSortedByHeight;
     vSortedByHeight.reserve(mapBlockIndex.size());
-    BOOST_FOREACH(const PAIRTYPE(uint256, CBlockIndex*)& item, mapBlockIndex)
+    std::set<int> setBlkDataFiles;
+    for (const std::pair<uint256, CBlockIndex *> &item : mapBlockIndex)
     {
         CBlockIndex* pindex = item.second;
         vSortedByHeight.push_back(std::make_pair(pindex->nHeight, pindex));
+        if (pindex->nStatus & BLOCK_HAVE_DATA)
+        {
+            setBlkDataFiles.insert(pindex->nFile);
+        }
     }
+    // Calculate nChainWork
     sort(vSortedByHeight.begin(), vSortedByHeight.end());
-    BOOST_FOREACH(const PAIRTYPE(int, CBlockIndex*)& item, vSortedByHeight)
+    for (const std::pair<int, CBlockIndex *> &item : vSortedByHeight)
     {
         CBlockIndex* pindex = item.second;
         pindex->nChainWork = (pindex->pprev ? pindex->pprev->nChainWork : 0) + GetBlockProof(*pindex);
@@ -3439,15 +3445,26 @@ bool static LoadBlockIndexDB(const CChainParams& chainparams)
                 pindex->nChainTx = pindex->nTx;
             }
         }
-        if (pindex->IsValid(BLOCK_VALID_TRANSACTIONS) && (pindex->nChainTx || pindex->pprev == NULL))
+        if (pindex->IsValid(BLOCK_VALID_TRANSACTIONS) && (pindex->nChainTx || pindex->pprev == nullptr))
             setBlockIndexCandidates.insert(pindex);
         if (pindex->nStatus & BLOCK_FAILED_MASK && (!pindexBestInvalid || pindex->nChainWork > pindexBestInvalid->nChainWork))
             pindexBestInvalid = pindex;
         if (pindex->pprev)
             pindex->BuildSkip();
-        if (pindex->IsValid(BLOCK_VALID_TREE) && (pindexBestHeader == NULL || CBlockIndexWorkComparator()(pindexBestHeader, pindex)))
+        if (pindex->IsValid(BLOCK_VALID_TREE) && (pindexBestHeader == nullptr || CBlockIndexWorkComparator()(pindexBestHeader, pindex)))
             pindexBestHeader = pindex;
     }
+
+    // Check presence of blk files
+    LogPrintf("Checking all blk files are present...\n");
+    for (std::set<int>::iterator it = setBlkDataFiles.begin(); it != setBlkDataFiles.end(); it++)
+    {
+        CDiskBlockPos pos(*it, 0);
+        fs::path path = GetBlockPosFilename(pos, "blk");
+        if (!fs::exists(path))
+            return false;
+    }
+
 
     // Load block file info
     pblocktree->ReadLastBlockFile(nLastBlockFile);
@@ -3463,24 +3480,6 @@ bool static LoadBlockIndexDB(const CChainParams& chainparams)
             vinfoBlockFile.push_back(info);
         } else {
             break;
-        }
-    }
-
-    // Check presence of blk files
-    LogPrintf("Checking all blk files are present...\n");
-    std::set<int> setBlkDataFiles;
-    BOOST_FOREACH(const PAIRTYPE(uint256, CBlockIndex*)& item, mapBlockIndex)
-    {
-        CBlockIndex* pindex = item.second;
-        if (pindex->nStatus & BLOCK_HAVE_DATA) {
-            setBlkDataFiles.insert(pindex->nFile);
-        }
-    }
-    for (std::set<int>::iterator it = setBlkDataFiles.begin(); it != setBlkDataFiles.end(); it++)
-    {
-        CDiskBlockPos pos(*it, 0);
-        if (CAutoFile(OpenBlockFile(pos, true), SER_DISK, CLIENT_VERSION).IsNull()) {
-            return false;
         }
     }
 
