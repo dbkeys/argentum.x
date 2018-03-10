@@ -40,6 +40,9 @@ Building
 See files in the [doc](doc) directory for generic build instructions for Windows,
 OSX and Unix.
 
+## Argentum Version 4.14.4
+- Speed up Initial Blockchain Download
+
 ## Argentum Version 4.14.3
 - Adds 4 new mining algorithms (Activates at block 2,977,000)
 	-Lyra2re2 (GPU)
@@ -61,14 +64,6 @@ OSX and Unix.
 - Compact Block support (BIP 152)
 - Hierarchical Deterministic Key Generation (HD wallets)
 - Substantial improvments to the client load time. 
-
-
-## Argentum Version 3.11.2
-- Update the code base to Bitcoin version 11.2
-- Hard fork for coinbase maturity at Block 2,422,000. New coinbase maturity will be 100 confirmations
-- Up to date Gitian build scripts and setup guide
-- BIP65 Soft Fork when ~>78% of nodes have upgraded
-- Minimum protocol version is 1050000
 
 ## General
 ### Six different mining algorithms
