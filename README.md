@@ -116,6 +116,12 @@ algo=yescrypt
 ### P2Pool (All Algorithms)
 - https://github.com/argentumproject/p2pool-argentum/
 
+- Point your miner to:
+- Argon2d 144.202.80.45:9552
+- Myr-groestl 45.77.210.177:9553 
+- Yescrypt 45.76.112.155:9554
+- Lyra 45.76.240.8:9557
+
 ## Known pools (*with Argentum Payout*)
 - https://prohashing.com (Scrypt)
 - http://blockmunch.club/ (SHA256)
