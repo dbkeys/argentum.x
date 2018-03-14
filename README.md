@@ -14,12 +14,6 @@ with no central authority: managing transactions and issuing money are carried
 out collectively by the network. Argentum is the name of open source
 software which enables the use of this currency.
 
-For more information, as well as an immediately usable, binary version of
-the Argentum software, see http://www.argentum.io, or read the
-[original Bitcoin whitepaper](https://bitcoincore.org/bitcoin.pdf).
-
-[Website](http://www.argentum.io)
-
 License
 -------
 
@@ -45,10 +39,10 @@ OSX and Unix.
 
 ## Argentum Version 4.14.3
 - Adds 4 new mining algorithms (Activates at block 2,977,000)
-	-Lyra2re2 (GPU)
-	-Myr-Groestl (GPU/ASIC)
-	-Argon2d (CPU)
-	-Yescrypt (CPU/GPU)
+	-Lyra2re2 (GPU)  
+	-Myr-Groestl (GPU/ASIC)  
+	-Argon2d (CPU)  
+	-Yescrypt (CPU/GPU)  
 
 ## Argentum Version 4.14.2
 - These are just a few of the hundreds of enhancements with this new release
