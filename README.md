@@ -116,6 +116,7 @@ algo=yescrypt
 - http://blockmunch.club/ (SHA256)
 - http://www.zpool.ca/
 - https://www.joinmycrypto.tk
+- http://poolovich.pro/ (Myriad-Groestl)
 
 ## Pools without Argentum payout
 - https://litecoinpool.org
