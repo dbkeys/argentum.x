@@ -114,8 +114,8 @@ algo=yescrypt
 ## Known pools (*with Argentum Payout*)
 - https://prohashing.com (Scrypt)
 - http://blockmunch.club/ (SHA256)
-- http://www.zpool.ca/
-- https://www.joinmycrypto.tk
+- http://www.zpool.ca/ (all but Argon2d)
+- https://www.joinmycrypto.tk (Yescrypt)
 - http://poolovich.pro/ (Myriad-Groestl)
 
 ## Pools without Argentum payout
