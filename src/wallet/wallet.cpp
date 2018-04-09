@@ -11,6 +11,7 @@
 #include "wallet/coincontrol.h"
 #include "consensus/consensus.h"
 #include "consensus/validation.h"
+#include "fs.h"
 #include "key.h"
 #include "keystore.h"
 #include "validation.h"
@@ -29,7 +30,6 @@
 #include <assert.h>
 
 #include <boost/algorithm/string/replace.hpp>
-#include <boost/filesystem.hpp>
 #include <boost/thread.hpp>
 
 using namespace std;
@@ -2104,7 +2104,7 @@ static void ApproximateBestSubset(vector<pair<CAmount, pair<const CWalletTx*,uns
                 //that the rng is fast. We do not use a constant random sequence,
                 //because there may be some privacy improvement by making
                 //the selection random.
-                if (nPass == 0 ? insecure_rand.rand32()&1 : !vfIncluded[i])
+                if (nPass == 0 ? insecure_rand.randbool() : !vfIncluded[i])
                 {
                     nTotal += vValue[i].first;
                     vfIncluded[i] = true;
@@ -3871,20 +3871,16 @@ bool CWallet::BackupWallet(const std::string& strDest)
                 bitdb.mapFileUseCount.erase(strWalletFile);
 
                 // Copy wallet file
-                boost::filesystem::path pathSrc = GetDataDir() / strWalletFile;
-                boost::filesystem::path pathDest(strDest);
-                if (boost::filesystem::is_directory(pathDest))
+                fs::path pathSrc = GetDataDir() / strWalletFile;
+                fs::path pathDest(strDest);
+                if (fs::is_directory(pathDest))
                     pathDest /= strWalletFile;
 
                 try {
-#if BOOST_VERSION >= 104000
-                    boost::filesystem::copy_file(pathSrc, pathDest, boost::filesystem::copy_option::overwrite_if_exists);
-#else
-                    boost::filesystem::copy_file(pathSrc, pathDest);
-#endif
+                    fs::copy_file(pathSrc, pathDest, fs::copy_option::overwrite_if_exists);
                     LogPrintf("copied %s to %s\n", strWalletFile, pathDest.string());
                     return true;
-                } catch (const boost::filesystem::filesystem_error& e) {
+                } catch (const fs::filesystem_error& e) {
                     LogPrintf("error copying %s to %s - %s\n", strWalletFile, pathDest.string(), e.what());
                     return false;
                 }

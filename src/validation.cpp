@@ -13,6 +13,7 @@
 #include "consensus/consensus.h"
 #include "consensus/merkle.h"
 #include "consensus/validation.h"
+#include "fs.h"
 #include "hash.h"
 #include "init.h"
 #include "policy/fees.h"
@@ -42,8 +43,6 @@
 
 #include <boost/algorithm/string/replace.hpp>
 #include <boost/algorithm/string/join.hpp>
-#include <boost/filesystem.hpp>
-#include <boost/filesystem/fstream.hpp>
 #include <boost/math/distributions/poisson.hpp>
 #include <boost/thread.hpp>
 #include <boost/random/uniform_int.hpp>
@@ -397,15 +396,15 @@ bool CheckSequenceLocks(const CTransaction &tx, int flags, LockPoints* lp, bool 
         prevheights.resize(tx.vin.size());
         for (size_t txinIndex = 0; txinIndex < tx.vin.size(); txinIndex++) {
             const CTxIn& txin = tx.vin[txinIndex];
-            CCoins coins;
-            if (!viewMemPool.GetCoins(txin.prevout.hash, coins)) {
+            Coin coin;
+            if (!viewMemPool.GetCoin(txin.prevout, coin)) {
                 return error("%s: Missing input", __func__);
             }
-            if (coins.nHeight == MEMPOOL_HEIGHT) {
+            if (coin.nHeight == MEMPOOL_HEIGHT) {
                 // Assume all mempool transaction confirm in the next block
                 prevheights[txinIndex] = tip->nHeight + 1;
             } else {
-                prevheights[txinIndex] = coins.nHeight;
+                prevheights[txinIndex] = coin.nHeight;
             }
         }
         lockPair = CalculateSequenceLocks(tx, flags, &prevheights, index);
@@ -461,7 +460,7 @@ unsigned int GetP2SHSigOpCount(const CTransaction& tx, const CCoinsViewCache& in
     unsigned int nSigOps = 0;
     for (unsigned int i = 0; i < tx.vin.size(); i++)
     {
-        const CTxOut &prevout = inputs.GetOutputFor(tx.vin[i]);
+        const CTxOut &prevout = inputs.AccessCoin(tx.vin[i].prevout).out;
         if (prevout.scriptPubKey.IsPayToScriptHash())
             nSigOps += prevout.scriptPubKey.GetSigOpCount(tx.vin[i].scriptSig);
     }
@@ -536,9 +535,9 @@ void LimitMempoolSize(CTxMemPool& pool, size_t limit, unsigned long age) {
     if (expired != 0)
         LogPrint("mempool", "Expired %i transactions from the memory pool\n", expired);
 
-    std::vector<uint256> vNoSpendsRemaining;
+    std::vector<COutPoint> vNoSpendsRemaining;
     pool.TrimToSize(limit, &vNoSpendsRemaining);
-    BOOST_FOREACH(const uint256& removed, vNoSpendsRemaining)
+    BOOST_FOREACH(const COutPoint& removed, vNoSpendsRemaining)
         pcoinsTip->Uncache(removed);
 }
 
@@ -580,7 +579,7 @@ static bool IsCurrentForFeeEstimation()
 
 bool AcceptToMemoryPoolWorker(CTxMemPool& pool, CValidationState& state, const CTransactionRef& ptx, bool fLimitFree,
                               bool* pfMissingInputs, int64_t nAcceptTime, std::list<CTransactionRef>* plTxnReplaced,
-                              bool fOverrideMempoolLimit, const CAmount& nAbsurdFee, std::vector<uint256>& vHashTxnToUncache)
+                              bool fOverrideMempoolLimit, const CAmount& nAbsurdFee, std::vector<COutPoint>& coins_to_uncache)
 {
     const CTransaction& tx = *ptx;
     const uint256 hash = tx.GetHash();
@@ -637,29 +636,29 @@ bool AcceptToMemoryPoolWorker(CTxMemPool& pool, CValidationState& state, const C
         view.SetBackend(viewMemPool);
 
         // do we already have it?
-        bool fHadTxInCache = pcoinsTip->HaveCoinsInCache(hash);
-        if (view.HaveCoins(hash)) {
-            if (!fHadTxInCache)
-                vHashTxnToUncache.push_back(hash);
-            return state.Invalid(false, REJECT_ALREADY_KNOWN, "txn-already-known");
-        }
-
-        // do all inputs exist?
-        // Note that this does not check for the presence of actual outputs (see the next check for that),
-        // and only helps with filling in pfMissingInputs (to determine missing vs spent).
-        BOOST_FOREACH(const CTxIn txin, tx.vin) {
-            if (!pcoinsTip->HaveCoinsInCache(txin.prevout.hash))
-                vHashTxnToUncache.push_back(txin.prevout.hash);
-            if (!view.HaveCoins(txin.prevout.hash)) {
-                if (pfMissingInputs)
-                    *pfMissingInputs = true;
-                return false; // fMissingInputs and !state.IsInvalid() is used to detect this condition, don't set state.Invalid()
+        for (size_t out = 0; out < tx.vout.size(); out++) {
+            COutPoint outpoint(hash, out);
+            bool had_coin_in_cache = pcoinsTip->HaveCoinInCache(outpoint);
+            if (view.HaveCoin(outpoint)) {
+                if (!had_coin_in_cache) {
+                    coins_to_uncache.push_back(outpoint);
+                }
+                return state.Invalid(false, REJECT_ALREADY_KNOWN, "txn-already-known");
             }
         }
 
-        // are the actual inputs available?
-        if (!view.HaveInputs(tx))
-            return state.Invalid(false, REJECT_DUPLICATE, "bad-txns-inputs-spent");
+        // do all inputs exist?
+        BOOST_FOREACH(const CTxIn txin, tx.vin) {
+            if (!pcoinsTip->HaveCoinInCache(txin.prevout)) {
+                coins_to_uncache.push_back(txin.prevout);
+            }
+            if (!view.HaveCoin(txin.prevout)) {
+                if (pfMissingInputs) {
+                    *pfMissingInputs = true;
+                }
+                return false; // fMissingInputs and !state.IsInvalid() is used to detect this condition, don't set state.Invalid()
+            }
+        }
 
         // Bring the best block into scope
         view.GetBestBlock();
@@ -698,8 +697,8 @@ bool AcceptToMemoryPoolWorker(CTxMemPool& pool, CValidationState& state, const C
         // during reorgs to ensure COINBASE_MATURITY is still met.
         bool fSpendsCoinbase = false;
         BOOST_FOREACH(const CTxIn &txin, tx.vin) {
-            const CCoins *coins = view.AccessCoins(txin.prevout.hash);
-            if (coins->IsCoinBase()) {
+            const Coin &coin = view.AccessCoin(txin.prevout);
+            if (coin.IsCoinBase()) {
                 fSpendsCoinbase = true;
                 break;
             }
@@ -817,10 +816,10 @@ bool AcceptToMemoryPoolWithTime(CTxMemPool& pool, CValidationState &state, const
                         bool* pfMissingInputs, int64_t nAcceptTime, std::list<CTransactionRef>* plTxnReplaced,
                         bool fOverrideMempoolLimit, const CAmount nAbsurdFee)
 {
-    std::vector<uint256> vHashTxToUncache;
-    bool res = AcceptToMemoryPoolWorker(pool, state, tx, fLimitFree, pfMissingInputs, nAcceptTime, plTxnReplaced, fOverrideMempoolLimit, nAbsurdFee, vHashTxToUncache);
+    std::vector<COutPoint> coins_to_uncache;
+    bool res = AcceptToMemoryPoolWorker(pool, state, tx, fLimitFree, pfMissingInputs, nAcceptTime, plTxnReplaced, fOverrideMempoolLimit, nAbsurdFee, coins_to_uncache);
     if (!res) {
-        BOOST_FOREACH(const uint256& hashTx, vHashTxToUncache)
+        BOOST_FOREACH(const COutPoint& hashTx, coins_to_uncache)
             pcoinsTip->Uncache(hashTx);
     }
     // After we've (potentially) uncached entries, ensure our coins cache is still within its size limits
@@ -872,15 +871,8 @@ bool GetTransaction(const uint256 &hash, CTransactionRef &txOut, const Consensus
     }
 
     if (fAllowSlow) { // use coin database to locate block that contains transaction, and scan it
-        int nHeight = -1;
-        {
-            const CCoinsViewCache& view = *pcoinsTip;
-            const CCoins* coins = view.AccessCoins(hash);
-            if (coins)
-                nHeight = coins->nHeight;
-        }
-        if (nHeight > 0)
-            pindexSlow = chainActive[nHeight];
+        const Coin& coin = AccessByTxid(*pcoinsTip, hash);
+        if (!coin.IsSpent()) pindexSlow = chainActive[coin.nHeight];
     }
 
     if (pindexSlow) {
@@ -1292,24 +1284,12 @@ void UpdateCoins(const CTransaction& tx, CCoinsViewCache& inputs, CTxUndo &txund
     if (!tx.IsCoinBase()) {
         txundo.vprevout.reserve(tx.vin.size());
         BOOST_FOREACH(const CTxIn &txin, tx.vin) {
-            CCoinsModifier coins = inputs.ModifyCoins(txin.prevout.hash);
-            unsigned nPos = txin.prevout.n;
-
-            if (nPos >= coins->vout.size() || coins->vout[nPos].IsNull())
-                assert(false);
-            // mark an outpoint spent, and construct undo information
-            txundo.vprevout.push_back(CTxInUndo(coins->vout[nPos]));
-            coins->Spend(nPos);
-            if (coins->vout.size() == 0) {
-                CTxInUndo& undo = txundo.vprevout.back();
-                undo.nHeight = coins->nHeight;
-                undo.fCoinBase = coins->fCoinBase;
-                undo.nVersion = coins->nVersion;
-            }
+            txundo.vprevout.emplace_back();
+            inputs.SpendCoin(txin.prevout, &txundo.vprevout.back());
         }
     }
     // add outputs
-    inputs.ModifyNewCoins(tx.GetHash(), tx.IsCoinBase())->FromTx(tx, nHeight);
+    AddCoins(inputs, tx, nHeight);
 }
 
 void UpdateCoins(const CTransaction& tx, CCoinsViewCache& inputs, int nHeight)
@@ -1346,31 +1326,31 @@ bool CheckTxInputs(const CTransaction& tx, CValidationState& state, const CCoins
         for (unsigned int i = 0; i < tx.vin.size(); i++)
         {
             const COutPoint &prevout = tx.vin[i].prevout;
-            const CCoins *coins = inputs.AccessCoins(prevout.hash);
-            assert(coins);
+            const Coin &coin = inputs.AccessCoin(prevout);
+            assert(!coin.IsSpent());
 
             // If prev is coinbase, check that it's matured
-            if (coins->IsCoinBase()) 
+            if (coin.IsCoinBase()) 
             {
-                if (coins->nHeight < nCoinbaseMaturityV2Start)
+                if (coin.nHeight < nCoinbaseMaturityV2Start)
                 {
-                    if (nSpendHeight - coins->nHeight < COINBASE_MATURITY)
+                    if (nSpendHeight - coin.nHeight < COINBASE_MATURITY)
                         return state.Invalid(false,
                             REJECT_INVALID, "bad-txns-premature-spend-of-coinbase",
-                            strprintf("tried to spend coinbase at depth %d", nSpendHeight - coins->nHeight));
+                            strprintf("tried to spend coinbase at depth %d", nSpendHeight - coin.nHeight));
                 }
             else 
             {                    
-                if (nSpendHeight - coins->nHeight < COINBASE_MATURITY_V2)
+                if (nSpendHeight - coin.nHeight < COINBASE_MATURITY_V2)
                 return state.Invalid(false,
                     REJECT_INVALID, "bad-txns-premature-spend-of-coinbase",
-                    strprintf("tried to spend coinbase at depth %d", nSpendHeight - coins->nHeight));
+                    strprintf("tried to spend coinbase at depth %d", nSpendHeight - coin.nHeight));
                 }
         }
 
             // Check for negative or overflow input values
-            nValueIn += coins->vout[prevout.n].nValue;
-            if (!MoneyRange(coins->vout[prevout.n].nValue) || !MoneyRange(nValueIn))
+            nValueIn += coin.out.nValue;
+            if (!MoneyRange(coin.out.nValue) || !MoneyRange(nValueIn))
                 return state.DoS(100, false, REJECT_INVALID, "bad-txns-inputvalues-outofrange");
 
         }
@@ -1412,11 +1392,19 @@ bool CheckInputs(const CTransaction& tx, CValidationState &state, const CCoinsVi
         if (fScriptChecks) {
             for (unsigned int i = 0; i < tx.vin.size(); i++) {
                 const COutPoint &prevout = tx.vin[i].prevout;
-                const CCoins* coins = inputs.AccessCoins(prevout.hash);
-                assert(coins);
+                const Coin& coin = inputs.AccessCoin(prevout);
+                assert(!coin.IsSpent());
+
+                // We very carefully only pass in things to CScriptCheck which
+                // are clearly committed to by tx' witness hash. This provides
+                // a sanity check that our caching is not introducing consensus
+                // failures through additional data in, eg, the coins being
+                // spent being checked as a part of CScriptCheck.
+                const CScript& scriptPubKey = coin.out.scriptPubKey;
+                const CAmount amount = coin.out.nValue;
 
                 // Verify signature
-                CScriptCheck check(*coins, tx, i, flags, cacheStore, &txdata);
+                CScriptCheck check(scriptPubKey, amount, tx, i, flags, cacheStore, &txdata);
                 if (pvChecks) {
                     pvChecks->push_back(CScriptCheck());
                     check.swap(pvChecks->back());
@@ -1428,7 +1416,7 @@ bool CheckInputs(const CTransaction& tx, CValidationState &state, const CCoinsVi
                         // arguments; if so, don't trigger DoS protection to
                         // avoid splitting the network between upgraded and
                         // non-upgraded nodes.
-                        CScriptCheck check2(*coins, tx, i,
+                        CScriptCheck check2(scriptPubKey, amount, tx, i,
                                 flags & ~STANDARD_NOT_MANDATORY_VERIFY_FLAGS, cacheStore, &txdata);
                         if (check2())
                             return state.Invalid(false, REJECT_NONSTANDARD, strprintf("non-mandatory-script-verify-flag (%s)", ScriptErrorString(check.GetScriptError())));
@@ -1487,8 +1475,10 @@ bool UndoReadFromDisk(CBlockUndo& blockundo, const CDiskBlockPos& pos, const uin
 
     // Read block
     uint256 hashChecksum;
+    CHashVerifier<CAutoFile> verifier(&filein); // We need a CHashVerifier as reserializing may lose data
     try {
-        filein >> blockundo;
+        verifier << hashBlock;
+        verifier >> blockundo;
         filein >> hashChecksum;
     }
     catch (const std::exception& e) {
@@ -1496,10 +1486,7 @@ bool UndoReadFromDisk(CBlockUndo& blockundo, const CDiskBlockPos& pos, const uin
     }
 
     // Verify checksum
-    CHashWriter hasher(SER_GETHASH, PROTOCOL_VERSION);
-    hasher << hashBlock;
-    hasher << blockundo;
-    if (hashChecksum != hasher.GetHash())
+    if (hashChecksum != verifier.GetHash())
         return error("%s: Checksum mismatch", __func__);
 
     return true;
@@ -1525,57 +1512,69 @@ bool AbortNode(CValidationState& state, const std::string& strMessage, const std
 
 } // anon namespace
 
+enum DisconnectResult
+{
+    DISCONNECT_OK,      // All good.
+    DISCONNECT_UNCLEAN, // Rolled back, but UTXO set was inconsistent with block.
+    DISCONNECT_FAILED   // Something else went wrong.
+};
+
 /**
- * Apply the undo operation of a CTxInUndo to the given chain state.
- * @param undo The undo object.
+ * Restore the UTXO in a Coin at a given COutPoint
+ * @param undo The Coin to be restored.
  * @param view The coins view to which to apply the changes.
  * @param out The out point that corresponds to the tx input.
- * @return True on success.
+ * @return A DisconnectResult as an int
  */
-bool ApplyTxInUndo(const CTxInUndo& undo, CCoinsViewCache& view, const COutPoint& out)
+int ApplyTxInUndo(Coin&& undo, CCoinsViewCache& view, const COutPoint& out)
 {
     bool fClean = true;
 
-    CCoinsModifier coins = view.ModifyCoins(out.hash);
-    if (undo.nHeight != 0) {
-        // undo data contains height: this is the last output of the prevout tx being spent
-        if (!coins->IsPruned())
-            fClean = fClean && error("%s: undo data overwriting existing transaction", __func__);
-        coins->Clear();
-        coins->fCoinBase = undo.fCoinBase;
-        coins->nHeight = undo.nHeight;
-        coins->nVersion = undo.nVersion;
-    } else {
-        if (coins->IsPruned())
-            fClean = fClean && error("%s: undo data adding output to missing transaction", __func__);
-    }
-    if (coins->IsAvailable(out.n))
-        fClean = fClean && error("%s: undo data overwriting existing output", __func__);
-    if (coins->vout.size() < out.n+1)
-        coins->vout.resize(out.n+1);
-    coins->vout[out.n] = undo.txout;
+    if (view.HaveCoin(out)) fClean = false; // overwriting transaction output
 
-    return fClean;
+    if (undo.nHeight == 0) {
+        // Missing undo metadata (height and coinbase). Older versions included this
+        // information only in undo records for the last spend of a transactions'
+        // outputs. This implies that it must be present for some other output of the same tx.
+        const Coin& alternate = AccessByTxid(view, out.hash);
+        if (!alternate.IsSpent()) {
+            undo.nHeight = alternate.nHeight;
+            undo.fCoinBase = alternate.fCoinBase;
+        } else {
+            return DISCONNECT_FAILED; // adding output for transaction without known metadata
+        }
+    }
+    view.AddCoin(out, std::move(undo), undo.fCoinBase);
+
+    return fClean ? DISCONNECT_OK : DISCONNECT_UNCLEAN;
 }
 
-bool DisconnectBlock(const CBlock& block, CValidationState& state, const CBlockIndex* pindex, CCoinsViewCache& view, bool* pfClean)
+/** Undo the effects of this block (with given index) on the UTXO set represented by coins.
+ *  When UNCLEAN or FAILED is returned, view is left in an indeterminate state. */
+static DisconnectResult DisconnectBlock(const CBlock& block, const CBlockIndex* pindex, CCoinsViewCache& view)
 {
     assert(pindex->GetBlockHash() == view.GetBestBlock());
-
-    if (pfClean)
-        *pfClean = false;
 
     bool fClean = true;
 
     CBlockUndo blockUndo;
     CDiskBlockPos pos = pindex->GetUndoPos();
     if (pos.IsNull())
-        return error("DisconnectBlock(): no undo data available");
+    {
+        error("DisconnectBlock(): no undo data available");
+        return DISCONNECT_FAILED;
+    }
     if (!UndoReadFromDisk(blockUndo, pos, pindex->pprev->GetBlockHash()))
-        return error("DisconnectBlock(): failure reading undo data");
+    {
+        error("DisconnectBlock(): failure reading undo data");
+        return DISCONNECT_FAILED;
+    }
 
     if (blockUndo.vtxundo.size() + 1 != block.vtx.size())
-        return error("DisconnectBlock(): block and undo data inconsistent");
+    {
+        error("DisconnectBlock(): block and undo data inconsistent");
+        return DISCONNECT_FAILED;
+    }
 
     // undo transactions in reverse order
     for (int i = block.vtx.size() - 1; i >= 0; i--) {
@@ -1584,46 +1583,38 @@ bool DisconnectBlock(const CBlock& block, CValidationState& state, const CBlockI
 
         // Check that all outputs are available and match the outputs in the block itself
         // exactly.
-        {
-        CCoinsModifier outs = view.ModifyCoins(hash);
-        outs->ClearUnspendable();
-
-        CCoins outsBlock(tx, pindex->nHeight);
-        // The CCoins serialization does not serialize negative numbers.
-        // No network rules currently depend on the version here, so an inconsistency is harmless
-        // but it must be corrected before txout nversion ever influences a network rule.
-        if (outsBlock.nVersion < 0)
-            outs->nVersion = outsBlock.nVersion;
-        if (*outs != outsBlock)
-            fClean = fClean && error("DisconnectBlock(): added transaction mismatch? database corrupted");
-
-        // remove outputs
-        outs->Clear();
+        for (size_t o = 0; o < tx.vout.size(); o++) {
+            if (!tx.vout[o].scriptPubKey.IsUnspendable()) {
+                COutPoint out(hash, o);
+                Coin coin;
+                view.SpendCoin(out, &coin);
+                if (tx.vout[o] != coin.out) {
+                    fClean = false; // transaction output mismatch
+                }
+            }
         }
 
         // restore inputs
         if (i > 0) { // not coinbases
-            const CTxUndo &txundo = blockUndo.vtxundo[i-1];
-            if (txundo.vprevout.size() != tx.vin.size())
-                return error("DisconnectBlock(): transaction and undo data inconsistent");
+            CTxUndo &txundo = blockUndo.vtxundo[i-1];
+            if (txundo.vprevout.size() != tx.vin.size()) {
+                error("DisconnectBlock(): transaction and undo data inconsistent");
+                return DISCONNECT_FAILED;
+            }
             for (unsigned int j = tx.vin.size(); j-- > 0;) {
                 const COutPoint &out = tx.vin[j].prevout;
-                const CTxInUndo &undo = txundo.vprevout[j];
-                if (!ApplyTxInUndo(undo, view, out))
-                    fClean = false;
+                int res = ApplyTxInUndo(std::move(txundo.vprevout[j]), view, out);
+                if (res == DISCONNECT_FAILED) return DISCONNECT_FAILED;
+                fClean = fClean && res != DISCONNECT_UNCLEAN;
             }
+            // At this point, all of txundo.vprevout should have been moved out.
         }
     }
 
     // move best block pointer to prevout block
     view.SetBestBlock(pindex->pprev->GetBlockHash());
 
-    if (pfClean) {
-        *pfClean = fClean;
-        return true;
-    }
-
-    return fClean;
+    return fClean ? DISCONNECT_OK : DISCONNECT_UNCLEAN;
 }
 
 void static FlushBlockFile(bool fFinalize = false)
@@ -1796,10 +1787,12 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
 
     if (fEnforceBIP30) {
         for (const auto& tx : block.vtx) {
-            const CCoins* coins = view.AccessCoins(tx->GetHash());
-            if (coins && !coins->IsPruned())
-                return state.DoS(100, error("ConnectBlock(): tried to overwrite transaction"),
-                                 REJECT_INVALID, "bad-txns-BIP30");
+            for (size_t o = 0; o < tx->vout.size(); o++) {
+                if (view.HaveCoin(COutPoint(tx->GetHash(), o))) {
+                    return state.DoS(100, error("ConnectBlock(): tried to overwrite transaction"),
+                                     REJECT_INVALID, "bad-txns-BIP30");
+                }
+            }
         }
     }
 
@@ -1869,7 +1862,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
             // be in ConnectBlock because they require the UTXO set
             prevheights.resize(tx.vin.size());
             for (size_t j = 0; j < tx.vin.size(); j++) {
-                prevheights[j] = view.AccessCoins(tx.vin[j].prevout.hash)->nHeight;
+                prevheights[j] = view.AccessCoin(tx.vin[j].prevout).nHeight;
             }
 
             if (!SequenceLocks(tx, nLockTimeFlags, &prevheights, *pindex)) {
@@ -2018,9 +2011,8 @@ bool static FlushStateToDisk(CValidationState &state, FlushStateMode mode, int n
     int64_t nMempoolSizeMax = GetArg("-maxmempool", DEFAULT_MAX_MEMPOOL_SIZE) * 1000000;
     int64_t cacheSize = pcoinsTip->DynamicMemoryUsage() * DB_PEAK_USAGE_FACTOR;
     int64_t nTotalSpace = nCoinCacheUsage + std::max<int64_t>(nMempoolSizeMax - nMempoolUsage, 0);
-    // The cache is large and we're within 10% and 200 MiB or 50% and 50MiB of the limit, but we have time now (not in the middle of a block processing).
-    bool fCacheLarge = mode == FLUSH_STATE_PERIODIC && cacheSize > std::min(std::max(nTotalSpace / 2, nTotalSpace - MIN_BLOCK_COINSDB_USAGE * 1024 * 1024),
-                                                                            std::max((9 * nTotalSpace) / 10, nTotalSpace - MAX_BLOCK_COINSDB_USAGE * 1024 * 1024));
+    // The cache is large and we're within 10% and 10 MiB of the limit, but we have time now (not in the middle of a block processing).
+    bool fCacheLarge = mode == FLUSH_STATE_PERIODIC && cacheSize > std::max((9 * nTotalSpace) / 10, nTotalSpace - MAX_BLOCK_COINSDB_USAGE * 1024 * 1024);
     // The cache is over the limit, we have to write now.
     bool fCacheCritical = mode == FLUSH_STATE_IF_NEEDED && cacheSize > nTotalSpace;
     // It's been a while since we wrote the block index to disk. Do this frequently, so we don't need to redownload after a crash.
@@ -2061,12 +2053,12 @@ bool static FlushStateToDisk(CValidationState &state, FlushStateMode mode, int n
     }
     // Flush best chain related state. This can only be done if the blocks / block index write was also done.
     if (fDoFullFlush) {
-        // Typical CCoins structures on disk are around 128 bytes in size.
+        // Typical Coin structures on disk are around 48 bytes in size.
         // Pushing a new one to the database can cause it to be written
         // twice (once in the log, and once in the tables). This is already
         // an overestimation, as most will delete an existing entry or
         // overwrite one. Still, use a conservative safety factor of 2.
-        if (!CheckDiskSpace(128 * 2 * 2 * pcoinsTip->GetCacheSize()))
+        if (!CheckDiskSpace(48 * 2 * 2 * pcoinsTip->GetCacheSize()))
             return state.Error("out of disk space");
         // Flush the chainstate (which may refer to block index entries).
         if (!pcoinsTip->Flush())
@@ -2174,7 +2166,7 @@ bool static DisconnectTip(CValidationState& state, const CChainParams& chainpara
     int64_t nStart = GetTimeMicros();
     {
         CCoinsViewCache view(pcoinsTip);
-        if (!DisconnectBlock(block, state, pindexDelete, view))
+        if (DisconnectBlock(block, pindexDelete, view) != DISCONNECT_OK)
             return error("DisconnectTip(): DisconnectBlock %s failed", pindexDelete->GetBlockHash().ToString());
         bool flushed = view.Flush();
         assert(flushed);
@@ -3262,8 +3254,8 @@ void UnlinkPrunedFiles(const std::set<int>& setFilesToPrune)
 {
     for (std::set<int>::iterator it = setFilesToPrune.begin(); it != setFilesToPrune.end(); ++it) {
         CDiskBlockPos pos(*it, 0);
-        boost::filesystem::remove(GetBlockPosFilename(pos, "blk"));
-        boost::filesystem::remove(GetBlockPosFilename(pos, "rev"));
+        fs::remove(GetBlockPosFilename(pos, "blk"));
+        fs::remove(GetBlockPosFilename(pos, "rev"));
         LogPrintf("Prune: %s deleted blk/rev (%05u)\n", __func__, *it);
     }
 }
@@ -3347,7 +3339,7 @@ void FindFilesToPrune(std::set<int>& setFilesToPrune, uint64_t nPruneAfterHeight
 
 bool CheckDiskSpace(uint64_t nAdditionalBytes)
 {
-    uint64_t nFreeBytesAvailable = boost::filesystem::space(GetDataDir()).available;
+    uint64_t nFreeBytesAvailable = fs::space(GetDataDir()).available;
 
     // Check for nMinDiskSpace bytes (currently 50MB)
     if (nFreeBytesAvailable < nMinDiskSpace + nAdditionalBytes)
@@ -3360,11 +3352,11 @@ FILE* OpenDiskFile(const CDiskBlockPos &pos, const char *prefix, bool fReadOnly)
 {
     if (pos.IsNull())
         return NULL;
-    boost::filesystem::path path = GetBlockPosFilename(pos, prefix);
-    boost::filesystem::create_directories(path.parent_path());
-    FILE* file = fopen(path.string().c_str(), "rb+");
+    fs::path path = GetBlockPosFilename(pos, prefix);
+    fs::create_directories(path.parent_path());
+    FILE* file = fsbridge::fopen(path, "rb+");
     if (!file && !fReadOnly)
-        file = fopen(path.string().c_str(), "wb+");
+        file = fsbridge::fopen(path, "wb+");
     if (!file) {
         LogPrintf("Unable to open file %s\n", path.string());
         return NULL;
@@ -3387,7 +3379,7 @@ FILE* OpenUndoFile(const CDiskBlockPos &pos, bool fReadOnly) {
     return OpenDiskFile(pos, "rev", fReadOnly);
 }
 
-boost::filesystem::path GetBlockPosFilename(const CDiskBlockPos &pos, const char *prefix)
+fs::path GetBlockPosFilename(const CDiskBlockPos &pos, const char *prefix)
 {
     return GetDataDir() / "blocks" / strprintf("%s%05u.dat", prefix, pos.nFile);
 }
@@ -3589,13 +3581,19 @@ bool CVerifyDB::VerifyDB(const CChainParams& chainparams, CCoinsView *coinsview,
         // check level 3: check for inconsistencies during memory-only disconnect of tip blocks
         if (nCheckLevel >= 3 && pindex == pindexState && (coins.DynamicMemoryUsage() + pcoinsTip->DynamicMemoryUsage()) <= nCoinCacheUsage) {
             bool fClean = true;
-            if (!DisconnectBlock(block, state, pindex, coins, &fClean))
-                return error("VerifyDB(): *** irrecoverable inconsistency in block data at %d, hash=%s", pindex->nHeight, pindex->GetBlockHash().ToString());
+            DisconnectResult res = DisconnectBlock(block, pindex, coins);
+            if (res == DISCONNECT_FAILED)
+            {
+                return error("VerifyDB(): *** irrecoverable inconsistency in block data at %d, hash=%s",
+                    pindex->nHeight, pindex->GetBlockHash().ToString());
+            }
             pindexState = pindex->pprev;
-            if (!fClean) {
+            if (!fClean)
+            {
                 nGoodTransactions = 0;
                 pindexFailure = pindex;
-            } else
+            }
+            else
                 nGoodTransactions += block.vtx.size();
         }
         if (ShutdownRequested())
@@ -4076,7 +4074,7 @@ static const uint64_t MEMPOOL_DUMP_VERSION = 1;
 bool LoadMempool(void)
 {
     int64_t nExpiryTimeout = GetArg("-mempoolexpiry", DEFAULT_MEMPOOL_EXPIRY) * 60 * 60;
-    FILE* filestr = fopen((GetDataDir() / "mempool.dat").string().c_str(), "rb");
+    FILE* filestr = fsbridge::fopen(GetDataDir() / "mempool.dat", "rb");
     CAutoFile file(filestr, SER_DISK, CLIENT_VERSION);
     if (file.IsNull()) {
         LogPrintf("Failed to open mempool file from disk. Continuing anyway.\n");
@@ -4157,7 +4155,7 @@ void DumpMempool(void)
     int64_t mid = GetTimeMicros();
 
     try {
-        FILE* filestr = fopen((GetDataDir() / "mempool.dat.new").string().c_str(), "wb");
+        FILE* filestr = fsbridge::fopen(GetDataDir() / "mempool.dat.new", "wb");
         if (!filestr) {
             return;
         }
