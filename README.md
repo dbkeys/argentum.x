@@ -34,6 +34,9 @@ Building
 See files in the [doc](doc) directory for generic build instructions for Windows,
 OSX and Unix.
 
+## Argentum Version 4.14.4.1
+- LOW_S and NULLFAIL are now mandatory
+
 ## Argentum Version 4.14.4
 - Speed up Initial Blockchain Download
 
@@ -82,11 +85,11 @@ OSX and Unix.
 ## Mining Settings
 Use this to set the algorithm to SHA256D for mining (add to argentum.conf or use -algo=)  
 
-algo=sha256d 
-algo=lyra2re2 or lyra2 
-algo=groestl 
-algo=argon2d or argon 
-algo=yescrypt 
+- algo=sha256d 
+- algo=lyra2re2 or lyra2 
+- algo=groestl 
+- algo=argon2d or argon 
+- algo=yescrypt 
 
 ## Mining Software (for best results, download specialized pool software from your pool of choice when able)
 ### Lyra2re2 / Myriad-Groestl (GPU)
@@ -117,6 +120,7 @@ algo=yescrypt
 - http://www.zpool.ca/ (all but Argon2d)
 - https://www.joinmycrypto.tk (Yescrypt)
 - http://poolovich.pro/ (Myriad-Groestl)
+- http://zergpool.com/ (Scrypt)
 
 ## Pools without Argentum payout
 - https://litecoinpool.org
