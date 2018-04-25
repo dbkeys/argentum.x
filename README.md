@@ -91,7 +91,7 @@ Use this to set the algorithm to SHA256D for mining (add to argentum.conf or use
 - algo=argon2d or argon 
 - algo=yescrypt 
 
-## Mining Software (for best results, download specialized pool software from your pool of choice when able)
+## Mining 
 ### Lyra2re2 / Myriad-Groestl (GPU)
 - AMD: - https://github.com/nicehash/sgminer/releases or https://github.com/tpruvot/sgminer/releases
 - NVIDIA: - https://github.com/tpruvot/ccminer/releases
