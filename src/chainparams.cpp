@@ -142,7 +142,7 @@ public:
         consensus.nMinimumChainWork = uint256S("0x00");
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0x43964064d8605d2bb89972f07919dc5b1a00457b3919eb6010003c8d0b242c93"); //2210002
+        consensus.defaultAssumeValid = uint256S("0x5c05ff869078b2e545f0d927307b0ba3f20b0aaaebdb4eb19f37e1e6f94b74c2"); //3056860
 
         // BIP146 fork
         consensus.nBIP146Height = 2977000; // Around March 13th 2018
