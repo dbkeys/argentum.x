@@ -124,6 +124,7 @@ Use this to set the algorithm to SHA256D for mining (add to argentum.conf or use
 - https://argentum.easymine.online (Argon2d)
 - http://pool.hashrefinery.com/ (Scrypt, Yescrypt, Lyra2rev2, Myr-Groestl)
 - http://tiny-pool.com (Myr-Groestl) 
+- http://crypto.n-engine.com (SHA256)  
 
 ## Pools without Argentum payout
 - https://litecoinpool.org
