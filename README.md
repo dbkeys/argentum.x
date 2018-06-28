@@ -94,7 +94,7 @@ Use this to set the algorithm to SHA256D for mining (add to argentum.conf or use
 ## Mining 
 ### Lyra2re2 / Myriad-Groestl (GPU)
 - AMD: - https://github.com/nicehash/sgminer/releases or https://github.com/tpruvot/sgminer/releases
-- NVIDIA: - https://github.com/tpruvot/ccminer/releases
+- NVIDIA: - https://github.com/tpruvot/ccminer/releases or Cryptodredge https://bitcointalk.org/index.php?topic=4129696
 - You might be able to get a hashrate increase using this Myriad-Groestl kernel with SGMINER https://bitcointalk.org/index.php?topic=1211739.0
 
 ### Argon2d (CPU)
@@ -120,12 +120,14 @@ Use this to set the algorithm to SHA256D for mining (add to argentum.conf or use
 - http://www.zpool.ca/ (all but Argon2d)
 - https://www.joinmycrypto.tk (Yescrypt)
 - http://poolovich.pro/ (Myriad-Groestl)
-- http://zergpool.com/ (Scrypt)
+- http://zergpool.com/ (Scrypt, Lyra2rev2)
 - https://argentum.easymine.online (Argon2d)
 - http://pool.hashrefinery.com/ (Scrypt, Yescrypt, Lyra2rev2, Myr-Groestl)
 - http://tiny-pool.com (Myr-Groestl) 
 - http://crypto.n-engine.com (SHA256)  
-- http://blazepool.com (Myriad-Groestl, Yescrypt, Scrypt, Lyra2rev2)  
+- http://blazepool.com (Myriad-Groestl, Yescrypt, Scrypt, Lyra2rev2) 
+- https://hashing.space/argentum (Argon2d)
+- https://argentum.easymine.online/start (Argon2d, merge mining with UIS-Unitus) 
 
 ## Pools without Argentum payout
 - https://litecoinpool.org
