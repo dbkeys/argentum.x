@@ -125,9 +125,18 @@ Use this to set the algorithm to SHA256D for mining (add to argentum.conf or use
 - http://pool.hashrefinery.com/ (Scrypt, Yescrypt, Lyra2rev2, Myr-Groestl)
 - http://tiny-pool.com (Myr-Groestl) 
 - http://crypto.n-engine.com (SHA256)  
+- http://blazepool.com (Myriad-Groestl, Yescrypt, Scrypt, Lyra2rev2)  
 
 ## Pools without Argentum payout
 - https://litecoinpool.org
+
+## Trading
+- https://LocalBitcoinCash.org  
+- http://bitsquare.io  
+- https://www.cryptopia.co.nz/Exchange/?market=ARG_BTC  
+- https://www.coinexchange.io/market/ARG/BTC  
+- https://novaexchange.com/market/BTC_ARG/  
+- https://www.simpleswap.io/  
 
 ## Bootstrap
 - https://electrum-arg.org/bootstrap.dat  
