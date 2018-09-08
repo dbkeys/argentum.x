@@ -98,7 +98,9 @@ Use this to set the algorithm to SHA256D for mining (add to argentum.conf or use
 - You might be able to get a hashrate increase using this Myriad-Groestl kernel with SGMINER https://bitcointalk.org/index.php?topic=1211739.0
 
 ### Argon2d (CPU)
+- Try this first https://github.com/JayDDee/cpuminer-opt/releases
 - https://github.com/unitusdev/unitus-cpuminer
+- Setup guide to merge mine with UIS https://pimovietc.github.io/EasyMineGuides/Argentum/
 
 ### Yescrypt
 - https://github.com/unitusdev/unitus-cpuminer
