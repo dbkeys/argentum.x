@@ -111,10 +111,31 @@ Use this to set the algorithm to SHA256D for mining (add to argentum.conf or use
 - https://github.com/argentumproject/p2pool-argentum/
 
 - Point your miner to:
-- Argon2d 144.202.80.45:9552
+- Argon2d 
+  144.202.80.45:9552
+  HashingSpace:
+  Singapore: arg-argon2d-sg.hashing.space
+  Dallas, Texas: arg-argon2d-tx.hashing.space
+  Seattle Washington: arg-argon2d-wa.hashing.space
 - Myr-groestl 45.77.210.177:9553 
 - Yescrypt 45.76.112.155:9554
 - Lyra 45.76.240.8:9557
+
+- for USA - http://p2p-usa.xyz:9557/static/ - LYRA2RE2
+            - http://p2p-usa.xyz:9552/static/ - ARGON2D
+            - http://p2p-usa.xyz:9554/static/ - YESCRYPT
+            - http://p2p-usa.xyz:9553/static/ - GROESTL
+
+for EU   - http://p2p-south.xyz:9557/static/ - LYRA2RE2
+            - http://p2p-south.xyz:9552/static/ - ARGON2D
+            - http://p2p-south.xyz:9554/static/ - YESCRYPT
+            - http://p2p-south.xyz:9553/static/ - GROESTL
+
+            - http://p2p-spb.xyz:9557/static/ - LYRA2RE2
+            - http://p2p-spb.xyz:9552/static/ - ARGON2D
+            - http://p2p-spb.xyz:9554/static/ - YESCRYPT
+            - http://p2p-spb.xyz:9553/static/ - GROESTL
+
 
 ## Known pools (*with Argentum Payout*)
 - https://prohashing.com (Scrypt)
@@ -130,6 +151,9 @@ Use this to set the algorithm to SHA256D for mining (add to argentum.conf or use
 - http://blazepool.com (Myriad-Groestl, Yescrypt, Scrypt, Lyra2rev2) 
 - https://hashing.space/argentum (Argon2d)
 - https://argentum.easymine.online/start (Argon2d, merge mining with UIS-Unitus) 
+- http://www.evil.ru/site/mining (Yescrypt)  
+- https://algopools.com (All algorithms)
+- http://eqpool.com/ (Yescrypt)
 
 ## Pools without Argentum payout
 - https://litecoinpool.org
