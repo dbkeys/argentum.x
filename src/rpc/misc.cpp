@@ -525,11 +525,64 @@ UniValue echo(const JSONRPCRequest& request)
     return request.params;
 }
 
+UniValue chaindynamics(const JSONRPCRequest& request)
+{
+    if (request.fHelp || request.params.size() > 1)
+        throw runtime_error(
+            "chain dynamics (height)\n"
+            "Returns an object containing various state info.\n"
+            "}\n"
+	    "\nResult:\n"
+	    "{\n"
+	    " \"difficulty <algo>\": xxxxx           (numeric),\n"
+	    " \"peak hashrate <algo>\": xxxxx           (numeric),\n"
+	    " \"current hashrate <algo>\": xxxxx           (numeric),\n"
+	    " \"average block spacing <algo>\": xxxxx           (numeric)\n"
+	    "}\n"
+        );
+
+    CBlockIndex * pindex = 0;
+    if (request.params.size()>0) {
+      int height = request.params[0].get_int();
+      pindex = chainActive[height];
+    }    
+
+    UniValue obj(UniValue::VOBJ);
+    obj.push_back(Pair("difficulty SHA256D",    (double)GetDifficulty(pindex,ALGO_SHA256D,true)));
+    obj.push_back(Pair("difficulty SCRYPT",    (double)GetDifficulty(pindex,ALGO_SCRYPT,true)));
+    obj.push_back(Pair("difficulty LYRA2RE2",    (double)GetDifficulty(pindex,ALGO_LYRA2RE2,true)));
+    obj.push_back(Pair("difficulty GROESTL",    (double)GetDifficulty(pindex,ALGO_GROESTL,true)));
+    obj.push_back(Pair("difficulty ARGON2D",    (double)GetDifficulty(pindex,ALGO_ARGON2D,true)));
+    obj.push_back(Pair("difficulty YESCRYPT",    (double)GetDifficulty(pindex,ALGO_YESCRYPT,true)));
+    obj.push_back(Pair("peak hashrate SHA256D",    (double)GetPeakHashrate(pindex,ALGO_SHA256D)));
+    obj.push_back(Pair("peak hashrate SCRYPT",    (double)GetPeakHashrate(pindex,ALGO_SCRYPT)));
+    obj.push_back(Pair("peak hashrate LYRA2RE2",    (double)GetPeakHashrate(pindex,ALGO_LYRA2RE2)));
+    obj.push_back(Pair("peak hashrate GROESTL",    (double)GetPeakHashrate(pindex,ALGO_GROESTL)));
+    obj.push_back(Pair("peak hashrate ARGON2D",    (double)GetPeakHashrate(pindex,ALGO_ARGON2D)));
+    obj.push_back(Pair("peak hashrate YESCRYPT",    (double)GetPeakHashrate(pindex,ALGO_YESCRYPT)));
+    obj.push_back(Pair("current hashrate SHA256D",    (double)GetCurrentHashrate(pindex,ALGO_SHA256D)));    
+    obj.push_back(Pair("current hashrate SCRYPT",    (double)GetCurrentHashrate(pindex,ALGO_SCRYPT)));
+    obj.push_back(Pair("current hashrate LYRA2RE2",    (double)GetCurrentHashrate(pindex,ALGO_LYRA2RE2)));
+    obj.push_back(Pair("current hashrate GROESTL",    (double)GetCurrentHashrate(pindex,ALGO_GROESTL)));
+    obj.push_back(Pair("current hashrate ARGON2D",    (double)GetCurrentHashrate(pindex,ALGO_ARGON2D)));
+    obj.push_back(Pair("current hashrate YESCRYPT",    (double)GetCurrentHashrate(pindex,ALGO_YESCRYPT)));
+    obj.push_back(Pair("average block spacing",    (double)GetAverageBlockSpacing(pindex,-1)));
+    obj.push_back(Pair("average block spacing SHA256D",    (double)GetAverageBlockSpacing(pindex,ALGO_SHA256D)));
+    obj.push_back(Pair("average block spacing SCRYPT",    (double)GetAverageBlockSpacing(pindex,ALGO_SCRYPT)));
+    obj.push_back(Pair("average block spacing LYRA2RE2",    (double)GetAverageBlockSpacing(pindex,ALGO_LYRA2RE2)));
+    obj.push_back(Pair("average block spacing GROESTL",    (double)GetAverageBlockSpacing(pindex,ALGO_GROESTL)));
+    obj.push_back(Pair("average block spacing ARGON2D",    (double)GetAverageBlockSpacing(pindex,ALGO_ARGON2D)));
+    obj.push_back(Pair("average block spacing YESCRYPT",    (double)GetAverageBlockSpacing(pindex,ALGO_YESCRYPT)));
+
+    return obj;
+}
+
 static const CRPCCommand commands[] =
 { //  category              name                      actor (function)         okSafeMode
   //  --------------------- ------------------------  -----------------------  ----------
     { "control",            "getinfo",                &getinfo,                true,  {} }, /* uses wallet if enabled */
     { "control",            "getmemoryinfo",          &getmemoryinfo,          true,  {} },
+    { "control",            "chaindynamics",                &chaindynamics,                true,  {"height"} },
     { "util",               "validateaddress",        &validateaddress,        true,  {"address"} }, /* uses wallet if enabled */
     { "util",               "createmultisig",         &createmultisig,         true,  {"nrequired","keys"} },
     { "util",               "verifymessage",          &verifymessage,          true,  {"address","signature","message"} },

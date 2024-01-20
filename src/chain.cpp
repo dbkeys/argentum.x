@@ -316,6 +316,24 @@ const CBlockIndex* GetLastBlockIndexForAlgo(const CBlockIndex* pindex, int algo)
     }
 }
 
+const CBlockIndex* GetPrevBlockIndexForAlgo(const CBlockIndex* pindex, int algo)
+{
+  if (!pindex)
+    return NULL;
+  if (pindex->nHeight < Params().GetConsensus().nBIP146Height)
+    return NULL;
+  if (algo<0)
+    algo = pindex->GetAlgo();
+  CBlockIndex* pprev = pindex->pprev;
+  while (pprev && pprev->nHeight >= Params().GetConsensus().nBIP146Height)
+    {   
+      if (pprev->GetAlgo() == algo)
+	return pprev;
+      pprev = pprev->pprev;
+    }
+  return NULL;
+}
+
 std::string GetAlgoName(int Algo, uint32_t time, const Consensus::Params& consensusParams)
 {
     switch (Algo)

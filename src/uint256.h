@@ -42,6 +42,18 @@ public:
         memset(data, 0, sizeof(data));
     }
 
+  double getdouble() const
+  {
+    double ret = 0.0;
+    double fact = 1.0;
+    for (int i = 0; i < WIDTH; i++) {
+      ret += fact * data[i];
+      fact *= 256.0;
+    }
+    return ret;
+  }
+  
+
     inline int Compare(const base_blob& other) const { return memcmp(data, other.data, sizeof(data)); }
 
     friend inline bool operator==(const base_blob& a, const base_blob& b) { return a.Compare(b) == 0; }
