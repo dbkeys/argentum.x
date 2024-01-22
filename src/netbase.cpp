@@ -408,13 +408,17 @@ bool static ConnectSocketDirectly(const CService &addrConnect, SOCKET& hSocketRe
         return false;
     }
 
+    LogPrintf("net","ConnectSocketDirectly: do socket() with domain %d\n",((struct sockaddr*)&sockaddr)->sa_family);
     SOCKET hSocket = socket(((struct sockaddr*)&sockaddr)->sa_family, SOCK_STREAM, IPPROTO_TCP);
-    if (hSocket == INVALID_SOCKET)
+    if (hSocket == INVALID_SOCKET) {
+      LogPrintf("net","ConnectToSocketDirectly: hSocket == INVALID_SOCKET\n");
         return false;
+    }
 
     int set = 1;
 #ifdef SO_NOSIGPIPE
     // Different way of disabling SIGPIPE on BSD
+    LogPrintf("net","Set SO_NOSIGPIPE\n");
     setsockopt(hSocket, SOL_SOCKET, SO_NOSIGPIPE, (void*)&set, sizeof(int));
 #endif
 
@@ -431,6 +435,7 @@ bool static ConnectSocketDirectly(const CService &addrConnect, SOCKET& hSocketRe
 
     if (connect(hSocket, (struct sockaddr*)&sockaddr, len) == SOCKET_ERROR)
     {
+      LogPrint("net","ConnectSocketDirectly: connect() returned SOCKET_ERROR\n");
         int nErr = WSAGetLastError();
         // WSAEINVAL is here because some legacy version of winsock uses it
         if (nErr == WSAEINPROGRESS || nErr == WSAEWOULDBLOCK || nErr == WSAEINVAL)
@@ -565,10 +570,13 @@ bool ConnectSocket(const CService &addrDest, SOCKET& hSocketRet, int nTimeout, b
     if (outProxyConnectionFailed)
         *outProxyConnectionFailed = false;
 
-    if (GetProxy(addrDest.GetNetwork(), proxy))
+    if (GetProxy(addrDest.GetNetwork(), proxy)) {
         return ConnectThroughProxy(proxy, addrDest.ToStringIP(), addrDest.GetPort(), hSocketRet, nTimeout, outProxyConnectionFailed);
-    else // no proxy needed (none set for target network)
+    }
+    else { // no proxy needed (none set for target network)
+      LogPrint("net","ConnectSocket: do ConnectSocketDirectly\n");
         return ConnectSocketDirectly(addrDest, hSocketRet, nTimeout);
+    }
 }
 
 bool ConnectSocketByName(CService &addr, SOCKET& hSocketRet, const char *pszDest, int portDefault, int nTimeout, bool *outProxyConnectionFailed)
@@ -588,6 +596,7 @@ bool ConnectSocketByName(CService &addr, SOCKET& hSocketRet, const char *pszDest
     if (Lookup(strDest.c_str(), addrResolved, port, fNameLookup && !HaveNameProxy(), 256)) {
         if (addrResolved.size() > 0) {
             addr = addrResolved[GetRand(addrResolved.size())];
+	    LogPrint("net","ConnectSocketByName: do ConnectSocket strDest %s port %d\n",strDest.c_str(),port);
             return ConnectSocket(addr, hSocketRet, nTimeout);
         }
     }
