@@ -408,17 +408,17 @@ bool static ConnectSocketDirectly(const CService &addrConnect, SOCKET& hSocketRe
         return false;
     }
 
-    LogPrintf("net","ConnectSocketDirectly: do socket() with domain %d\n",((struct sockaddr*)&sockaddr)->sa_family);
+    LogPrint("net","ConnectSocketDirectly: do socket() with domain %d\n",((struct sockaddr*)&sockaddr)->sa_family);
     SOCKET hSocket = socket(((struct sockaddr*)&sockaddr)->sa_family, SOCK_STREAM, IPPROTO_TCP);
     if (hSocket == INVALID_SOCKET) {
-      LogPrintf("net","ConnectToSocketDirectly: hSocket == INVALID_SOCKET\n");
+      LogPrint("net","ConnectToSocketDirectly: hSocket == INVALID_SOCKET\n");
         return false;
     }
 
     int set = 1;
 #ifdef SO_NOSIGPIPE
     // Different way of disabling SIGPIPE on BSD
-    LogPrintf("net","Set SO_NOSIGPIPE\n");
+    LogPrint("net","Set SO_NOSIGPIPE\n");
     setsockopt(hSocket, SOL_SOCKET, SO_NOSIGPIPE, (void*)&set, sizeof(int));
 #endif
 
