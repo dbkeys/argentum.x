@@ -1030,7 +1030,7 @@ void CConnman::AcceptConnection(const ListenSocket& hListenSocket) {
     SOCKET hSocket = accept(hListenSocket.socket, (struct sockaddr*)&sockaddr, &len);
     CAddress addr;
     int nInbound = 0;
-    LogPrint("net","nMaxConnections = %d, nMaxOutbound = %d, nMaxFeeler = %d\n");
+    LogPrint("net","nMaxConnections = %d, nMaxOutbound = %d, nMaxFeeler = %d\n",nMaxConnections,nMaxOutbound,nMaxFeeler);
     int nMaxInbound = nMaxConnections - (nMaxOutbound + nMaxFeeler);
 
     if (hSocket != INVALID_SOCKET)
