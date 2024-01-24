@@ -565,10 +565,14 @@ UniValue waitforblockheight(const JSONRPCRequest& request)
 
 UniValue getdifficulty(const JSONRPCRequest& request)
 {
-    if (request.fHelp || request.params.size() != 0)
+    if (request.fHelp || request.params.size() > 3)
         throw runtime_error(
             "getdifficulty\n"
             "\nReturns the proof-of-work difficulty as a multiple of the minimum difficulty.\n"
+	    "\nArguments:\n"
+	    "1. \"algo\"     (numeric, optional) The algo, (miningAlgo) by default\n"
+	    "2. \"height\"     (numeric, optional) The height to look at, tip by default\n"
+	    "3. \"next\"     (boolean, optional) Whether to get the next difficulty required (false by default)\n"	    
             "\nResult:\n"
             "n.nnn       (numeric) the proof-of-work difficulty as a multiple of the minimum difficulty.\n"
             "\nExamples:\n"
@@ -577,7 +581,22 @@ UniValue getdifficulty(const JSONRPCRequest& request)
         );
 
     LOCK(cs_main);
-    return GetDifficulty(NULL, miningAlgo);
+
+    int algo = miningAlgo;
+    CBlockIndex * blockindex = NULL;
+    bool next = false;
+    if (request.params.size() > 0) {
+      algo = request.params[0].get_int();
+      if (request.params.size() > 1) {
+	int height = request.params[1].get_int();
+	blockindex = chainActive[height];
+	if (request.params.size() > 2) {
+	  next = request.params[2].get_bool();
+	}
+      }
+    }
+    
+    return GetDifficulty(blockindex, algo, next);
 }
 
 std::string EntryDescriptionString()
@@ -1689,6 +1708,43 @@ UniValue reconsiderblock(const JSONRPCRequest& request)
     return NullUniValue;
 }
 
+UniValue getblockspacing(const JSONRPCRequest& request)
+{
+    if (request.fHelp || request.params.size() > 3)
+        throw runtime_error(
+            "getblockspacing (algo interval height )\n"
+            "Returns an object containing blockspacing info.\n"
+	    "\nArguments:\n"
+	    "1. \"algo\"     (numeric, optional) The algo, -1 (none) by default\n"
+            "2. \"interval\"     (numeric, optional) The interval in number of blocks, 25 by default\n"
+	    "3. \"height\"     (numeric, optional) The height for the endpoint of the interval, tip by default\n"	    
+	    "\nResult:\n"
+	    "{\n"
+	    "  \"average block spacing\": xxxxx           (numeric)\n"
+	    "}\n"
+			    );
+
+    int algo = -1;
+    int interval = 25;
+    CBlockIndex * blockindex = NULL;
+    
+    if (request.params.size()>0) {
+      algo = request.params[0].get_int();
+      if (request.params.size()>1) {
+	interval = request.params[1].get_int();
+	if (request.params.size()>2) {
+	  int height = request.params[2].get_int();
+	  blockindex = chainActive[height];
+	}
+      }
+    }
+    
+    UniValue obj(UniValue::VOBJ);
+    obj.push_back(Pair("average block spacing",    (double)GetAverageBlockSpacing(blockindex,algo,interval)));
+
+    return obj;
+}
+
 static const CRPCCommand commands[] =
 { //  category              name                      actor (function)         okSafe argNames
   //  --------------------- ------------------------  -----------------------  ------ ----------
@@ -1699,7 +1755,7 @@ static const CRPCCommand commands[] =
     { "blockchain",         "getblockhash",           &getblockhash,           true,  {"height"} },
     { "blockchain",         "getblockheader",         &getblockheader,         true,  {"blockhash","verbose"} },
     { "blockchain",         "getchaintips",           &getchaintips,           true,  {} },
-    { "blockchain",         "getdifficulty",          &getdifficulty,          true,  {} },
+    { "blockchain",         "getdifficulty",          &getdifficulty,          true,  {"algo","height","next"} },
     { "blockchain",         "getmempoolancestors",    &getmempoolancestors,    true,  {"txid","verbose"} },
     { "blockchain",         "getmempooldescendants",  &getmempooldescendants,  true,  {"txid","verbose"} },
     { "blockchain",         "getmempoolentry",        &getmempoolentry,        true,  {"txid"} },
@@ -1711,6 +1767,7 @@ static const CRPCCommand commands[] =
     { "blockchain",         "verifychain",            &verifychain,            true,  {"checklevel","nblocks"} },
 
     { "blockchain",         "preciousblock",          &preciousblock,          true,  {"blockhash"} },
+    { "blockchain",         "getblockspacing",          &getblockspacing,          true,  {"algo","interval","height"} },
 
     /* Not shown in help */
     { "hidden",             "invalidateblock",        &invalidateblock,        true,  {"blockhash"} },
