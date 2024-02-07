@@ -21,6 +21,7 @@
 #include "util.h"
 #include "utilstrencodings.h"
 #include "validationinterface.h"
+#include "bignum.h"
 
 #include <memory>
 #include <stdint.h>
@@ -37,7 +38,7 @@ using namespace std;
  * or from the last difficulty change if 'lookup' is nonpositive.
  * If 'height' is nonnegative, compute the estimate at the time when a given block was found.
  */
-UniValue GetNetworkHashPS(int lookup, int height) {
+UniValue GetNetworkHashPS(int lookup, int height, int algo) {
     CBlockIndex *pb = chainActive.Tip();
 
     if (height >= 0 && height < chainActive.Height())
@@ -54,16 +55,28 @@ UniValue GetNetworkHashPS(int lookup, int height) {
     if (lookup > pb->nHeight)
         lookup = pb->nHeight;
 
-    CBlockIndex *pb0 = pb;
+    const CBlockIndex *pb0 = pb;
+    int algo_tip = pb0->GetAlgo();
+    if (algo>=0 && algo_tip != algo) {
+      pb0 = GetPrevBlockIndexForAlgo(pb0,algo);
+    }
+    if (!pb0) return 0.;
     int64_t minTime = pb0->GetBlockTime();
     int64_t maxTime = minTime;
+    CBigNum hashes_bn;
+    if (algo>=0) hashes_bn = CBigNum(ArithToUint256(GetBlockProofBase(*pb0)));
     for (int i = 0; i < lookup; i++) {
         pb0 = pb0->pprev;
+	if (!pb0) break;
+	if (pb0->GetAlgo()!=algo) {
+	  lookup++;
+	  continue;
+	}
         int64_t time = pb0->GetBlockTime();
         minTime = std::min(time, minTime);
         maxTime = std::max(time, maxTime);
+	if (algo>=0) hashes_bn += CBigNum(ArithToUint256(GetBlockProofBase(*pb0)));
     }
-
     // In case there's a situation where minTime == maxTime, we don't want a divide by zero exception.
     if (minTime == maxTime)
         return 0;
@@ -71,12 +84,17 @@ UniValue GetNetworkHashPS(int lookup, int height) {
     arith_uint256 workDiff = pb->nChainWork - pb0->nChainWork;
     int64_t timeDiff = maxTime - minTime;
 
-    return workDiff.getdouble() / timeDiff;
+    if (algo>=0) {
+      return ((hashes_bn.getuint256().getdouble()) / ((double)timeDiff));
+    }
+    else {
+      return workDiff.getdouble() / timeDiff;
+    }
 }
 
 UniValue getnetworkhashps(const JSONRPCRequest& request)
 {
-    if (request.fHelp || request.params.size() > 2)
+    if (request.fHelp || request.params.size() > 3)
         throw runtime_error(
             "getnetworkhashps ( nblocks height )\n"
             "\nReturns the estimated network hashes per second based on the last n blocks.\n"
@@ -85,6 +103,7 @@ UniValue getnetworkhashps(const JSONRPCRequest& request)
             "\nArguments:\n"
             "1. nblocks     (numeric, optional, default=120) The number of blocks, or -1 for blocks since last difficulty change.\n"
             "2. height      (numeric, optional, default=-1) To estimate at the time of the given height.\n"
+	    "3. algo (numeric, optional, default=-1)\n"
             "\nResult:\n"
             "x             (numeric) Hashes per second estimated\n"
             "\nExamples:\n"
@@ -93,7 +112,7 @@ UniValue getnetworkhashps(const JSONRPCRequest& request)
        );
 
     LOCK(cs_main);
-    return GetNetworkHashPS(request.params.size() > 0 ? request.params[0].get_int() : 120, request.params.size() > 1 ? request.params[1].get_int() : -1);
+    return GetNetworkHashPS(request.params.size() > 0 ? request.params[0].get_int() : 120, request.params.size() > 1 ? request.params[1].get_int() : -1, request.params.size() > 2 ? request.params[2].get_int() : -1);
 }
 
 UniValue generateBlocks(boost::shared_ptr<CReserveScript> coinbaseScript, int nGenerate, uint64_t nMaxTries, bool keepScript)
@@ -1085,7 +1104,7 @@ UniValue getauxblock(const JSONRPCRequest& request)
 static const CRPCCommand commands[] =
 { //  category              name                      actor (function)         okSafeMode
   //  --------------------- ------------------------  -----------------------  ----------
-    { "mining",             "getnetworkhashps",       &getnetworkhashps,       true,  {"nblocks","height"} },
+ { "mining",             "getnetworkhashps",       &getnetworkhashps,       true,  {"nblocks","height","algo"} },
     { "mining",             "getmininginfo",          &getmininginfo,          true,  {} },
     { "mining",             "prioritisetransaction",  &prioritisetransaction,  true,  {"txid","priority_delta","fee_delta"} },
     { "mining",             "getblocktemplate",       &getblocktemplate,       true,  {"template_request"} },

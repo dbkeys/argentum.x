@@ -20,6 +20,7 @@
 #include "util.h"
 #include "utilstrencodings.h"
 #include "hash.h"
+#include "bignum.h"
 
 #include <stdint.h>
 
@@ -44,7 +45,7 @@ static CUpdatedBlock latestblock;
 extern void TxToJSON(const CTransaction& tx, const uint256 hashBlock, UniValue& entry);
 void ScriptPubKeyToJSON(const CScript& scriptPubKey, UniValue& out, bool fIncludeHex);
 
-double GetDifficulty(const CBlockIndex* blockindex, int algo)
+double GetDifficulty(const CBlockIndex* blockindex, int algo, bool next)
 {
     unsigned int nBits;
     unsigned int powLimit = UintToArith256(Params().GetConsensus().powLimit).GetCompact();
@@ -52,19 +53,31 @@ double GetDifficulty(const CBlockIndex* blockindex, int algo)
     // minimum difficulty = 1.0.
     if (blockindex == NULL)
     {
-        if (chainActive.Tip() == NULL)
-            nBits = powLimit;
-        else
-        {
-            blockindex = GetLastBlockIndexForAlgo(chainActive.Tip(), algo);
-            if (blockindex == NULL)
-                nBits = powLimit;
-            else
-                nBits = blockindex->nBits;
-        }
+      if (chainActive.Tip() == NULL) {
+	nBits = powLimit;
+      }
+      else {
+	if (next) {
+	  blockindex = chainActive.Tip();
+	  CBlockHeader blockheader;
+	  nBits = GetNextWorkRequired(blockindex,&blockheader,algo,Params().GetConsensus());
+	}
+	else {
+	  blockindex = GetLastBlockIndexForAlgo(chainActive.Tip(), algo);
+	  if (blockindex == NULL)
+	    nBits = powLimit;
+	  else
+	    nBits = blockindex->nBits;
+	}
+      }
     }
-    else
-        nBits = blockindex->nBits;
+    else if (next) {
+      CBlockHeader blockheader;
+      nBits = GetNextWorkRequired(blockindex,&blockheader,algo,Params().GetConsensus());
+    }
+    else {
+      nBits = blockindex->nBits;
+    }
 
     int nShift = (nBits >> 24) & 0xff;
 
@@ -83,6 +96,178 @@ double GetDifficulty(const CBlockIndex* blockindex, int algo)
     }
 
     return dDiff;
+}
+
+double GetPeakHashrate (const CBlockIndex* blockindex, int algo) {
+  const int nBlocksDay = 320;
+    if (blockindex == NULL)
+    {
+      if (chainActive.Tip() == NULL)
+	return 0.;
+      else
+	blockindex = chainActive.Tip();
+    }
+  
+    int algo_tip = blockindex->GetAlgo();
+  if (algo_tip != algo) {
+    blockindex = GetPrevBlockIndexForAlgo(blockindex,algo);
+  }
+  if (!blockindex) return 0.;
+  do {
+    if ((blockindex->nHeight % 1920) == 0) {
+      double hashes_peak = 0.;
+      const CBlockIndex * pprev_algo = GetPrevBlockIndexForAlgo(blockindex,algo);
+      for (int i=0; i<365; i++) {
+	if (!pprev_algo) break;
+	int time_f = pprev_algo->GetMedianTimePast();
+	CBigNum hashes_bn = CBigNum(ArithToUint256(GetBlockProofBase(*pprev_algo)));
+	int time_i = 0;
+	
+	for (int j=0; j<nBlocksDay-1; j++) {
+	 
+	  pprev_algo = GetPrevBlockIndexForAlgo(pprev_algo,-1);
+
+	  if (pprev_algo) {
+	    time_i = pprev_algo->GetMedianTimePast();
+	  }
+	  else {
+	    hashes_bn = CBigNum(0);
+	    break;
+	  }
+	  //LogPrintf("j=%d add block work of block %lu\n",j,pprev_algo->nHeight);
+	  hashes_bn += CBigNum(ArithToUint256(GetBlockProofBase(*pprev_algo)));	  
+	}
+	const CBlockIndex * pprev_algo_time = GetPrevBlockIndexForAlgo(pprev_algo,-1);
+	if (pprev_algo_time) {
+	  time_i = pprev_algo_time->GetMedianTimePast();
+	}
+	else {
+	  const CBlockIndex * blockindex_time = pprev_algo;
+	  while (blockindex_time && blockindex_time->nHeight>=Params().GetConsensus().nBIP146Height) {
+	    blockindex_time = blockindex_time->pprev;
+	  }
+	  if (blockindex_time) {
+	    time_i = blockindex_time->GetBlockTime();
+	  }
+	}
+	pprev_algo = pprev_algo_time;
+	
+	if (time_f>time_i) {
+	  time_f -= time_i;
+	}
+	else {
+	  return std::numeric_limits<double>::max();
+	}
+	//LogPrintf("hashes = %f, time = %f\n",(double)hashes_bn.getulong(),(double)time_f);
+	double hashes = (hashes_bn/time_f).getuint256().getdouble();
+	//LogPrintf("hashes per sec = %f\n",hashes);
+	if (hashes>hashes_peak) hashes_peak = hashes;
+      }
+      return hashes_peak;
+      break;
+    }
+    blockindex = blockindex->pprev;
+  } while (blockindex);
+  return 0.;
+}
+
+double GetCurrentHashrate (const CBlockIndex* blockindex, int algo) {
+  const int nBlocksDay = 320;
+  if (blockindex == NULL)
+    {
+      if (chainActive.Tip() == NULL)
+	return 0.;
+      else
+	blockindex = chainActive.Tip();
+    }
+  int algo_tip = blockindex->GetAlgo();
+  if (algo_tip != algo) {
+    blockindex = GetPrevBlockIndexForAlgo(blockindex, algo);
+  }
+  if (!blockindex) {
+    return 0.;
+  }
+  do {
+    if ((blockindex->nHeight % 1920) == 0) {
+      const CBlockIndex * pcur_algo = GetPrevBlockIndexForAlgo(blockindex,algo);
+      if (!pcur_algo) return 0.;
+      int time_f = pcur_algo->GetMedianTimePast();
+      CBigNum hashes_bn = CBigNum(ArithToUint256(GetBlockProofBase(*pcur_algo)));
+      int time_i = 0;
+      const CBlockIndex * pprev_algo = pcur_algo;
+      for (int j=0; j<nBlocksDay-1; j++) {
+	pprev_algo = GetPrevBlockIndexForAlgo(pprev_algo,-1);
+	if (pprev_algo) {
+	  time_i = pprev_algo->GetMedianTimePast();
+	}
+	else {
+	  return 0.;
+	}
+	hashes_bn += CBigNum(ArithToUint256(GetBlockProofBase(*pprev_algo)));
+      }
+      const CBlockIndex * pprev_algo_time = GetPrevBlockIndexForAlgo(pprev_algo,-1);
+      if (pprev_algo_time) {
+	time_i = pprev_algo_time->GetMedianTimePast();
+      }
+      else {
+	const CBlockIndex * blockindex_time = pprev_algo;
+	while (blockindex_time && blockindex_time->nHeight>=Params().GetConsensus().nBIP146Height) {
+	  blockindex_time = blockindex_time->pprev;
+	}
+	if (blockindex_time) time_i = blockindex_time->GetBlockTime();
+      }
+
+      if (time_f>time_i) {
+	time_f -= time_i;
+      }
+      else {
+	return std::numeric_limits<double>::max();
+      }
+      return (hashes_bn/time_f).getuint256().getdouble();
+    }
+    blockindex = blockindex->pprev;
+  } while (blockindex);
+  return 0.;
+}
+
+double GetAverageBlockSpacing (const CBlockIndex * blockindex, const int algo, const int averagingInterval) {
+  
+  if (averagingInterval <= 1) return 0.;
+
+  if (blockindex == NULL) {
+    if (chainActive.Tip() == NULL)
+      return 0.;
+    else
+      blockindex = chainActive.Tip();
+  }
+  
+  const CBlockIndex *BlockReading = blockindex;
+  int64_t CountBlocks = 0;
+  int64_t nActualTimespan = 0;
+  int64_t LastBlockTime = 0;
+  
+  for (unsigned int i = 1; BlockReading && BlockReading->nHeight > 0; i++) {
+    if (CountBlocks >= averagingInterval) { break; }
+    int block_algo = -1;
+    if (BlockReading->nHeight>=Params().GetConsensus().nBIP146Height) {
+      block_algo = BlockReading->GetAlgo();
+    }
+    if (algo >=0 && block_algo != algo) {
+      BlockReading = BlockReading->pprev;
+      continue;
+    }
+    CountBlocks++;
+    if(LastBlockTime > 0){
+      nActualTimespan = LastBlockTime - BlockReading->GetMedianTimePast();
+    }
+    else {
+      LastBlockTime = BlockReading->GetMedianTimePast();
+    }
+
+    BlockReading = BlockReading->pprev;
+    
+  }
+  return ((double)nActualTimespan)/((double)averagingInterval)/60.;
 }
 
 static UniValue AuxpowToJSON(const CAuxPow& auxpow)
@@ -380,10 +565,14 @@ UniValue waitforblockheight(const JSONRPCRequest& request)
 
 UniValue getdifficulty(const JSONRPCRequest& request)
 {
-    if (request.fHelp || request.params.size() != 0)
+    if (request.fHelp || request.params.size() > 3)
         throw runtime_error(
             "getdifficulty\n"
             "\nReturns the proof-of-work difficulty as a multiple of the minimum difficulty.\n"
+	    "\nArguments:\n"
+	    "1. \"algo\"     (numeric, optional) The algo, (miningAlgo) by default\n"
+	    "2. \"height\"     (numeric, optional) The height to look at, tip by default\n"
+	    "3. \"next\"     (boolean, optional) Whether to get the next difficulty required (false by default)\n"	    
             "\nResult:\n"
             "n.nnn       (numeric) the proof-of-work difficulty as a multiple of the minimum difficulty.\n"
             "\nExamples:\n"
@@ -392,7 +581,22 @@ UniValue getdifficulty(const JSONRPCRequest& request)
         );
 
     LOCK(cs_main);
-    return GetDifficulty(NULL, miningAlgo);
+
+    int algo = miningAlgo;
+    CBlockIndex * blockindex = NULL;
+    bool next = false;
+    if (request.params.size() > 0) {
+      algo = request.params[0].get_int();
+      if (request.params.size() > 1) {
+	int height = request.params[1].get_int();
+	blockindex = chainActive[height];
+	if (request.params.size() > 2) {
+	  next = request.params[2].get_bool();
+	}
+      }
+    }
+    
+    return GetDifficulty(blockindex, algo, next);
 }
 
 std::string EntryDescriptionString()
@@ -1504,6 +1708,43 @@ UniValue reconsiderblock(const JSONRPCRequest& request)
     return NullUniValue;
 }
 
+UniValue getblockspacing(const JSONRPCRequest& request)
+{
+    if (request.fHelp || request.params.size() > 3)
+        throw runtime_error(
+            "getblockspacing (algo interval height )\n"
+            "Returns an object containing blockspacing info.\n"
+	    "\nArguments:\n"
+	    "1. \"algo\"     (numeric, optional) The algo, -1 (none) by default\n"
+            "2. \"interval\"     (numeric, optional) The interval in number of blocks, 25 by default\n"
+	    "3. \"height\"     (numeric, optional) The height for the endpoint of the interval, tip by default\n"	    
+	    "\nResult:\n"
+	    "{\n"
+	    "  \"average block spacing\": xxxxx           (numeric)\n"
+	    "}\n"
+			    );
+
+    int algo = -1;
+    int interval = 25;
+    CBlockIndex * blockindex = NULL;
+    
+    if (request.params.size()>0) {
+      algo = request.params[0].get_int();
+      if (request.params.size()>1) {
+	interval = request.params[1].get_int();
+	if (request.params.size()>2) {
+	  int height = request.params[2].get_int();
+	  blockindex = chainActive[height];
+	}
+      }
+    }
+    
+    UniValue obj(UniValue::VOBJ);
+    obj.push_back(Pair("average block spacing",    (double)GetAverageBlockSpacing(blockindex,algo,interval)));
+
+    return obj;
+}
+
 static const CRPCCommand commands[] =
 { //  category              name                      actor (function)         okSafe argNames
   //  --------------------- ------------------------  -----------------------  ------ ----------
@@ -1514,7 +1755,7 @@ static const CRPCCommand commands[] =
     { "blockchain",         "getblockhash",           &getblockhash,           true,  {"height"} },
     { "blockchain",         "getblockheader",         &getblockheader,         true,  {"blockhash","verbose"} },
     { "blockchain",         "getchaintips",           &getchaintips,           true,  {} },
-    { "blockchain",         "getdifficulty",          &getdifficulty,          true,  {} },
+    { "blockchain",         "getdifficulty",          &getdifficulty,          true,  {"algo","height","next"} },
     { "blockchain",         "getmempoolancestors",    &getmempoolancestors,    true,  {"txid","verbose"} },
     { "blockchain",         "getmempooldescendants",  &getmempooldescendants,  true,  {"txid","verbose"} },
     { "blockchain",         "getmempoolentry",        &getmempoolentry,        true,  {"txid"} },
@@ -1526,6 +1767,7 @@ static const CRPCCommand commands[] =
     { "blockchain",         "verifychain",            &verifychain,            true,  {"checklevel","nblocks"} },
 
     { "blockchain",         "preciousblock",          &preciousblock,          true,  {"blockhash"} },
+    { "blockchain",         "getblockspacing",          &getblockspacing,          true,  {"algo","interval","height"} },
 
     /* Not shown in help */
     { "hidden",             "invalidateblock",        &invalidateblock,        true,  {"blockhash"} },

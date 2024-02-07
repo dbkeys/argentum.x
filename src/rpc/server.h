@@ -193,7 +193,11 @@ extern std::vector<unsigned char> ParseHexO(const UniValue& o, std::string strKe
 extern int64_t nWalletUnlockTime;
 extern CAmount AmountFromValue(const UniValue& value);
 extern UniValue ValueFromAmount(const CAmount& amount);
-extern double GetDifficulty(const CBlockIndex* blockindex, int algo);
+extern double GetDifficulty(const CBlockIndex* blockindex, int algo, const bool next=false);
+extern double GetPeakHashrate (const CBlockIndex* blockindex, int algo = 0);
+extern double GetCurrentHashrate (const CBlockIndex* blockindex, int algo = 0);
+extern double GetAverageBlockSpacing (const CBlockIndex * blockindex, const int algo = -1, const int averagingInterval = 25);
+
 extern std::string HelpRequiringPassphrase();
 extern std::string HelpExampleCli(const std::string& methodname, const std::string& args);
 extern std::string HelpExampleRpc(const std::string& methodname, const std::string& args);
